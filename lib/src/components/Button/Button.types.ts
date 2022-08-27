@@ -6,6 +6,6 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   type?: 'button' | 'submit' | 'reset';
   primary?: boolean;
   disabled?: boolean;
-  size?: 'small' | 'medium' | 'large';
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
