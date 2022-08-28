@@ -7,10 +7,11 @@ function App() {
       <h1 className="text-3xl font-bold underline">Hello world!</h1>
       <Button
         text="Click me"
-        size="xl"
+        size="md"
         onClick={() => console.log('click')}
         icon={EnvelopeIcon}
         iconPosition="left"
+        arial-label="Click me"
       />
     </div>
   );
