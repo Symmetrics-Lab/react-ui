@@ -68,7 +68,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(props,
       onClick={onClick}
       {...rest}
     >
-      {iconPosition === 'left' &&
+      {(iconPosition === 'left' || !iconPosition) &&
         icon &&
         createElement(icon, {
           className: leftIcon[size],
