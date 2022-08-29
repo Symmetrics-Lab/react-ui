@@ -24,7 +24,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(props,
     <button
       ref={ref}
       type={type || 'button'}
-      disabled={disabled}
+      disabled={disabled === true}
       className={`sym-button 
         ${baseClass} 
         ${getSizeClass(size)}

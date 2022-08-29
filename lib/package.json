@@ -13,15 +13,19 @@
     "build:tailwind": "tailwindcss build -i src/index.css -o style/output.css -c ./tailwind.config.cjs",
     "lint": "eslint src/**/*.{js,jsx,ts,tsx,json}",
     "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx,json}'",
-    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
+    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "devDependencies": {
+    "@testing-library/react": "^13.3.0",
     "@types/node": "^18.7.13",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.35.1",
     "@typescript-eslint/parser": "^5.35.1",
     "@vitejs/plugin-react": "^2.0.1",
+    "@vitest/coverage-c8": "^0.22.1",
     "autoprefixer": "^10.4.8",
     "components": "^0.0.0",
     "docs": "^0.3.2-canary.0",
@@ -30,6 +34,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.1",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "jsdom": "^20.0.0",
     "lib": "^4.3.3",
     "postcss": "^8.4.16",
     "postcss-cli": "^10.0.0",
@@ -39,7 +44,8 @@
     "tailwindcss": "^3.1.8",
     "typescript": "^4.6.4",
     "vite": "^3.0.7",
-    "vite-plugin-dts": "^1.4.1"
+    "vite-plugin-dts": "^1.4.1",
+    "vitest": "^0.22.1"
   },
   "peerDependencies": {
     "react": "^18.2.0",

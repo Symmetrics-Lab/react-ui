@@ -48,26 +48,28 @@ export const getIconClass = (
     switch (size) {
       case 'xs':
       case 'sm':
-        return '-ml-0.5 mr-2 h-4 w-4';
+        return 'sym-btn-icon-left -ml-0.5 mr-2 h-4 w-4';
       case 'md':
-        return '-ml-1 mr-2 h-5 w-5';
+        return 'sym-btn-icon-left -ml-1 mr-2 h-5 w-5';
       case 'lg':
+        return 'sym-btn-icon-left -ml-1 mr-3 h-5 w-5';
       case 'xl':
-        return '-ml-1 mr-3 h-5 w-5';
+        return 'sym-btn-icon-left -ml-1 mr-3 h-5 w-5';
       default:
-        return '-ml-1 mr-2 h-5 w-5';
+        return 'sym-btn-icon-left -ml-1 mr-2 h-5 w-5';
     }
   }
   switch (size) {
     case 'xs':
     case 'sm':
-      return 'ml-2 -mr-0.5 h-4 w-4';
+      return 'sym-btn-icon-right ml-2 -mr-0.5 h-4 w-4';
     case 'md':
-      return 'ml-2 -mr-1 h-5 w-5';
+      return 'sym-btn-icon-right ml-2 -mr-1 h-5 w-5';
     case 'lg':
+      return 'sym-btn-icon-right ml-3 -mr-1 h-5 w-5';
     case 'xl':
-      return 'ml-3 -mr-1 h-5 w-5';
+      return 'sym-btn-icon-right ml-3 -mr-1 h-5 w-5';
     default:
-      return 'ml-2 -mr-1 h-5 w-5';
+      return 'sym-btn-icon-right ml-2 -mr-1 h-5 w-5';
   }
 };
