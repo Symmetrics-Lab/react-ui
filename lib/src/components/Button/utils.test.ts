@@ -1,5 +1,7 @@
 import { describe, expect, test } from 'vitest';
 
+import { getSizeClass, getVarianTheme, getIconClass } from './utils';
+
 const xsClass = 'px-2.5 py-1.5 text-xs font-medium rounded';
 const smClass = 'px-3 py-2 text-sm leading-4 font-medium rounded';
 const mdClass = 'px-4 py-2 text-sm font-medium rounded-md';
@@ -9,8 +11,6 @@ const primaryColor = 'text-primaryText bg-primary-600 hover:bg-primary-700  focu
 const secondaryColor =
   'text-primary-700 bg-primary-100 hover:bg-primary-200 focus:ring-primary-500';
 const outlineColor = 'text-gray-700 bg-white hover:bg-gray-50 focus:ring-primary-500';
-
-import { getSizeClass, getVarianTheme, getIconClass } from './utils';
 
 // Test the utils.ts file
 describe('getSizeClass', () => {
@@ -46,6 +46,9 @@ describe('getVarianTheme', () => {
 
 // Test getIconClass function
 describe('getIconClass', () => {
+  test('should return the correct class for left icon', () => {
+    expect(getIconClass('xs', 'left')).includes('sym-btn-icon-left');
+  });
   test('should return the correct class for left icon size xs', () => {
     expect(getIconClass('xs', 'left')).toEqual('sym-btn-icon-left -ml-0.5 mr-2 h-4 w-4');
   });
