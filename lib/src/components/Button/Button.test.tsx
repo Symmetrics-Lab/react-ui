@@ -56,7 +56,7 @@ describe('Icon', () => {
   test('it should render an icon to the right', () => {
     render(<Button text="Hello there" icon={EnvelopeIcon} iconPosition="right" />);
     expect(screen.getByRole('button').innerHTML).includes('<svg');
-    console.log(screen.getByRole('button').innerHTML);
+
     expect(screen.getByRole('button').innerHTML).includes('sym-btn-icon-right');
   });
 });

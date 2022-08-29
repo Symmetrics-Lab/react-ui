@@ -35,7 +35,6 @@
     "eslint-plugin-react": "^7.31.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "jsdom": "^20.0.0",
-    "lib": "^4.3.3",
     "postcss": "^8.4.16",
     "postcss-cli": "^10.0.0",
     "prettier": "^2.7.1",
@@ -64,6 +63,7 @@
     }
   },
   "dependencies": {
-    "@heroicons/react": "^2.0.8"
+    "@heroicons/react": "^2.0.8",
+    "clsx": "^1.2.1"
   }
 }
