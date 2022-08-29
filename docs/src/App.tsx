@@ -12,6 +12,7 @@ function App() {
         icon={EnvelopeIcon}
         iconPosition="left"
         arial-label="Click me"
+        disabled
       />
     </div>
   );
