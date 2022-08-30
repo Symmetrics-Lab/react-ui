@@ -1,4 +1,4 @@
-import { Button } from '@symlab/components';
+import { Button } from '@symlab/react-ui';
 import { EnvelopeIcon } from '@heroicons/react/20/solid';
 
 function App() {

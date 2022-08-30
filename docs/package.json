@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.0.8",
-    "@symlab/components": "*",
+    "@symlab/react-ui": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

@@ -1,5 +1,5 @@
 {
-  "name": "@symlab/components",
+  "name": "@symlab/react-ui",
   "private": true,
   "version": "0.0.1",
   "type": "module",
@@ -53,13 +53,13 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/symlab-components.umd.js",
-  "module": "./dist/symlab-components.es.js",
+  "main": "./dist/symlab-react-ui.umd.js",
+  "module": "./dist/symlab-react-ui.es.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/symlab-components.es.js",
-      "require": "./dist/symlab-components.umd.js"
+      "import": "./dist/symlab-react-ui.es.js",
+      "require": "./dist/symlab-react-ui.umd.js"
     }
   },
   "dependencies": {

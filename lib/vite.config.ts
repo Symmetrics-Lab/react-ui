@@ -23,9 +23,9 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
-      name: '@symlab/components',
+      name: '@symlab/react-ui',
       formats: ['umd', 'cjs', 'es'],
-      fileName: (format) => `symlab-components.${format}.js`,
+      fileName: (format) => `symlab-react-ui.${format}.js`,
     },
     rollupOptions: {
       external: ['react', 'react-dom', 'tailwindcss'],
