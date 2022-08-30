@@ -26,5 +26,5 @@ dist-ssr
 *.sw?
 package
 style/output.css
-docs-example
+tailwindui-syntax
 tmp
