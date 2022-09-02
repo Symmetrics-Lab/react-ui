@@ -6,13 +6,15 @@ function App() {
     <div className="p-4">
       <h1 className="text-3xl font-bold underline">Hello world!</h1>
       <Button
-        text="Click me"
         onPress={() => console.log('click')}
         arial-label="Click me"
-        iconPosition="right"
+        iconPosition="left"
         icon={EnvelopeIcon}
         type="submit"
-      />
+        isDisabled
+      >
+        Click Me
+      </Button>
     </div>
   );
 }

@@ -8,13 +8,13 @@ type IconType =
 
 export interface ButtonProps extends AriaButtonProps<ElementType> {
   className?: string;
+  children?: React.ReactNode;
   disabled?: boolean;
   icon?: IconType;
   iconPosition?: 'left' | 'right';
   onClick?: MouseEventHandler<HTMLButtonElement>;
   rounded?: boolean;
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-  text?: string;
   type?: 'button' | 'submit' | 'reset';
   variant?: 'primary' | 'secondary' | 'outline';
 }

@@ -40,13 +40,13 @@ const rightIcon = {
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(props, ref) {
   const {
     className,
+    children,
     disabled,
     icon,
     iconPosition,
     onClick,
     rounded,
     size = 'md',
-    text,
     type,
     variant = 'primary',
     isDisabled,
@@ -82,7 +82,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(props,
           'aria-hidden': true,
         })}
       <>
-        {text}
+        {children}
         {iconPosition === 'right' &&
           icon &&
           createElement(icon, {
