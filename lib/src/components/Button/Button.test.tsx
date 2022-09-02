@@ -27,6 +27,12 @@ describe('Button', () => {
   });
   test('it should have be disabled', () => {
     render(<Button text="Hello there" disabled />);
+    console.log(screen.getByRole('button'));
+    expect(screen.getByRole('button').getAttribute('disabled')).equal('');
+  });
+  test('it should have be disabled with isDisable', () => {
+    render(<Button text="Hello there" isDisabled />);
+    console.log(screen.getByRole('button'));
     expect(screen.getByRole('button').getAttribute('disabled')).equal('');
   });
   test('it should have a different opacity and hover icon if disabled', () => {

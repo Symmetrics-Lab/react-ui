@@ -7,10 +7,11 @@ function App() {
       <h1 className="text-3xl font-bold underline">Hello world!</h1>
       <Button
         text="Click me"
-        onClick={() => console.log('click')}
+        onPress={() => console.log('click')}
         arial-label="Click me"
         iconPosition="right"
         icon={EnvelopeIcon}
+        type="submit"
       />
     </div>
   );

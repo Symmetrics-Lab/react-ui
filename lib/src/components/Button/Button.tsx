@@ -1,5 +1,7 @@
 import { forwardRef, createElement } from 'react';
 import clsx from 'clsx';
+import { useButton } from 'react-aria';
+import { useObjectRef } from '@react-aria/utils';
 
 import { ButtonProps } from './Button.types';
 
@@ -47,8 +49,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(props,
     text,
     type,
     variant = 'primary',
+    isDisabled,
     ...rest
   } = props;
+
+  const objRef = useObjectRef(ref);
+
+  const { buttonProps } = useButton(rest, objRef);
 
   const classes = clsx(
     'sym-btn',
@@ -56,17 +63,16 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(props,
     sizes[size],
     variants[variant],
     rounded ? 'rounded-full' : null,
-    disabled ? 'opacity-50 cursor-not-allowed' : null,
+    disabled || isDisabled ? 'opacity-50 cursor-not-allowed' : null,
     className
   );
   return (
     <button
       ref={ref}
+      {...buttonProps}
       type={type || 'button'}
-      disabled={disabled === true}
+      disabled={(disabled || isDisabled) === true}
       className={classes}
-      onClick={onClick}
-      {...rest}
     >
       {(iconPosition === 'left' || !iconPosition) &&
         icon &&

@@ -1,11 +1,12 @@
-import { MouseEventHandler, HTMLAttributes } from 'react';
+import { MouseEventHandler, ElementType } from 'react';
+import { AriaButtonProps } from 'react-aria';
 
 type IconType =
   | string
   | React.FunctionComponent<{ className: string; 'aria-hidden': boolean }>
   | React.ComponentClass<{ className: string; 'aria-hidden': boolean }>;
 
-export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends AriaButtonProps<ElementType> {
   className?: string;
   disabled?: boolean;
   icon?: IconType;
