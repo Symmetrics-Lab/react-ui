@@ -73,6 +73,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(props,
       type={type || 'button'}
       disabled={(disabled || isDisabled) === true}
       className={classes}
+      onClick={onClick}
     >
       {(iconPosition === 'left' || !iconPosition) &&
         icon &&
