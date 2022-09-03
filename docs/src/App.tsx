@@ -11,7 +11,8 @@ function App() {
         iconPosition="left"
         icon={EnvelopeIcon}
         type="submit"
-        isDisabled
+        isLoading
+        loadingContent="Loading"
       >
         Click Me
       </Button>
