@@ -6,7 +6,7 @@ type IconType =
   | React.FunctionComponent<{ className: string; 'aria-hidden': boolean }>
   | React.ComponentClass<{ className: string; 'aria-hidden': boolean }>;
 
-export interface ButtonProps extends AriaButtonProps<ElementType> {
+interface ButtonPropsBase extends AriaButtonProps<ElementType> {
   className?: string;
   children?: React.ReactNode;
   disabled?: boolean;
@@ -18,3 +18,15 @@ export interface ButtonProps extends AriaButtonProps<ElementType> {
   type?: 'button' | 'submit' | 'reset';
   variant?: 'primary' | 'secondary' | 'outline';
 }
+
+interface ButtonPropsRequired extends ButtonPropsBase {
+  isLoading: true;
+  loadingContent: React.ReactNode;
+}
+
+interface ButtonPropsOptional extends Partial<ButtonPropsBase> {
+  isLoading?: false;
+  loadingContent?: never;
+}
+
+export type ButtonProps = ButtonPropsRequired | ButtonPropsOptional;

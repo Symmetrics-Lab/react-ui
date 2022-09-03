@@ -50,6 +50,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(props,
     type,
     variant = 'primary',
     isDisabled,
+    isLoading,
+    loadingContent,
     ...rest
   } = props;
 
@@ -63,7 +65,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(props,
     sizes[size],
     variants[variant],
     rounded ? 'rounded-full' : null,
-    disabled || isDisabled ? 'opacity-50 cursor-not-allowed' : null,
+    disabled || isDisabled || isLoading ? 'opacity-50 cursor-not-allowed' : null,
     className
   );
   return (
@@ -71,7 +73,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(props,
       ref={ref}
       {...buttonProps}
       type={type || 'button'}
-      disabled={(disabled || isDisabled) === true}
+      disabled={(disabled || isDisabled || isLoading) === true}
       className={classes}
       onClick={onClick}
     >
@@ -82,7 +84,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(props,
           'aria-hidden': true,
         })}
       <>
-        {children}
+        {isLoading ? loadingContent : children}
         {iconPosition === 'right' &&
           icon &&
           createElement(icon, {

@@ -51,6 +51,24 @@ describe('Button', () => {
     render(<Button>Hello there</Button>);
     expect(screen.getByRole('button').getAttribute('class')).includes(baseClass);
   });
+  test('it should have be disabled with isLoading', () => {
+    render(
+      <Button isLoading loadingContent="Loading">
+        Hello there
+      </Button>
+    );
+    console.log(screen.getByRole('button'));
+    expect(screen.getByRole('button').getAttribute('disabled')).equal('');
+  });
+  test('it should show loading content with isLoading', () => {
+    render(
+      <Button isLoading loadingContent="Loading">
+        Hello there
+      </Button>
+    );
+    console.log(screen.getByRole('button'));
+    expect(screen.getByRole('button').innerHTML).equal('Loading');
+  });
 });
 
 describe('Icon', () => {
