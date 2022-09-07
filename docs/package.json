@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@headlessui/react": "^1.6.6",
     "@heroicons/react": "^2.0.10",
     "@symlab/react-ui": "*",
     "lib": "^4.3.3",
