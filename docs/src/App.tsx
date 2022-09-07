@@ -1,5 +1,21 @@
-import { Button, NavBar, Logo } from '@symlab/react-ui';
+import { Button, NavBar, Logo, TopMenu } from '@symlab/react-ui';
 import { EnvelopeIcon } from '@heroicons/react/20/solid';
+
+const items = [
+  {
+    label: 'Home',
+    link: '/',
+    current: true,
+  },
+  {
+    label: 'About',
+    link: '/about',
+  },
+  {
+    label: 'Contact',
+    link: '/contact',
+  },
+];
 
 const LogoElement = () => (
   <Logo src="https://symlab.io/foot-icon.svg" alt="SymLab" href="/" title="Go to home page" />
@@ -8,7 +24,7 @@ const LogoElement = () => (
 function App() {
   return (
     <main>
-      <NavBar logo={<LogoElement />} />
+      <NavBar logo={<LogoElement />} leftItems={<TopMenu items={items} />} />
       <div className="p-4">
         <h1 className="text-3xl font-bold underline">Hello world!</h1>
         <Button
