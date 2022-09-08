@@ -1,5 +1,6 @@
-import { Button, NavBar, Logo, TopMenu } from '@symlab/react-ui';
-import { EnvelopeIcon } from '@heroicons/react/20/solid';
+import { Button, NavBar, Logo, TopMenu, Dropdown } from '@symlab/react-ui';
+import { EnvelopeIcon, UserIcon } from '@heroicons/react/20/solid';
+import { BellIcon } from '@heroicons/react/24/outline';
 
 const items = [
   {
@@ -10,10 +11,12 @@ const items = [
   {
     label: 'About',
     link: '/about',
+    current: false,
   },
   {
     label: 'Contact',
     link: '/contact',
+    current: false,
   },
 ];
 
@@ -23,9 +26,28 @@ const LogoElement = () => (
 
 function App() {
   return (
-    <main>
-      <NavBar logo={<LogoElement />} leftItems={<TopMenu items={items} />} />
-      <div className="p-4">
+    <div>
+      <NavBar
+        logo={<LogoElement />}
+        leftItems={<TopMenu items={items} />}
+        rightItems={
+          <>
+            <button
+              type="button"
+              className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            >
+              <span className="sr-only">View notifications</span>
+              <BellIcon className="h-6 w-6" aria-hidden="true" />
+            </button>
+            <Dropdown
+              srLabel="Open Profile"
+              icon={<UserIcon className="text-gray-700 h-8 w-8" />}
+            />
+          </>
+        }
+        itemsMobile={items}
+      />
+      <main className="p-4">
         <h1 className="text-3xl font-bold underline">Hello world!</h1>
         <Button
           onPress={() => console.log('click')}
@@ -38,8 +60,8 @@ function App() {
         >
           Click Me
         </Button>
-      </div>
-    </main>
+      </main>
+    </div>
   );
 }
 
