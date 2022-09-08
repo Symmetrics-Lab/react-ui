@@ -9,7 +9,7 @@ export default function TopMenuItem({ label, link, current }: TopMenuItemProps) 
     }
   );
   return (
-    <a href={link || '#'} className={classes}>
+    <a role="menuitem" href={link || '#'} className={classes}>
       {label}
     </a>
   );
