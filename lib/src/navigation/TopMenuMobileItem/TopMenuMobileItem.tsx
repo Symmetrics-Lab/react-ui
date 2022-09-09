@@ -1,8 +1,8 @@
 import { Disclosure } from '@headlessui/react';
 import clsx from 'clsx';
-import { TopMenuItemProps } from './TopMenuMobileItem.types';
+import { TopMenuMobileItemProps } from './TopMenuMobileItem.types';
 
-export default function TopMenuMobileItem({ label, link, current }: TopMenuItemProps) {
+export default function TopMenuMobileItem({ label, link, current }: TopMenuMobileItemProps) {
   const classes = clsx(
     'sym-top-menu-mobile-item block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium ',
     current

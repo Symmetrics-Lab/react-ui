@@ -2,7 +2,7 @@ import React from 'react';
 import { describe, expect, test } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import TopMenu from './TopMenu';
-import { TopMenuItemProps } from '../TopMenuMobileItem/TopMenuMobileItem.types';
+import { TopMenuItemProps } from '../TopMenuItem/TopMenuItem.types';
 
 const items = [
   {
@@ -30,7 +30,7 @@ const CustomElement = ({ label, link, current }: TopMenuItemProps) => {
   );
 };
 
-describe('LogoNav', () => {
+describe('TopMenu', () => {
   test('it should render without crashing', () => {
     render(<TopMenu items={items} />);
     expect(screen.getByRole('menu')).toBeDefined();
