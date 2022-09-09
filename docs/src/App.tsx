@@ -1,11 +1,13 @@
+import { forwardRef } from 'react';
 import clsx from 'clsx';
 import { BellIcon, UserIcon } from '@heroicons/react/20/solid';
 import { NavBar, TopMenu, Dropdown, DropdownItem, Logo } from '@symlab/react-ui';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
+import type { TopMenuItemProps } from '@symlab/react-ui/dist/navigation/TopMenuItem/TopMenuItem.types';
 
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
-import { TopMenuItemProps } from '@symlab/react-ui/dist/navigation/TopMenuItem/TopMenuItem.types';
+import ProfilePage from './pages/ProfilePage';
 
 const items = [
   {
@@ -55,6 +57,16 @@ const LinkComp = (props: TopMenuItemProps) => {
   );
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const DropItem = forwardRef<HTMLAnchorElement, any>(function DropItem(props, ref) {
+  const { href, children, className, ...rest } = props;
+  return (
+    <Link className={className} to={href ?? '/'} ref={ref} {...rest}>
+      {children}
+    </Link>
+  );
+});
+
 function App() {
   const { pathname } = useLocation();
   return (
@@ -73,7 +85,14 @@ function App() {
             </button>
             <Dropdown srLabel="Open Profile" icon={<UserIcon className="text-gray-700 h-8 w-8" />}>
               {dropItems.map((item) => (
-                <DropdownItem key={item.link} {...item} />
+                <DropdownItem
+                  key={item.link}
+                  link={item.link}
+                  as={DropItem}
+                  className="group flex items-center"
+                >
+                  {item.label}
+                </DropdownItem>
               ))}
             </Dropdown>
           </>
@@ -84,6 +103,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
         </Routes>
       </main>
     </>

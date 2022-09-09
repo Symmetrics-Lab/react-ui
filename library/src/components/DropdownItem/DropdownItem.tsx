@@ -3,20 +3,20 @@ import { Menu } from '@headlessui/react';
 import { DropdownItemProps } from './DropdownItem.types';
 
 export default function DropdownItem(props: DropdownItemProps) {
-  const { className, link, label, disabled } = props;
+  const { className, link, disabled, as, children } = props;
+
   return (
-    <Menu.Item disabled={disabled}>
+    <Menu.Item as={as ?? 'a'} disabled={disabled} href={link}>
       {({ active }) => (
-        <a
-          href={link}
+        <span
           className={clsx(
-            active ? 'bg-gray-100' : null,
             'block px-4 py-2 text-sm text-gray-700',
+            active && 'bg-gray-100',
             className
           )}
         >
-          {label}
-        </a>
+          {children}
+        </span>
       )}
     </Menu.Item>
   );
