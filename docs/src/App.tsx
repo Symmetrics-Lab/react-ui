@@ -1,22 +1,24 @@
-import { Button, NavBar, Logo, TopMenu, Dropdown, DropdownItem } from '../../library/dist';
-import { EnvelopeIcon, UserIcon } from '@heroicons/react/20/solid';
-import { BellIcon } from '@heroicons/react/24/outline';
+import clsx from 'clsx';
+import { BellIcon, UserIcon } from '@heroicons/react/20/solid';
+import { NavBar, TopMenu, Dropdown, DropdownItem, Logo } from '@symlab/react-ui';
+import { Routes, Route, Link, useLocation } from 'react-router-dom';
+
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
+import { TopMenuItemProps } from '@symlab/react-ui/dist/navigation/TopMenuItem/TopMenuItem.types';
 
 const items = [
   {
     label: 'Home',
     link: '/',
-    current: true,
   },
   {
     label: 'About',
     link: '/about',
-    current: false,
   },
   {
     label: 'Contact',
     link: '/contact',
-    current: false,
   },
 ];
 
@@ -39,12 +41,27 @@ const LogoElement = () => (
   <Logo src="https://symlab.io/foot-icon.svg" alt="SymLab" href="/" title="Go to home page" />
 );
 
-function App() {
+const LinkComp = (props: TopMenuItemProps) => {
+  const classes = clsx(
+    'sym-top-menu-item inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700',
+    {
+      'sym-top-menu-item__current border-indigo-500 text-gray-900': props.current,
+    }
+  );
   return (
-    <div>
+    <Link to={props.link} className={classes}>
+      {props.label}
+    </Link>
+  );
+};
+
+function App() {
+  const { pathname } = useLocation();
+  return (
+    <>
       <NavBar
         logo={<LogoElement />}
-        leftItems={<TopMenu items={items} />}
+        leftItems={<TopMenu items={items} element={LinkComp} currentPath={pathname} />}
         rightItems={
           <>
             <button
@@ -64,20 +81,12 @@ function App() {
         itemsMobile={items}
       />
       <main className="p-4">
-        <h1 className="text-3xl font-bold underline">Hello world!</h1>
-        <Button
-          onPress={() => console.log('click')}
-          arial-label="Click me"
-          iconPosition="left"
-          icon={EnvelopeIcon}
-          type="submit"
-          isLoading
-          loadingContent="Loading"
-        >
-          Click Me
-        </Button>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+        </Routes>
       </main>
-    </div>
+    </>
   );
 }
 
