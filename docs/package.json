@@ -15,7 +15,8 @@
     "lib": "^4.3.3",
     "react": "^18.2.0",
     "react-aria": "^3.19.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
     "@testing-library/react": "^13.4.0",
