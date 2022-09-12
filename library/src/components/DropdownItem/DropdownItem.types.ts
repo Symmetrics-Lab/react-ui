@@ -4,4 +4,5 @@ export interface DropdownItemProps {
   disabled?: boolean;
   as?: React.ElementType;
   children?: React.ReactNode;
+  onClick?: (event: React.MouseEvent) => void;
 }

@@ -88,8 +88,9 @@ function App() {
                 <DropdownItem
                   key={item.link}
                   link={item.link}
-                  as={DropItem}
+                  as="button"
                   className="group flex items-center"
+                  onClick={() => console.log('click')}
                 >
                   {item.label}
                 </DropdownItem>
