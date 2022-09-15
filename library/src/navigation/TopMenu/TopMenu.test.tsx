@@ -54,7 +54,7 @@ describe('TopMenu', () => {
   });
 
   test('it should allow a custom menu item element', () => {
-    render(<TopMenu items={items} element={CustomElement} />);
+    render(<TopMenu items={items} as={CustomElement} />);
     const menu = screen.getByRole('menu');
 
     expect(menu.children).toHaveLength(3);

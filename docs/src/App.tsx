@@ -51,7 +51,7 @@ const LinkComp = (props: TopMenuItemProps) => {
     }
   );
   return (
-    <Link to={props.link} className={classes}>
+    <Link to={props.link} role="menuitem" className={classes}>
       {props.label}
     </Link>
   );
@@ -73,7 +73,7 @@ function App() {
     <>
       <NavBar
         logo={<LogoElement />}
-        leftItems={<TopMenu items={items} element={LinkComp} currentPath={pathname} />}
+        leftItems={<TopMenu items={items} as={LinkComp} currentPath={pathname} />}
         rightItems={
           <>
             <button
@@ -88,9 +88,8 @@ function App() {
                 <DropdownItem
                   key={item.link}
                   link={item.link}
-                  as="button"
+                  as={DropItem}
                   className="group flex items-center"
-                  onClick={() => console.log('click')}
                 >
                   {item.label}
                 </DropdownItem>
