@@ -11,4 +11,5 @@ export interface TextFieldProps extends React.HTMLProps<HTMLInputElement> {
   isValid?: boolean;
   errorText?: string | ReactNode;
   hint?: string | ReactNode;
+  ref?: React.Ref<HTMLInputElement>;
 }
