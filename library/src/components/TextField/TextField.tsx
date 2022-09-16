@@ -5,6 +5,7 @@ import clsx from 'clsx';
 
 import { forwardRef } from 'react';
 
+import Label from '../Label';
 import { TextFieldProps } from './TextField.types';
 
 const baseInputClass =
@@ -15,7 +16,7 @@ const errorInputClass =
 const validInputClass =
   'border-green-300 pr-10 text-green-900 placeholder-green-300 focus:border-green-500 focus:outline-none focus:ring-green-500';
 const wrapperIconInputClass = 'relative mt-1 rounded-md shadow-sm';
-const baseLabelClass = 'sym-textfield__label block text-sm font-medium text-gray-700';
+
 const baseHelperText = 'sym-textfield__helper-text mt-2 text-sm text-gray-500';
 
 const TextField = forwardRef<HTMLInputElement, TextFieldProps>(function Input(props, ref) {
@@ -62,24 +63,9 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>(function Input(pr
     isValid ? `sym-textfield__wrapper--valid ${wrapperIconInputClass}` : null
   );
 
-  const classesLabel = clsx(baseLabelClass, hideLabel ? 'sr-only' : null);
   return (
     <div className="sym-input-group my-2">
-      <div className="flex justify-between">
-        <label className={classesLabel} htmlFor={id}>
-          <span>{label}</span>{' '}
-          {required && (
-            <span className="sym-textfield__required_label text-red-700" aria-label="required">
-              *
-            </span>
-          )}
-        </label>
-        {hint && (
-          <span className="sym-textfield__hint text-sm text-gray-500" id={`${id}-hint`}>
-            {hint}
-          </span>
-        )}
-      </div>
+      <Label id={id} text={label} required={required} hidden={hideLabel} hint={hint} />
       <div className={wrapperClasses}>
         <input
           ref={ref}

@@ -38,7 +38,6 @@ function HomePage() {
           hasError
           errorText="Field required"
           required
-          hint="Required"
         />
       </div>
       <div className="w-1/3">
