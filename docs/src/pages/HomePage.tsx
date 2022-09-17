@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { Button, TextField, Input, Label } from '@symlab/react-ui';
+import { Button, TextField, Input, Label, PasswordField } from '@symlab/react-ui';
 import { EnvelopeIcon } from '@heroicons/react/20/solid';
 
 interface FormData {
@@ -7,6 +7,7 @@ interface FormData {
   lastname: string;
   email: string;
   country: string;
+  password: string;
 }
 
 function HomePage() {
@@ -31,7 +32,7 @@ function HomePage() {
         Click Me
       </Button>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="w-1/3">
+        <div className="w-full md:w-1/3">
           <TextField
             label="Name"
             id="name"
@@ -44,7 +45,7 @@ function HomePage() {
             {...register('name', { required: 'Please enter your name' })}
           />
         </div>
-        <div className="w-1/3">
+        <div className="w-full md:w-1/3">
           <TextField
             label="Last Name"
             id="lastname"
@@ -58,7 +59,7 @@ function HomePage() {
             {...register('lastname', { required: 'Please enter your last name' })}
           />
         </div>
-        <div className="w-1/3">
+        <div className="w-full md:w-1/3">
           <TextField
             label="Email"
             id="email"
@@ -70,7 +71,23 @@ function HomePage() {
             {...register('email', { required: 'Please enter your email' })}
           />
         </div>
-        <div className="w-1/3 my-2">
+        <div className="w-full md:w-1/3">
+          <PasswordField
+            label="Password"
+            id="password"
+            hint="Required"
+            validation={{
+              minLength: 8,
+              lowerCase: true,
+              upperCase: true,
+              number: true,
+              specialCharacter: true,
+            }}
+            showValidation
+            {...register('password', { required: 'Please enter your password' })}
+          />
+        </div>
+        <div className="w-full md:w-1/3 my-2">
           <Label id="country" text="Country" required />
           <Input
             id="country"
