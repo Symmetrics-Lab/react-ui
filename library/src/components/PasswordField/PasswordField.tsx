@@ -96,6 +96,7 @@ const PasswordField = forwardRef<Ref<HTMLInputElement>, PasswordFieldProps>(func
           }
           setPassword(e.target.value);
         }}
+        spellCheck="false"
         {...rest}
       />
       <HelperText id={id} hasError={hasError}>
