@@ -11,7 +11,7 @@ import { type } from 'os';
 describe('input', () => {
   test('render text input', () => {
     render(<Input id="test" data-testid="name" type="text" />);
-    screen.debug();
+
     const inputText = screen.getByTestId('name');
     expect(inputText).toBeDefined();
   });
@@ -28,16 +28,7 @@ describe('input', () => {
 
     expect(screen.getByTestId('name')).toHaveValue('Eliezer');
   });
-  test('pass invalid name to test name input field', () => {
-    render(
-      <Input id="test" data-testid="name" type="text" className="sym-textfield__wrapper--error" />
-    );
-    const inputName = screen.getByTestId('name');
-    userEvent.type(inputName, ' ');
 
-    expect(screen.getByTestId('name')).toHaveValue(' ');
-    expect(inputName.getElementsByClassName('sym-textfield__wrapper--error')).exist;
-  });
   test('render lastname text input', () => {
     render(<Input id="test" data-testid="lastname" type="text" />);
     const inputLastName = screen.getByTestId('lastname');
@@ -51,42 +42,25 @@ describe('input', () => {
 
     expect(screen.getByTestId('lastname')).toHaveValue('Rodriguez');
   });
-  test('pass invalid lastname to test lastname input field', () => {
-    render(
-      <Input
-        id="test"
-        data-testid="lastname"
-        type="text"
-        className="sym-textfield__wrapper--error"
-      />
-    );
-    const inputLastName = screen.getByTestId('lastname');
-    userEvent.type(inputLastName, ' ');
 
-    expect(screen.getByTestId('lastname')).toHaveValue(' ');
-    expect(inputLastName.getElementsByClassName('sym-textfield__wrapper--error')).exist;
-  });
   test('render email input', () => {
     render(<Input id="test" data-testid="email" type="email" />);
     const inputEl = screen.getByTestId('email');
 
     expect(inputEl.getAttribute('type')).equal('email');
   });
-  test('pass valid email to test email input field', () => {
-    render(<Input id="test" data-testid="email" type="email" />);
-    const inputEl = screen.getByTestId('email');
-    userEvent.type(inputEl, 'eli@eli.com');
-
-    expect(screen.getByTestId('email')).toHaveValue('eli@eli.com');
+  test('input is disable', () => {
+    render(<Input id="test" data-testid="disable" disabled />);
+    expect(screen.getByTestId('disable').getAttribute('disable'));
   });
-  test('pass valid email to test email input field', () => {
-    render(
-      <Input id="test" data-testid="email" type="email" className="sym-textfield__wrapper--error" />
-    );
-    const inputEl = screen.getByTestId('email');
-    userEvent.type(inputEl, 'elicom');
-
-    expect(screen.getByTestId('email')).toHaveValue('elicom');
-    expect(inputEl.getElementsByClassName('sym-textfield__wrapper--error')).exist;
+  test('input is hasError', () => {
+    render(<Input id="test" data-testid="hasError" hasError />);
+    screen.debug();
+    expect(screen.getByTestId('hasError').getAttribute('hasError'));
+  });
+  test('input is isValid', () => {
+    render(<Input id="test" data-testid="isValid" isValid />);
+    screen.debug();
+    expect(screen.getByTestId('isValid').getAttribute('isValid'));
   });
 });

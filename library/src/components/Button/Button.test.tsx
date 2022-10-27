@@ -27,12 +27,14 @@ describe('Button', () => {
   });
   test('it should have be disabled', () => {
     render(<Button disabled>Hello there</Button>);
-    console.log(screen.getByRole('button'));
+    screen.getByRole('button');
     expect(screen.getByRole('button').getAttribute('disabled')).equal('');
   });
   test('it should have be disabled with isDisable', () => {
     render(<Button isDisabled>Hello there</Button>);
-    console.log(screen.getByRole('button'));
+    screen.debug();
+    screen.getByRole('button');
+
     expect(screen.getByRole('button').getAttribute('disabled')).equal('');
   });
   test('it should have a different opacity and hover icon if disabled', () => {
@@ -57,7 +59,7 @@ describe('Button', () => {
         Hello there
       </Button>
     );
-    console.log(screen.getByRole('button'));
+    screen.getByRole('button');
     expect(screen.getByRole('button').getAttribute('disabled')).equal('');
   });
   test('it should show loading content with isLoading', () => {
@@ -66,7 +68,7 @@ describe('Button', () => {
         Hello there
       </Button>
     );
-    console.log(screen.getByRole('button'));
+    screen.getByRole('button');
     expect(screen.getByRole('button').innerHTML).equal('Loading');
   });
 });
