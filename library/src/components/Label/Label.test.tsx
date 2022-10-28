@@ -6,39 +6,31 @@ import Label from './Label';
 
 describe('Label', () => {
   test('render Label', () => {
-    render(<Label text={'test'} id={'test'}></Label>);
+    render(<Label text={'test'} id={'test'} />);
     render(<input type="text" id="test" />);
 
     expect(screen.getAllByLabelText('test')).toBeDefined();
   });
   test('it should have the base class', () => {
     const baseClass = 'sym-textfield__label block text-sm font-medium text-gray-700';
-    render(
-      <Label text={'test'} data-testid="test" id={'test'}>
-        test
-      </Label>
-    );
+    render(<Label text="etiqueta" data-testid="test" id="test" />);
 
     expect(screen.getByTestId('test').getAttribute('class')).includes(baseClass);
   });
-  test('it should have be disable', () => {
-    render(
-      <Label text={'test'} data-testid="test" id={'test'} disabled>
-        test
-      </Label>
-    );
-    expect(screen.getByTestId('test').getAttribute('disable'));
+  test('test correct text', () => {
+    render(<Label text="etiqueta" data-testid="test" id="test" />);
+    const etiquetas = screen.getByTestId('test').innerHTML;
+
+    expect(etiquetas).equal('<span>etiqueta</span>');
   });
-  test('it should have be require', () => {
-    render(
-      <Label text={'test'} data-testid="test" id={'test'} required>
-        test
-      </Label>
-    );
-    expect(screen.getByTestId('test').getAttribute('require'));
+
+  test('it should have be require', async () => {
+    render(<Label text="etiqueta" id="test" data-testid="test" required />);
+
+    expect(await screen.findByText('*')).toBeDefined();
   });
-  test('it should have be hidden', () => {
-    render(<Label text={'test'} data-testid="test" id={'test'} hidden />);
-    expect(screen.getByTestId('test').getAttribute('hidden'));
+  test('it should have a be hint', () => {
+    render(<Label text={'test'} data-testid="test" id={'test'} hint="prueba" />);
+    expect(screen.findByText('prueba')).toBeDefined();
   });
 });

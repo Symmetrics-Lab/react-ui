@@ -6,7 +6,6 @@ import '@testing-library/jest-dom/extend-expect';
 import userEvent from '@testing-library/user-event';
 
 import Input from './Input';
-import { type } from 'os';
 
 describe('input', () => {
   test('render text input', () => {
@@ -55,12 +54,12 @@ describe('input', () => {
   });
   test('input is hasError', () => {
     render(<Input id="test" data-testid="hasError" hasError />);
-    screen.debug();
+
     expect(screen.getByTestId('hasError').getAttribute('hasError'));
   });
   test('input is isValid', () => {
     render(<Input id="test" data-testid="isValid" isValid />);
-    screen.debug();
+
     expect(screen.getByTestId('isValid').getAttribute('isValid'));
   });
 });

@@ -28,11 +28,12 @@ describe('Button', () => {
   test('it should have be disabled', () => {
     render(<Button disabled>Hello there</Button>);
     screen.getByRole('button');
+
     expect(screen.getByRole('button').getAttribute('disabled')).equal('');
   });
   test('it should have be disabled with isDisable', () => {
     render(<Button isDisabled>Hello there</Button>);
-    screen.debug();
+
     screen.getByRole('button');
 
     expect(screen.getByRole('button').getAttribute('disabled')).equal('');
