@@ -8,6 +8,7 @@ import type { TopMenuItemProps } from '@symlab/react-ui/dist/navigation/TopMenuI
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import ProfilePage from './pages/ProfilePage';
+import LoginPage from './pages/LoginPage';
 
 const items = [
   {
@@ -21,6 +22,10 @@ const items = [
   {
     label: 'Contact',
     link: '/contact',
+  },
+  {
+    label: 'Login',
+    link: '/login',
   },
 ];
 
@@ -104,6 +109,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
       </main>
     </>
