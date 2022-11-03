@@ -75,7 +75,6 @@ function HomePage() {
           <PasswordField
             label="Password"
             id="password"
-            hint="Required"
             validation={{
               minLength: 8,
               lowerCase: true,
