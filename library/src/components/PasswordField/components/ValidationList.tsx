@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import type { ValidationListProps } from './ValidationList.types';
 
-const ValidationListItem = ({ condition, text }: { condition: boolean; text: string }) => (
+export const ValidationListItem = ({ condition, text }: { condition: boolean; text: string }) => (
   <div className={clsx('w-full md:w-1/3', condition ? 'text-green-700' : 'text-gray-400')}>
     <div className={clsx('flex items-center text-sm')}>
       <div className={clsx('mr-1', condition ? 'text-primary-400' : null)}>
