@@ -1,4 +1,4 @@
-import { Button, TextField, Input, Label, PasswordField } from '@symlab/react-ui';
+import { Button, TextField, PasswordField } from '@symlab/react-ui';
 
 function LoginPage() {
   return (
@@ -9,6 +9,11 @@ function LoginPage() {
         </div>
         <div className="w-full md:w-1/3">
           <PasswordField label="passsword" id="password" />
+        </div>
+        <div>
+          <a target={'_blank'} href="/recovery-page">
+            password recovery
+          </a>
         </div>
         <Button type="submit">Submit</Button>
       </form>
