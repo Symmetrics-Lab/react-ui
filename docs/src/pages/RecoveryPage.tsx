@@ -8,7 +8,7 @@ function RecoveryPage() {
           <TextField label="Email" id="email" type="email" helperText="Your Email here!" />
         </div>
 
-        <Button type="submit">Submit</Button>
+        <Button type="submit">Recovery</Button>
       </form>
     </>
   );
