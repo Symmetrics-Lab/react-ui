@@ -15,6 +15,7 @@ interface FormData {
 function RegisterPage() {
   const schema = yup.object().shape({
     name: yup.string().min(1).required(),
+    email: yup.string().email().required(),
     lastname: yup.string().min(1).required(),
     password: yup.string().min(8),
   });
