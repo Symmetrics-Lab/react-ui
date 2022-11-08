@@ -5,5 +5,9 @@
   "workspaces": [
     "docs",
     "library"
-  ]
+  ],
+  "dependencies": {
+    "@hookform/resolvers": "^2.9.10",
+    "yup": "^0.32.11"
+  }
 }

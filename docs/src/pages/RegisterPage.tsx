@@ -1,5 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, TextField, PasswordField } from '@symlab/react-ui';
 
 interface FormData {
@@ -11,11 +13,19 @@ interface FormData {
 }
 
 function RegisterPage() {
+  const schema = yup.object().shape({
+    name: yup.string().min(1).required(),
+    lastname: yup.string().min(1).required(),
+    password: yup.string().min(8),
+  });
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<FormData>({
+    resolver: yupResolver(schema),
+  });
+
   const onSubmit = (data: FormData) => {
     console.log(data);
   };
