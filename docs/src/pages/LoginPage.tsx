@@ -12,6 +12,7 @@ interface FormData {
 function LoginPage() {
   const schema = yup.object().shape({
     email: yup.string().email().required(),
+    password: yup.string().required(),
   });
 
   const {
