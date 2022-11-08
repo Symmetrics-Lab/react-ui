@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 import { Button, TextField, PasswordField } from '@symlab/react-ui';
 
 interface FormData {
@@ -83,6 +84,9 @@ function RegisterPage() {
             showValidation
             {...register('password', { required: 'Please enter your password' })}
           />
+        </div>
+        <div className="w-full md:w-1/3">
+          <Link to="/login">¿Ya tienes una cuenta?</Link>
         </div>
         <Button type="submit">Register</Button>
       </form>

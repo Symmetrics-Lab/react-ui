@@ -31,7 +31,7 @@ function RecoveryPage() {
           />
         </div>
 
-        <Button type="submit">Recovery</Button>
+        <Button type="submit">Recover</Button>
       </form>
     </>
   );

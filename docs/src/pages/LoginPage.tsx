@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 import { Button, TextField, PasswordField } from '@symlab/react-ui';
 
 interface FormData {
@@ -39,19 +40,8 @@ function LoginPage() {
             />
           </div>
           <div className="w-full md:w-1/3 ">
-            <p>
-              ¿Olvidaste tu contraseña? -&gt;{' '}
-              <a href="/recovery-page" style={{ color: 'blue' }}>
-                Recuperar contraseña
-              </a>
-            </p>
-            <p>
-              ¿No tienes una cuenta? -&gt;{' '}
-              <a href="/register" style={{ color: 'blue' }}>
-                {' '}
-                registro
-              </a>
-            </p>
+            <Link to="/recovery-page">¿Olvidaste tu contraseña?</Link> <br />
+            <Link to="/register">¿No tienes una cuenta?</Link>
           </div>
           <Button type="submit">Login</Button>
         </form>
