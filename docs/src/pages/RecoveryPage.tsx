@@ -1,18 +1,19 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
-import { Link, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, TextField, PasswordField } from '@symlab/react-ui';
 
 interface FormData {
   email: string;
+  code: string;
   password: string;
 }
 
 function RecoveryPage() {
   const [sendEmail, setSendEmail] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const schema = yup.object().shape({
     email: yup.string().email().required(),
   });
@@ -29,10 +30,15 @@ function RecoveryPage() {
     resolver: yupResolver(schema),
   });
   const onSubmit = (data: FormData) => {
-    console.log(data.email);
-    const DataEmail = data.email;
-    setSearchParams(DataEmail);
-    setSendEmail(true);
+    if (sendEmail === false && !data.code && !data.password) {
+      setSendEmail(true);
+      console.log(data);
+      return;
+    }
+
+    if (sendEmail && data.code && data.password) {
+      console.log(data, 'Se ha cambiado la clave');
+    }
   };
 
   return (
@@ -69,7 +75,13 @@ function RecoveryPage() {
             />
           </div>
           <div className="w-full md:w-1/3">
-            <TextField label="Code" id="codeEmail" type="text" helperText="Your code here!" />
+            <TextField
+              label="Code"
+              id="codeEmail"
+              type="text"
+              helperText="Your code here!"
+              {...register('code', { required: 'Please enter your code' })}
+            />
           </div>
           <div className="w-full md:w-1/3">
             <PasswordField
@@ -79,7 +91,9 @@ function RecoveryPage() {
               {...register('password', { required: 'Please enter your password' })}
             />
           </div>
-          <Button type="submit">change</Button>
+          <Button href="/login" type="submit">
+            change
+          </Button>
         </form>
       )}
     </>
