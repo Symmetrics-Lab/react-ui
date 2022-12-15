@@ -81,7 +81,7 @@ const DropItem = forwardRef<HTMLAnchorElement, any>(function DropItem(props, ref
 function App() {
   const { pathname } = useLocation();
   return (
-    <section className="bg-gray-50 dark:bg-gray-900">
+    <section className="flex flex-col h-screen bg-gray-50 dark:bg-gray-900">
       <NavBar
         logo={<LogoElement />}
         leftItems={<TopMenu items={items} as={LinkComp} currentPath={pathname} />}
@@ -115,7 +115,7 @@ function App() {
         light <Switchs /> dark
         <div className="w-full h-10">&nbsp;</div>
       </section>
-      <main className="p-4">
+      <main className="">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />

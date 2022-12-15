@@ -13,7 +13,7 @@ interface FormData {
 function LoginPage() {
   const schema = yup.object().shape({
     email: yup.string().email().required('The email field is required'),
-    password: yup.string().required(),
+    password: yup.string().required('The password field is required'),
   });
 
   const {
@@ -67,6 +67,8 @@ function LoginPage() {
                   label=""
                   id="password"
                   placeholder="Password"
+                  hasError={!!errors.password?.message}
+                  errorText={errors.password?.message}
                   {...register('password', { required: 'Please enter your password' })}
                 />
               </div>

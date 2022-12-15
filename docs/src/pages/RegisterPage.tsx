@@ -117,7 +117,12 @@ function RegisterPage() {
               </div>
               <Button
                 type="submit"
-                className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-500 dark:hover:bg-primary-700 focus:ring-0 focus:ring-offset-0"
+                className="w-full text-white 
+                bg-gradient-to-b from-symlab-purple-300 to-blue-400
+                hover:from-symlab-purple-300 hover:to-symlab-purple-300
+                border-none
+                hover:bg-symlab-purple-200  
+                focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center focus:ring-0 focus:ring-offset-0"
               >
                 Register
               </Button>
