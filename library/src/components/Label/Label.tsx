@@ -12,7 +12,7 @@ const Label = forwardRef<HTMLLabelElement, LabelProps>(function Label(props, ref
       <label className={classes} htmlFor={id} ref={ref} {...rest}>
         <span>{text}</span>
         {required && (
-          <span className="sym-textfield__required_label text-red-700" aria-label="required">
+          <span className="sym-textfield__required_label text-red-700 dark:text-red-500" aria-label="required">
             {' '}
             *
           </span>
