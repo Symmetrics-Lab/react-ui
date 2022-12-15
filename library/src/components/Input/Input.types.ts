@@ -4,4 +4,5 @@ export interface InputProps extends React.HTMLProps<HTMLInputElement> {
   className?: string;
   hasError?: boolean;
   isValid?: boolean;
+  showIconValid?: boolean;
 }

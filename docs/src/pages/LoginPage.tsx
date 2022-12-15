@@ -28,6 +28,13 @@ function LoginPage() {
   return (
     <>
       <div className="container">
+     {/*    <a
+          href="#"
+          className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
+        >
+          <img className="w-8 h-8 mr-2" src="https://symlab.io/foot-icon.svg" alt="logo" />
+          Symlab
+        </a> */}
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="w-full md:w-1/3">
             <TextField
