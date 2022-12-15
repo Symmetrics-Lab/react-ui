@@ -7,9 +7,9 @@ const baseInputClass =
   'sym-textfield__input block w-full rounded-md shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm';
 const disabledInputClass = 'cursor-not-allowed border-gray-200 bg-gray-50 text-gray-500';
 const errorInputClass =
-  'border-red-300 dark:border-red-500 pr-10 placeholder-red-300 focus:border-red-500 focus:outline-none focus:ring-red-500';
+  'border-red-300 dark:border-red-500 pr-10 focus:border-red-500 focus:outline-none focus:ring-red-500';
 const validInputClass =
-  'border-green-300 dark:border-symlab-green-10 pr-10 placeholder-green-300 focus:border-green-500 focus:outline-none focus:ring-green-500';
+  'border-green-300 dark:border-symlab-green-10 pr-10 focus:border-green-500 focus:outline-none focus:ring-green-500';
 const wrapperIconInputClass = 'relative mt-1 rounded-md shadow-sm';
 
 const Input = forwardRef<HTMLInputElement, InputProps>(function Input(props, ref) {
