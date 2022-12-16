@@ -4,7 +4,7 @@ import * as yup from 'yup';
 import { useSearchParams } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, TextField, PasswordField } from '@symlab/react-ui';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 interface FormData {
   email: string;
 }
@@ -18,6 +18,7 @@ interface FormDataRecovery {
 }
 
 function RecoveryPage() {
+  const navigate = useNavigate();
   const [sendEmail, setSendEmail] = useState(false);
   const [searchParams] = useSearchParams();
   const schema = yup.object().shape({
@@ -25,7 +26,7 @@ function RecoveryPage() {
   });
 
   const schemaRecovery = yup.object().shape({
-    email: yup.string().email().required(),
+    //email: yup.string().email().required(),
     password: yup.string().required('The password field is required'),
     c1: yup.string().length(1).required(),
     c2: yup.string().length(1).required(),
@@ -65,8 +66,8 @@ function RecoveryPage() {
   };
 
   const onSubmitRecovery = (data: FormDataRecovery) => {
-    console.log('sjsj')
     setTimeout(() => {
+      
       console.log({
         data: {
           email: getValues('email'),
@@ -74,7 +75,7 @@ function RecoveryPage() {
           password: data.password,
         },
       });
-     // history(to:'/');
+      navigate('/login');    
     }, 3000);
   };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -92,7 +93,6 @@ function RecoveryPage() {
 
   useEffect(() => {
     document.addEventListener('keyup', keyDownHandler);
-
     return () => document.removeEventListener('keyup', keyDownHandler);
   }, []);
 
