@@ -1,7 +1,7 @@
-import { forwardRef } from 'react';
+import { forwardRef, Suspense } from 'react';
 import clsx from 'clsx';
 import { BellIcon, UserIcon } from '@heroicons/react/20/solid';
-import { NavBar, TopMenu, Dropdown, DropdownItem, Logo } from '@symlab/react-ui';
+import { NavBar, TopMenu, Dropdown, DropdownItem, Logo, Loading } from '@symlab/react-ui';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import type { TopMenuItemProps } from '@symlab/react-ui/dist/navigation/TopMenuItem/TopMenuItem.types';
 import HomePage from './pages/HomePage';
@@ -81,51 +81,56 @@ const DropItem = forwardRef<HTMLAnchorElement, any>(function DropItem(props, ref
 function App() {
   const { pathname } = useLocation();
   return (
-    <section className="flex flex-col h-screen bg-gray-50 dark:bg-gray-900">
-      <NavBar
-        logo={<LogoElement />}
-        leftItems={<TopMenu items={items} as={LinkComp} currentPath={pathname} />}
-        rightItems={
-          <>
-            <button
-              type="button"
-              className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-            >
-              <span className="sr-only">View notifications</span>
-              <BellIcon className="h-6 w-6" aria-hidden="true" />
-            </button>
-            <Dropdown srLabel="Open Profile" icon={<UserIcon className="text-gray-700 h-8 w-8" />}>
-              {dropItems.map((item) => (
-                <DropdownItem
-                  key={item.link}
-                  link={item.link}
-                  as={DropItem}
-                  className="group flex items-center"
-                >
-                  {item.label}
-                </DropdownItem>
-              ))}
-            </Dropdown>
-          </>
-        }
-        itemsMobile={items}
-      />
-      <section className='px-20 pt-2 text-sm text-end dark:text-white text-black-500'>
-        {/* Switchs */}
-        light <Switchs /> dark
-        <div className="w-full h-10">&nbsp;</div>
+    <Suspense fallback={<Loading />}>
+      <section className="flex flex-col h-screen bg-gray-50 dark:bg-gray-900">
+        <NavBar
+          logo={<LogoElement />}
+          leftItems={<TopMenu items={items} as={LinkComp} currentPath={pathname} />}
+          rightItems={
+            <>
+              <button
+                type="button"
+                className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              >
+                <span className="sr-only">View notifications</span>
+                <BellIcon className="h-6 w-6" aria-hidden="true" />
+              </button>
+              <Dropdown
+                srLabel="Open Profile"
+                icon={<UserIcon className="text-gray-700 h-8 w-8" />}
+              >
+                {dropItems.map((item) => (
+                  <DropdownItem
+                    key={item.link}
+                    link={item.link}
+                    as={DropItem}
+                    className="group flex items-center"
+                  >
+                    {item.label}
+                  </DropdownItem>
+                ))}
+              </Dropdown>
+            </>
+          }
+          itemsMobile={items}
+        />
+        <section className="px-20 pt-2 text-sm text-end dark:text-white text-black-500">
+          {/* Switchs */}
+          light <Switchs /> dark
+          <div className="w-full h-10">&nbsp;</div>
+        </section>
+        <main className="">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/recovery-page" element={<RecoveryPage />} />
+          </Routes>
+        </main>
       </section>
-      <main className="">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/recovery-page" element={<RecoveryPage />} />
-        </Routes>
-      </main>
-    </section>
+    </Suspense>
   );
 }
 
