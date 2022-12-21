@@ -5,6 +5,8 @@ import { useSearchParams } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, TextField, PasswordField } from '@symlab/react-ui';
 import { Link, useNavigate } from 'react-router-dom';
+import Alert from '../components/Alert';
+import { errsHttp } from '../data/errsHttp';
 interface FormData {
   email: string;
 }
@@ -24,6 +26,8 @@ function RecoveryPage() {
   const schema = yup.object().shape({
     email: yup.string().email().required(),
   });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [error, setError] = useState<any>();
 
   const schemaRecovery = yup.object().shape({
     //email: yup.string().email().required(),
@@ -57,6 +61,7 @@ function RecoveryPage() {
   });
   /* eslint-disable @typescript-eslint/no-unused-vars */
   const onSubmit = (data: FormData) => {
+    setError(null);
     setValue('c1', '');
     setTimeout(() => {
       if (!sendEmail) {
@@ -66,8 +71,8 @@ function RecoveryPage() {
   };
 
   const onSubmitRecovery = (data: FormDataRecovery) => {
+    setError(null);
     setTimeout(() => {
-      
       console.log({
         data: {
           email: getValues('email'),
@@ -75,7 +80,8 @@ function RecoveryPage() {
           password: data.password,
         },
       });
-      navigate('/login');    
+      const resp = errsHttp[Math.floor(Math.random() * errsHttp.length)];
+      resp.code !== 200 ? setError(resp) : navigate('/login');
     }, 3000);
   };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -92,6 +98,7 @@ function RecoveryPage() {
   }, []);
 
   useEffect(() => {
+    setError(null);
     document.addEventListener('keyup', keyDownHandler);
     return () => document.removeEventListener('keyup', keyDownHandler);
   }, []);
@@ -216,6 +223,9 @@ function RecoveryPage() {
                     errorText={errorsRecovery.password?.message}
                   />
                 </div>
+
+                {error && <Alert code={error?.code} message={error?.message} setError={setError} />}
+
                 <Button
                   type="submit"
                   className="text-white 
