@@ -61,6 +61,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(props,
 
   const classes = clsx(
     'sym-btn',
+    'inline-flex',
+    'items-center',
+    'justify-center',
     baseClass,
     sizes[size],
     variants[variant],

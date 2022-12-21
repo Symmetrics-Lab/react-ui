@@ -5,4 +5,5 @@ export interface UsePasswordValidationResponse {
   number: boolean;
   specialCharacter: boolean;
   allValid: boolean;
+  message?: string;
 }

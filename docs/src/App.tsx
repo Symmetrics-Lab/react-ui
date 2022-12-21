@@ -4,13 +4,13 @@ import { BellIcon, UserIcon } from '@heroicons/react/20/solid';
 import { NavBar, TopMenu, Dropdown, DropdownItem, Logo } from '@symlab/react-ui';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import type { TopMenuItemProps } from '@symlab/react-ui/dist/navigation/TopMenuItem/TopMenuItem.types';
-
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import ProfilePage from './pages/ProfilePage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import RecoveryPage from './pages/RecoveryPage';
+import Switchs from './components/Switchs/Switchs';
 
 const items = [
   {
@@ -81,7 +81,7 @@ const DropItem = forwardRef<HTMLAnchorElement, any>(function DropItem(props, ref
 function App() {
   const { pathname } = useLocation();
   return (
-    <>
+    <section className="flex flex-col h-screen bg-gray-50 dark:bg-gray-900">
       <NavBar
         logo={<LogoElement />}
         leftItems={<TopMenu items={items} as={LinkComp} currentPath={pathname} />}
@@ -110,7 +110,12 @@ function App() {
         }
         itemsMobile={items}
       />
-      <main className="p-4">
+      <section className='px-20 pt-2 text-sm text-end dark:text-white text-black-500'>
+        {/* Switchs */}
+        light <Switchs /> dark
+        <div className="w-full h-10">&nbsp;</div>
+      </section>
+      <main className="">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
@@ -120,7 +125,7 @@ function App() {
           <Route path="/recovery-page" element={<RecoveryPage />} />
         </Routes>
       </main>
-    </>
+    </section>
   );
 }
 

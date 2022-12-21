@@ -19,4 +19,5 @@ export interface PasswordFieldProps extends React.HTMLProps<HTMLInputElement> {
     specialCharacter?: boolean;
   };
   showValidation?: boolean;
+  message?: string;
 }

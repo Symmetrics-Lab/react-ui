@@ -4,7 +4,7 @@ import HelperText from '../HelperText/HelperText';
 import Input from '../Input';
 import Label from '../Label';
 import { TextFieldProps } from './TextField.types';
-
+import clsx from 'clsx';
 const TextField = forwardRef<Ref<HTMLInputElement>, TextFieldProps>(function TextField(props, ref) {
   const {
     label,
@@ -37,14 +37,24 @@ const TextField = forwardRef<Ref<HTMLInputElement>, TextFieldProps>(function Tex
 
   return (
     <div className="sym-input-group my-2">
-      <Label id={id} text={label} required={required} hidden={hideLabel} hint={hint} />
+      <Label
+        id={id}
+        text={label}
+        required={required}
+        hidden={hideLabel}
+        hint={hint}
+        className="dark:text-white text-gray-500"
+      />
       <Input
         id={id}
         // This is neccessary to pass the ref to the input typescript gives a wrong type
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         ref={ref as Ref<HTMLInputElement>}
-        className={className}
+        className={clsx(
+          'sm:text-sm rounded-lg block dark:bg-gray-700  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ',
+          className
+        )}
         required={required}
         disabled={disabled}
         readOnly={readOnly}
