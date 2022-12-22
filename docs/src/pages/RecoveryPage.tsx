@@ -5,6 +5,8 @@ import { useSearchParams } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, TextField, PasswordField, Loading } from '@symlab/react-ui';
 import { Link, useNavigate } from 'react-router-dom';
+import Alert from '../components/Alert';
+import { errsHttp } from '../data/errsHttp';
 interface FormData {
   email: string;
 }
@@ -24,6 +26,8 @@ function RecoveryPage() {
   const schema = yup.object().shape({
     email: yup.string().email().required(),
   });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [error, setError] = useState<any>();
   const [loading, isLoading] = useState(false);
 
   const schemaRecovery = yup.object().shape({
@@ -58,6 +62,7 @@ function RecoveryPage() {
   });
   /* eslint-disable @typescript-eslint/no-unused-vars */
   const onSubmit = (data: FormData) => {
+    setError(null);
     isLoading(true);
     setValue('c1', '');
     setTimeout(() => {
@@ -69,6 +74,7 @@ function RecoveryPage() {
   };
 
   const onSubmitRecovery = (data: FormDataRecovery) => {
+    setError(null);
     isLoading(true);
     setTimeout(() => {
       console.log({
@@ -78,7 +84,9 @@ function RecoveryPage() {
           password: data.password,
         },
       });
+      const resp = errsHttp[Math.floor(Math.random() * errsHttp.length)];
       isLoading(false);
+      resp.code !== 200 ? setError(resp) : navigate('/login');
       navigate('/login');    
     }, 3000);
   };
@@ -96,6 +104,7 @@ function RecoveryPage() {
   }, []);
 
   useEffect(() => {
+    setError(null);
     document.addEventListener('keyup', keyDownHandler);
     return () => document.removeEventListener('keyup', keyDownHandler);
   }, []);
@@ -241,6 +250,9 @@ function RecoveryPage() {
                     errorText={errorsRecovery.password?.message}
                   />
                 </div>
+
+                {error && <Alert code={error?.code} message={error?.message} setError={setError} />}
+
                 <Button
                   type="submit"
                   className="text-white 

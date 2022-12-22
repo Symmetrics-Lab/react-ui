@@ -1,7 +1,9 @@
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import Alert from '../components/Alert';
+import { errsHttp } from '../data/errsHttp';
 import { Button, TextField, PasswordField, Loading } from '@symlab/react-ui';
 import { useEffect, useState } from 'react';
 
@@ -11,10 +13,13 @@ interface FormData {
 }
 
 function LoginPage() {
+  const navigate = useNavigate();
   const schema = yup.object().shape({
     email: yup.string().email().required('The email field is required'),
     password: yup.string().required('The password field is required'),
   });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [error, setError] = useState<any>();
 
   const [loading, isLoading] = useState(false);
 
@@ -28,15 +33,20 @@ function LoginPage() {
     resolver: yupResolver(schema),
   });
   const onSubmit = (data: FormData) => {
+    setError(null);
     isLoading(true);
     setTimeout(() => {
       console.log(data);
+      const resp = errsHttp[Math.floor(Math.random() * errsHttp.length)];
       isLoading(false);
+      resp.code !== 200 ? setError(resp): navigate('/');
     }, 3000);
   };
   useEffect(() => {
+    setError(null);
     reset({
       email: '',
+      password: '',
     });
   }, []);
 
@@ -107,7 +117,7 @@ function LoginPage() {
                   Forgot password?
                 </Link>
               </div>
-
+              {error && <Alert code={error?.code} message={error?.message} setError={setError} />}
               <Button
                 type="submit"
                 className="w-full text-white 

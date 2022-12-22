@@ -1,4 +1,6 @@
 import { useForm } from 'react-hook-form';
+import Alert from '../components/Alert';
+import { errsHttp } from '../data/errsHttp';
 import { Link, useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -15,6 +17,7 @@ interface FormData {
 const PHONE_NO_REGEX = /^[0-9\- ]{8,14}$/;
 
 function RegisterPage() {
+  const navigate = useNavigate();
   const schema = yup.object().shape({
     name: yup.string().required('The name field is required'),
     email: yup.string().email().required('The email field is required'),
@@ -24,7 +27,8 @@ function RegisterPage() {
       .string()
       .matches(PHONE_NO_REGEX, { message: 'Invalid phone number', excludeEmptyString: true }),
   });
-  const navigate = useNavigate();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [error, setError] = useState<any>();
   const [loading, isLoading] = useState(false);
 
   const {
@@ -38,9 +42,12 @@ function RegisterPage() {
   const onSubmit = (data: FormData) => {
     isLoading(true);
     console.log(data);
+    setError(null);
     setTimeout(() => {
+      console.log(data);
+      const resp = errsHttp[Math.floor(Math.random() * errsHttp.length)];
       isLoading(false);
-      navigate('/login');
+      resp.code !== 200 ? setError(resp): navigate('/login');
     }, 3000);
   };
 
@@ -144,6 +151,7 @@ function RegisterPage() {
                   errorText={errors.password?.message}
                 />
               </div>
+              {error && <Alert code={error?.code} message={error?.message} setError={setError} />}
               <Button
                 type="submit"
                 className="w-full text-white 
