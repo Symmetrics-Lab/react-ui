@@ -8,3 +8,4 @@ export { default as PasswordField } from './PasswordField';
 export { default as TextField } from './TextField';
 export { default as Chip } from './Chip';
 export { default as Switch } from './Switch';
+export { default as Loading } from './Loading';
