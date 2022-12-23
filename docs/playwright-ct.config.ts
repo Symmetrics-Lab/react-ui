@@ -5,11 +5,11 @@ import { devices } from '@playwright/experimental-ct-react';
  * See https://playwright.dev/docs/test-configuration.
  */
 const config: PlaywrightTestConfig = {
-  testDir: './',
+  testDir: './test',
   /* The base directory, relative to the config file, for snapshot files created with toMatchSnapshot and toHaveScreenshot. */
   snapshotDir: './__snapshots__',
   /* Maximum time one test can run for. */
-  timeout: 10 * 1000,
+  timeout: 20 * 10000,
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -21,13 +21,22 @@ const config: PlaywrightTestConfig = {
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+  // the rest of the options
+  webServer: {
+    command: 'npm run dev',
+    // port: 5173,
+    url: 'http://127.0.0.1:5173/',
+    reuseExistingServer: !process.env.CI,
+    timeout: 120000,
+  },
+
   use: {
-    video: 'on',
+    //video: 'on',
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-
+    baseURL: 'http://127.0.0.1:5173',
     /* Port to use for Playwright component endpoint. */
-    ctPort: 3100,
+    //ctPort: 5173,
   },
 
   /* Configure projects for major browsers */
@@ -38,7 +47,7 @@ const config: PlaywrightTestConfig = {
         ...devices['Desktop Chrome'],
       },
     },
-    {
+    /*   {
       name: 'firefox',
       use: {
         ...devices['Desktop Firefox'],
@@ -49,7 +58,7 @@ const config: PlaywrightTestConfig = {
       use: {
         ...devices['Desktop Safari'],
       },
-    },
+    }, */
   ],
 };
 
