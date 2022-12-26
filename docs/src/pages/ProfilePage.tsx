@@ -32,6 +32,7 @@ function ProfilePage() {
                       img: user.imageUrl,
                       name: user.name,
                       lastSesion: '12/12/2022 10:10',
+                      label: 'Last session'
                     }}
                   ></SubMenu>
                 </aside>

@@ -107,7 +107,7 @@ export default function ProfileForm() {
           </svg>
         </Loading>
       )}
-      <form onSubmit={handleSubmit(onSubmit)} className="divide-y divide-gray-200 lg:col-span-9">
+      <form onSubmit={handleSubmit(onSubmit)} className="divide-y divide-gray-200 dark:divide-gray-700 lg:col-span-9">
         {/* Profile section */}
         <div className="py-6 px-4 sm:p-6 lg:pb-8">
           {error && (
@@ -236,7 +236,7 @@ export default function ProfileForm() {
         </div>
 
         {/* Privacy section */}
-        <div className=" divide-gray-200 pt-6">
+        <div className="divide-gray-200 pt-6">
           <div className="px-4 sm:px-6">
             <div>
               <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-white">Role</h2>

@@ -13,6 +13,7 @@ export interface ItemUser {
   img?: string;
   lastSesion?: string;
   name?: string;
+  label?:string;
 }
 
 export interface SubMenuProps {

@@ -15,7 +15,10 @@ export default function SubMenu(props: SubMenuProps) {
             <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-white">
               {userData?.name}
             </h2>
-            <span className="mt-1 text-sm text-gray-500 dark:text-gray-300">
+            {userData?.label && (
+              <h2 className="mt-1 text-sm text-gray-500 dark:text-gray-400">{userData?.label}</h2>
+            )}
+            <span className="text-[12px] text-gray-500 dark:text-gray-400">
               {userData?.lastSesion}
             </span>
           </div>
