@@ -60,7 +60,7 @@ const PasswordField = forwardRef<Ref<HTMLInputElement>, PasswordFieldProps>(func
     <div className="sym-input-group my-2">
       {label && (
         <Label
-          className="dark:text-white text-gray-500"
+          className="dark:text-white text-gray-900"
           id={id}
           text={label}
           required={required}
