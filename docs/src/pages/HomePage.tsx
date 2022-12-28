@@ -1,6 +1,14 @@
 import { useForm } from 'react-hook-form';
-import { Button, TextField, Input, Label, PasswordField } from '@symlab/react-ui';
+import { Button, TextField, Input, Label, PasswordField, Table } from '@symlab/react-ui';
 import { EnvelopeIcon } from '@heroicons/react/20/solid';
+import BasicTable from '../components/datatable/BasicTable';
+import SortingTable from '../components/datatable/SortingTable';
+import FilteringTable from '../components/datatable/FilteringTable';
+import PaginationTable from '../components/datatable/PaginationTable';
+import RowSelection from '../components/datatable/RowSelection';
+import ColumnHiding from '../components/datatable/ColumnHiding';
+import { COLUMNS } from '../components/datatable/columns';
+import MOCK_DATA from './../data/MOCK_DATA.json';
 
 interface FormData {
   name: string;
@@ -19,7 +27,27 @@ function HomePage() {
   const onSubmit = (data: FormData) => console.log(data);
   return (
     <>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+      {/*  <BasicTable/> */}
+      {/* <SortingTable /> */}
+      {/*   <FilteringTable /> */}
+      {/*   <PaginationTable /> */}
+      {/* <RowSelection/> */}
+      {/* <ColumnHiding /> */}
+
+      <Table
+        title="Detalle de las personas"
+        options={{
+          filtering: true,
+          sorting: true,
+          footer: true,
+          //pageSize: 10,
+          pageSizeOptions: [10, 100, 500, 1000],
+          hiddenColumns: ['country'],
+        }}
+        columns={COLUMNS}
+        data={MOCK_DATA}
+      />
+
       <Button
         onPress={() => console.log('click')}
         arial-label="Click me"
@@ -97,6 +125,7 @@ function HomePage() {
         </div>
         <Button type="submit">Submit</Button>
       </form>
+      <div></div>
     </>
   );
 }
