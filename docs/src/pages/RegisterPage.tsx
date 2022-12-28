@@ -6,14 +6,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, TextField, PasswordField, Loading } from '@symlab/react-ui';
 import { useState } from 'react';
-
-interface FormData {
-  name: string;
-  lastname: string;
-  email: string;
-  phone: number;
-  password: string;
-}
+import { RegisterForm } from '../interfaces';
 const PHONE_NO_REGEX = /^[0-9\- ]{8,14}$/;
 
 function RegisterPage() {
@@ -35,11 +28,11 @@ function RegisterPage() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({
+  } = useForm<RegisterForm>({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = (data: RegisterForm) => {
     isLoading(true);
     console.log(data);
     setError(null);
@@ -47,7 +40,7 @@ function RegisterPage() {
       console.log(data);
       const resp = errsHttp[Math.floor(Math.random() * errsHttp.length)];
       isLoading(false);
-      resp.code !== 200 ? setError(resp): navigate('/login');
+      resp.code !== 200 ? setError(resp) : navigate('/login');
     }, 3000);
   };
 

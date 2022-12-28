@@ -43,7 +43,7 @@ const TextField = forwardRef<Ref<HTMLInputElement>, TextFieldProps>(function Tex
         required={required}
         hidden={hideLabel}
         hint={hint}
-        className="dark:text-white text-gray-500"
+        className="dark:text-white text-gray-900"
       />
       <Input
         id={id}
