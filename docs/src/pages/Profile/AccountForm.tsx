@@ -1,4 +1,4 @@
-import { Button, Loading } from '@symlab/react-ui';
+import { Button, Loading, Timeline } from '@symlab/react-ui';
 import { useEffect, useState } from 'react';
 import Alert from '../../components/Alert';
 import { activities, errsHttp } from '../../data/errsHttp';
@@ -57,25 +57,10 @@ export default function AccountForm() {
               Activity
             </h2>
 
-            <ol className="relative border-l border-gray-200 dark:border-gray-700 my-10 mx-5">
-              {activities &&
-                [...activities].reverse().map((item, index) => (
-                  <li key={item.id + '-' + index} className="mb-10 ml-4">
-                    <div className="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
-                    <section className="flex flex-row">
-                      <label className="mb-1 flex-1 justify-end text-base font-normal leading-none text-gray-600 dark:text-gray-300 text-start">
-                        {item.title}
-                      </label>
-                      <label className="mb-1 flex justify-end text-xs font-normal leading-none text-gray-600 dark:text-gray-300 text-end">
-                        {item.date}
-                      </label>
-                    </section>
-                    <p className="mb-4 text-sm font-normal text-gray-400 dark:text-gray-400">
-                      {item.description}
-                    </p>
-                  </li>
-                ))}
-            </ol>
+            <Timeline
+              items={[...activities].reverse()}
+             
+            />
           </div>
         </div>
         <div className="py-6 px-4 sm:p-6 lg:pb-8">

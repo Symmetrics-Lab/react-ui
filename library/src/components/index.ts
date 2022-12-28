@@ -11,3 +11,4 @@ export { default as Switch } from './Switch';
 export { default as Loading } from './Loading';
 export { default as Textarea } from './TextArea';
 export { default as Autocomplete } from './Autocomplete';
+export { default as Timeline } from './Timeline';
