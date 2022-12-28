@@ -4,6 +4,7 @@ export interface Options {
   filtering?: boolean;
   footer?: boolean;
   hiddenColumns?: Array<string>;
+  skipPageReset ?:boolean;
   /////
   actionsCellStyle?: React.CSSProperties;
   detailPanelColumnStyle?: React.CSSProperties;
@@ -131,6 +132,7 @@ export interface TableProps {
   data: object[];
   localization?: Localization;
   options?: Options;
+  
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   // TableBody: React.ReactNode;
   // TableCell: React.ReactNode;

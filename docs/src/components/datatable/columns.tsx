@@ -15,6 +15,22 @@ export const COLUMNS: Array<Column<any>> = [
     Footer: 'First Name',
     accessor: 'first_name',
     Filter: TableFilterRow,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    Cell: (data: any) => {
+      if (!editable) {
+        return data.row.original.offeredVolume;
+      }
+
+      return (
+        <EditableCell
+          // eslint-disable-next-line react/destructuring-assignment
+          editable
+          {...data}
+          // updateMyData={updateMyData}
+          recordValue={updateData}
+        />
+      );
+    },
   },
   {
     Header: 'Last Name',

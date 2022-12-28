@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { forwardRef, useEffect, useMemo } from 'react';
 import {
   useGlobalFilter,
   useFilters,
@@ -11,8 +11,8 @@ import { TableProps } from './Table.types';
 import clsx from 'clsx';
 import { TableFilterGlobal } from '../Filter/TableFilterGlobal';
 import { Checkbox } from '../Checkbox.tsx';
-//import { ColumnFilter } from '../Filter/ColumnFilter';
-export default function Table(props: TableProps) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const Table = forwardRef(function Table(props: TableProps, ref) {
   const {
     className,
     title,
@@ -22,6 +22,7 @@ export default function Table(props: TableProps) {
   } = props;
 
   const columns = useMemo(() => lcolumns, []);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const data = useMemo(() => ldata, []);
 
   const {
@@ -64,7 +65,15 @@ export default function Table(props: TableProps) {
   } = useTable(
     {
       columns,
-      data,
+      data:ldata,
+
+      //EDIT
+      autoResetPage: !options?.skipPageReset,
+      defaultColumn: {
+        minWidth: 30,
+        width: 150,
+        maxWidth: 400,
+      },
     },
 
     //FILTERS
@@ -204,8 +213,6 @@ export default function Table(props: TableProps) {
           />
         </span>
         <select
-          name=""
-          id=""
           value={pageSize}
           defaultValue={options?.pageSize}
           onChange={(e) => setPageSize(Number(e.target.value))}
@@ -246,4 +253,6 @@ export default function Table(props: TableProps) {
       </pre>
     </>
   );
-}
+});
+
+export default Table;
