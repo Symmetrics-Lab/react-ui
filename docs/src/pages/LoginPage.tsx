@@ -6,11 +6,8 @@ import Alert from '../components/Alert';
 import { errsHttp } from '../data/errsHttp';
 import { Button, TextField, PasswordField, Loading } from '@symlab/react-ui';
 import { useEffect, useState } from 'react';
+import { LoginForm } from '../interfaces';
 
-interface FormData {
-  email: string;
-  password: string;
-}
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -29,10 +26,10 @@ function LoginPage() {
     reset,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({
+  } = useForm<LoginForm>({
     resolver: yupResolver(schema),
   });
-  const onSubmit = (data: FormData) => {
+  const onSubmit = (data: LoginForm) => {
     setError(null);
     isLoading(true);
     setTimeout(() => {
