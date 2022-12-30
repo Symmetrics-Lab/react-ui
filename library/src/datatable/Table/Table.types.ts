@@ -1,10 +1,13 @@
 import { Column } from 'react-table';
+import React, { Dispatch, SetStateAction } from 'react';
 export interface Options {
   sorting?: boolean;
   filtering?: boolean;
   footer?: boolean;
   hiddenColumns?: Array<string>;
-  skipPageReset ?:boolean;
+  skipPageReset?: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  getSelection?: Dispatch<SetStateAction<any>>;
   /////
   actionsCellStyle?: React.CSSProperties;
   detailPanelColumnStyle?: React.CSSProperties;
@@ -119,6 +122,18 @@ export interface Localization {
   };
 }
 
+export interface Action {
+  disabled?: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  icon: string | (() => React.ReactElement<any>);
+  isFreeAction?: boolean;
+  position?: 'auto' | 'toolbar' | 'toolbarOnSelect' | 'row';
+  tooltip?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onClick: (event: any) => void;
+  hidden?: boolean;
+}
+
 //export interface TableProps<D extends React.ElementType = 'table'> {
 export interface TableProps {
   className?: string;
@@ -132,7 +147,9 @@ export interface TableProps {
   data: object[];
   localization?: Localization;
   options?: Options;
-  
+  actions?: Action[];
+  //action
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   // TableBody: React.ReactNode;
   // TableCell: React.ReactNode;

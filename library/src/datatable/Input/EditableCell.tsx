@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 
 // Create an editable cell renderer
@@ -35,17 +36,22 @@ const EditableCell = ({
     setValue(initialValue);
   }, [initialValue]);
 
+  const classes = clsx(
+    'block p-2 pl-10 ml-[20px] text-gray-500 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 font-Raleway text-base',
+    ''
+  );
   return (
-    <div className="w-[150px] flex justify-center items-center ml-2 text-sm">
+    <>
       <input
-        className="text-center"
-        type="text"
         value={value ?? ''}
+        type={'text'}
+        className={classes}
         onChange={onChange}
         onBlur={onBlur}
         disabled={!editable}
+        placeholder={''}
       />
-    </div>
+    </>
   );
 };
 

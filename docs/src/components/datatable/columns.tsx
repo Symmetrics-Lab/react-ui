@@ -1,6 +1,6 @@
 import { Column } from 'react-table';
 import { format } from 'date-fns';
-import { TableFilterRow } from '@symlab/react-ui';
+import { EditableCell, TableFilterRow } from '@symlab/react-ui';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const COLUMNS: Array<Column<any>> = [
