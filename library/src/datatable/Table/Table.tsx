@@ -1,25 +1,70 @@
 import { forwardRef, useEffect, useMemo, useState } from 'react';
 import {
-  useGlobalFilter,
+  /* useGlobalFilter,
   useFilters,
   useSortBy,
   usePagination,
-  useRowSelect,
-  useTable,
-} from 'react-table';
+  useRowSelect,*/
+  getSortedRowModel,
+  FilterFn,
+  getPaginationRowModel,
+  getFilteredRowModel,
+  getCoreRowModel,
+  flexRender,
+  useReactTable,
+  FilterMeta,
+  Column,
+  Table as TableReactTable,
+} from '@tanstack/react-table';
 import { TableProps } from './Table.types';
 import clsx from 'clsx';
 import { TableFilterGlobal } from '../Filter/TableFilterGlobal';
-import { Checkbox } from '../Checkbox.tsx';
 
 import {
+  ArrowLongDownIcon,
   ArrowLongUpIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
 } from '@heroicons/react/20/solid';
 import { Select } from '../../components';
+
+import { RankingInfo, rankItem } from '@tanstack/match-sorter-utils';
+
+interface CustomFilterMeta extends FilterMeta {
+  filterComponent: (info: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    column: Column<any, unknown>;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    table?: TableReactTable<any>;
+  }) => JSX.Element;
+}
+
+declare module '@tanstack/table-core' {
+  interface FilterFns {
+    fuzzy: FilterFn<unknown>;
+  }
+  interface FilterMeta {
+    itemRank: RankingInfo;
+  }
+}
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
+  // Rank the item
+  const itemRank = rankItem(row.getValue(columnId), value);
+
+  // Store the itemRank info
+  addMeta({
+    itemRank,
+  });
+
+  // Return if the item should be filtered in/out
+  return itemRank.passed;
+};
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Table = forwardRef(function Table(props: TableProps, ref) {
+  const [columnVisibility, setColumnVisibility] = useState({});
+  //const [sorting, setSorting] = useState<SortingState>([])
   const {
     className,
     title,
@@ -35,97 +80,111 @@ const Table = forwardRef(function Table(props: TableProps, ref) {
 
   const {
     //TABLE
-    getTableProps,
+    //getTableProps,
+    getPreFilteredRowModel,
+
+    //HEAD
+    getHeaderGroups,
 
     //BODY
-    getTableBodyProps,
-    prepareRow,
+    getRowModel,
     //rows,
 
     //FOOTER
-    footerGroups,
+    //footerGroups,
+    getFooterGroups,
 
     //GROUP
-    headerGroups,
+    //headerGroups,
 
     //FILTER
     setGlobalFilter,
-    state,
+    //getGlobalFilterFn,
+    getState,
 
-    // SELECTION
-    selectedFlatRows,
+    // SELECTION,
+    getSelectedRowModel,
     //state: { selectedRowIds },
 
     // HIDING
     //getToggleHideAllColumnsProps,
     //allColumns,
-    setHiddenColumns,
 
     // PAGINATION
-    pageOptions,
-    gotoPage,
+    //pageOptions,
+    setPageIndex,
     setPageSize,
-    canPreviousPage,
-    canNextPage,
+    getCanPreviousPage,
+    getCanNextPage,
     previousPage,
     nextPage,
-    pageCount,
-    page,
-  } = useTable(
+    getPageCount,
+  } = useReactTable(
     {
       columns,
       data: ldata,
+      /*globalFilterFn: (row, columnId, filterValue) => {
+        const safeValue = (() => {
+          const value = row.getValue(columnId);
+          return typeof value === 'number' ? String(value) : value;
+        })();
 
+        return safeValue().toLowerCase().includes(filterValue.toLowerCase());
+      },*/
       //EDIT
-      autoResetPage: !options?.skipPageReset,
-      defaultColumn: {
-        minWidth: 30,
-        width: 150,
-        maxWidth: 400,
+      //autoResetPage: !options?.skipPageReset,
+
+      //FILTER
+      filterFns: {
+        fuzzy: fuzzyFilter,
       },
+
+      state: {
+        columnVisibility,
+        //sorting,
+      },
+
+      //FILTER
+      /*filterFns: {
+        fuzzy: fuzzyFilter,
+      },*/
 
       //SELECTON
       //autoResetHiddenColumns: false, //  <-- stops the rerendering
-      //autoResetSortBy: false, //  <-- stops the rerendering 🥳
-    },
+      //autoResetSortBy: false, //  <-- stops the rerendering
+
+      //HIDING
+      globalFilterFn: fuzzyFilter,
+      // onRowSelectionChange: options?.getSelection,
+      getCoreRowModel: getCoreRowModel(),
+      getFilteredRowModel: getFilteredRowModel(),
+      getPaginationRowModel: getPaginationRowModel(),
+      onColumnVisibilityChange: setColumnVisibility,
+
+      //SORTING
+      getSortedRowModel: getSortedRowModel(),
+      //onSortingChange: setSorting,
+    }
 
     //FILTERS
-    useGlobalFilter,
-    useFilters,
+    //useGlobalFilter,
+    //useFilters,
 
     //SORTING
-    useSortBy,
+    //useSortBy,
 
     //PAGINATION
-    usePagination,
+    // usePagination,
 
     //SELECTION
-    useRowSelect,
-
-    (hooks) => {
-      options?.selection &&
-        hooks.visibleColumns.push((columns) => {
-          return [
-            {
-              id: 'Selection',
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              Header: ({ getToggleAllRowsSelectedProps }: any) => (
-                <Checkbox {...getToggleAllRowsSelectedProps()} />
-              ),
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              Cell: ({ row }: any) => <Checkbox {...row.getToggleRowSelectedProps()} />,
-            },
-            ...columns,
-          ];
-        });
-    }
+    //useRowSelect,
   );
 
   // FILTERS
-  const { globalFilter } = state;
+  const { globalFilter } = getState();
 
   // PAGINATION
-  const { pageIndex, pageSize } = state;
+  const { pageIndex, pageSize } = getState().pagination;
 
   // SELECTION
   //const firstPageRows = page.slice(0, 10);
@@ -133,20 +192,20 @@ const Table = forwardRef(function Table(props: TableProps, ref) {
   //HIDING
   if (options?.hiddenColumns) {
     useEffect(() => {
-      setHiddenColumns(options?.hiddenColumns || []);
+      setColumnVisibility(options?.hiddenColumns || []);
     }, [options.hiddenColumns]);
   }
 
-  const [countSelected, setCountSelected] = useState(selectedFlatRows.length);
+  const [countSelected, setCountSelected] = useState(getSelectedRowModel().rows.length);
   if (options?.getSelection) {
     useEffect(() => {
       // Bubble up the selection to the parent component
-      options?.getSelection && options.getSelection(selectedFlatRows);
+      options?.getSelection && options.getSelection(getSelectedRowModel().rows);
     }, [countSelected]);
   }
   useEffect(() => {
-    setCountSelected(selectedFlatRows.length);
-  }, [selectedFlatRows]);
+    setCountSelected(getSelectedRowModel().rows.length);
+  }, [getSelectedRowModel().rows]);
 
   /* eslint-disable */
   return (
@@ -194,41 +253,55 @@ const Table = forwardRef(function Table(props: TableProps, ref) {
               'w-full text-sm text-left text-gray-500 dark:text-gray-400 min-w-full',
               className
             )}
-            {...getTableProps()}
           >
             <thead>
-              {headerGroups.map((headerGroup) => (
-                <tr {...headerGroup.getHeaderGroupProps()} className="dark:bg-gray-700">
-                  {headerGroup.headers.map((column) => {
+              {getHeaderGroups().map((headerGroup) => (
+                <tr key={headerGroup.id} className="dark:bg-gray-700">
+                  {headerGroup.headers.map((header) => {
                     //SORTING
-                    const sort = (options?.sorting && column.getSortByToggleProps()) || undefined;
+
                     return (
-                      <th className="py-3" key={column.id}>
-                        <ul key={'ul-filter-column-' + column.id}>
-                          <li key={'li-sort-column-' + column.id} className="group">
-                            {options?.sorting && column.id !== 'Selection' ? (
+                      <th className="py-3" key={header.id}>
+                        <ul key={'ul-filter-column-' + header.id}>
+                          <li key={'li-sort-column-' + header.id} className="group">
+                            {options?.sorting && header.id !== 'Selection' ? (
                               <div
-                                className="h-[40px] text-center ml-[-20px]"
-                                {...column.getHeaderProps(sort)}
+                                {...{
+                                  className: clsx(
+                                    header.column.getCanSort() ? 'cursor-pointer select-none' : '',
+                                    'h-[40px] text-center ml-[-20px]'
+                                  ),
+                                  onClick: header.column.getToggleSortingHandler(),
+                                }}
                               >
+                                {flexRender(header.column.columnDef.header, header.getContext())}
                                 <span
                                   className={`text-gray-800 dark:text-gray-300 text-base font-Raleway font-medium	 ${
-                                    column.isSorted
+                                    header.column.getIsSorted()
                                       ? ''
                                       : 'group-hover:text-opacity-50 dark:group-hover:text-white'
                                   }`}
                                 >
-                                  <ArrowLongUpIcon
-                                    className={`${
-                                      column.isSorted
-                                        ? 'text-opacity-100 dark:text-white'
-                                        : 'text-opacity-0  group-hover:text-opacity-50'
-                                    } h-6 w-6 text-gray-500  inline ${
-                                      column.isSortedDesc &&
-                                      'transform rotate-180 transition duration-300 ease-in-out'
-                                    }`}
-                                  />
-                                  {column.render('Header')}
+                                  {{
+                                    asc: (
+                                      <ArrowLongUpIcon
+                                        className={
+                                          /*{header.isSorted
+                                      ? 'text-opacity-100 dark:text-white'
+                                      : 'text-opacity-0  }*/ `group-hover:text-opacity-50 h-6 w-6 text-gray-500  inline `
+                                        }
+                                      />
+                                    ),
+                                    desc: (
+                                      <ArrowLongDownIcon
+                                        className={
+                                          /*{header.isSorted
+                                          ? 'text-opacity-100 dark:text-white'
+                                          : 'text-opacity-0  }*/ `group-hover:text-opacity-50 h-6 w-6 text-gray-500  inline `
+                                        }
+                                      />
+                                    ),
+                                  }[header.column.getIsSorted() as string] ?? null}
                                 </span>
                               </div>
                             ) : (
@@ -236,17 +309,22 @@ const Table = forwardRef(function Table(props: TableProps, ref) {
                                 <span
                                   className={`text-gray-800 dark:text-gray-200 text-base font-Raleway align-top`}
                                 >
-                                  {column.render('Header')}
+                                  {flexRender(header.column.columnDef.header, header.getContext())}
                                 </span>
                               </div>
                             )}
                           </li>
 
-                          <li key={'li-filter-column-' + column.id}>
+                          <li key={'li-filter-column-' + header.id}>
                             <div className="section-filter-column h-[40px] ">
                               <div className="inset-y-0 left-0 items-center px-5">
-                                {column.canFilter ? (
-                                  column.render('Filter')
+                                {header.column.getCanFilter() &&
+                                header.column.columnDef?.meta &&
+                                (header.column.columnDef?.meta as CustomFilterMeta)
+                                  .filterComponent ? (
+                                  (
+                                    header.column.columnDef.meta as CustomFilterMeta
+                                  ).filterComponent({ column: header.column })
                                 ) : (
                                   <div className="h-[60px]"></div>
                                 )}
@@ -261,18 +339,17 @@ const Table = forwardRef(function Table(props: TableProps, ref) {
               ))}
             </thead>
             {ldata.length > 0 ? (
-              <tbody className="text-center dark:text-gray-400" {...getTableBodyProps()}>
-                {page.map((row, index) => {
-                  prepareRow(row);
+              <tbody className="text-center dark:text-gray-400">
+                {getRowModel().rows.map((row) => {
                   return (
                     <tr
                       className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-                      {...row.getRowProps()}
+                      key={row.id}
                     >
-                      {row.cells.map((cell) => {
+                      {row.getVisibleCells().map((cell) => {
                         return (
-                          <td className="py-2 font-Raleway text-base" {...cell.getCellProps()}>
-                            {cell.render('Cell')}
+                          <td key={cell.id} className="py-2 font-Raleway text-base">
+                            {flexRender(cell.column.columnDef.cell, cell.getContext())}
                           </td>
                         );
                       })}
@@ -286,11 +363,11 @@ const Table = forwardRef(function Table(props: TableProps, ref) {
 
             {options?.footer && (
               <tfoot className="h-[100px] text-sm font-Raleway text-center font-semibold">
-                {footerGroups.map((footerGroup) => (
-                  <tr {...footerGroup.getFooterGroupProps()}>
-                    {footerGroup.headers.map((column, columIndex) => (
-                      <td key={columIndex} {...column.getFooterProps}>
-                        {column.render('Footer')}
+                {getFooterGroups().map((footerGroup) => (
+                  <tr key={footerGroup.id}>
+                    {footerGroup.headers.map((footer, columIndex) => (
+                      <td key={columIndex}>
+                        {flexRender(footer.column.columnDef.footer, footer.getContext())}
                       </td>
                     ))}
                   </tr>
@@ -319,15 +396,18 @@ const Table = forwardRef(function Table(props: TableProps, ref) {
               />
             </div>
           </div>
-          <div className="flex flex-1 justify-between sm:justify-end items-center">
+          <div className="flex flex-1 justify-between sm:justify-end  items-center">
             <button
               className={`text-4xl px-5 ${
-                !canPreviousPage
+                !getCanPreviousPage()
                   ? 'text-gray-300 dark:text-gray-500'
-                  : 'text-gray-700 dark:text-gray-200'
+                  : 'text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700'
               }`}
-              onClick={() => gotoPage(0)}
-              disabled={!canPreviousPage}
+              onClick={(e) => {
+                e.preventDefault();
+                setPageIndex(0);
+              }}
+              disabled={!getCanPreviousPage()}
             >
               &laquo;
             </button>
@@ -337,11 +417,11 @@ const Table = forwardRef(function Table(props: TableProps, ref) {
                 e.preventDefault();
                 previousPage();
               }}
-              disabled={!canPreviousPage}
+              disabled={!getCanPreviousPage()}
               className={`inline-flex items-center text-xs font-medium rounded-full ${
-                !canPreviousPage
+                !getCanPreviousPage()
                   ? 'text-gray-300 dark:text-gray-500'
-                  : 'text-gray-700 dark:text-gray-200 hover:bg-gray-300'
+                  : 'text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700'
               }`}
             >
               <ChevronLeftIcon className="h-9 w-9" aria-hidden="true" />
@@ -349,8 +429,9 @@ const Table = forwardRef(function Table(props: TableProps, ref) {
 
             <div className="px-5">
               <p className="text-sm text-gray-400 dark:text-gray-500">
-                <span className="font-medium">{pageIndex + 1}</span> of{' '}
-                <span className="font-medium">{pageOptions.length}</span>
+                <span className="font-medium">{pageIndex + 1}</span> to{' '}
+                <span className="font-medium">{getPageCount()}</span> of{' '}
+                <span className="font-medium">{getPreFilteredRowModel().rows.length}</span>
               </p>
             </div>
 
@@ -359,23 +440,26 @@ const Table = forwardRef(function Table(props: TableProps, ref) {
                 e.preventDefault();
                 nextPage();
               }}
-              disabled={!canNextPage}
+              disabled={!getCanNextPage()}
               className={`inline-flex items-center text-xs font-medium  rounded-full ${
-                !canNextPage
+                !getCanNextPage()
                   ? 'text-gray-300 dark:text-gray-500'
-                  : 'text-gray-700 dark:text-gray-200 hover:bg-gray-300'
+                  : 'text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700'
               }`}
             >
               <ChevronRightIcon className="h-9 w-9" aria-hidden="true" />
             </button>
 
             <button
-              onClick={() => gotoPage(pageCount - 1)}
-              disabled={!canNextPage}
+              onClick={(e) => {
+                e.preventDefault();
+                setPageIndex(getPageCount() - 1);
+              }}
+              disabled={!getCanNextPage()}
               className={`text-4xl px-5 ${
-                !canNextPage
+                !getCanNextPage()
                   ? 'text-gray-300 dark:text-gray-500'
-                  : 'text-gray-700 dark:text-gray-200'
+                  : 'text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700'
               }`}
             >
               &raquo;
@@ -388,7 +472,7 @@ const Table = forwardRef(function Table(props: TableProps, ref) {
               defaultValue={pageIndex + 1}
               onChange={(e) => {
                 const pageNumber = e.target.value ? Number(e.target.value) - 1 : 0;
-                gotoPage(pageNumber);
+                setPageIndex(pageNumber);
               }}
             />
           </span> */}

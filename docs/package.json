@@ -19,9 +19,7 @@
     "react-aria": "^3.20.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.37.0",
-    "react-router-dom": "^6.4.2",
-    "react-table": "^7.8.0",
-    "regenerator-runtime": "^0.13.11"
+    "react-router-dom": "^6.4.2"
   },
   "devDependencies": {
     "@playwright/experimental-ct-react": "^1.29.1",
@@ -29,7 +27,6 @@
     "@testing-library/react": "^13.4.0",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
-    "@types/react-table": "^7.7.12",
     "@vitejs/plugin-react": "^2.1.0",
     "@vitest/coverage-c8": "^0.24.3",
     "autoprefixer": "^10.4.12",

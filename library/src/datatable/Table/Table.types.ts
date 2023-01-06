@@ -1,4 +1,4 @@
-import { Column } from 'react-table';
+import { ColumnDef } from '@tanstack/react-table';
 import React, { Dispatch, SetStateAction } from 'react';
 export interface Options {
   sorting?: boolean;
@@ -143,7 +143,7 @@ export interface TableProps {
   //defaultComponent: D;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   title?: string | React.ReactElement<any>;
-  columns: Column<object>[];
+  columns: ColumnDef<object>[];
   data: object[];
   localization?: Localization;
   options?: Options;

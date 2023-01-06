@@ -3,13 +3,13 @@ import { useEffect, useState } from 'react';
 
 // Create an editable cell renderer
 const EditableCell = ({
-  value: initialValue,
+  getValue: initialValue,
   row: { index },
   column: { id },
   recordValue,
   editable = true,
 }: {
-  value: string;
+  getValue(): string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   row: any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -18,7 +18,7 @@ const EditableCell = ({
   editable?: boolean;
 }) => {
   // We need to keep and update the state of the cell normally
-  const [value, setValue] = useState(initialValue);
+  const [value, setValue] = useState(initialValue());
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onChange = (e: any) => {
@@ -33,8 +33,8 @@ const EditableCell = ({
 
   // If the initialValue is changed external, sync it up with our state
   useEffect(() => {
-    setValue(initialValue);
-  }, [initialValue]);
+    setValue(initialValue());
+  }, [initialValue()]);
 
   const classes = clsx(
     'block p-2 pl-10 ml-[20px] text-gray-500 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 font-Raleway text-base',

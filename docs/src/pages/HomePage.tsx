@@ -4,6 +4,7 @@ import {
   Table,
   TableFilterRow,
   EditableCell,
+  IndeterminateCheckbox,
 } from '@symlab/react-ui';
 /* import { EnvelopeIcon } from '@heroicons/react/20/solid';
 import BasicTable from '../components/datatable/BasicTable';
@@ -91,7 +92,6 @@ function HomePage() {
     setValue('person', MOCK_DATA);
     setData(MOCK_DATA);
   };
-
   return (
     <>
       <section className="bg-gray-50 py-8 dark:bg-gray-900">
@@ -142,7 +142,7 @@ function HomePage() {
                     sorting: true,
                     footer: true,
                     selection: true,
-                    getSelection: setDataSelection,
+                    getSelection: selectionCallback,
                     //pageSize: 10,
                     pageSizeOptions: [10, 100, 500, 1000],
                     // hiddenColumns: ['country'],
@@ -150,20 +150,42 @@ function HomePage() {
                   }}
                   columns={[
                     {
-                      Header: 'Id',
-                      Footer: 'Id',
-                      accessor: 'id',
-                      disableFilters: true,
+                      id: 'select',
+                      header: ({ table }: any) => (
+                        <IndeterminateCheckbox
+                          {...{
+                            checked: table.getIsAllRowsSelected(),
+                            indeterminate: table.getIsSomeRowsSelected(),
+                            onChange: table.getToggleAllRowsSelectedHandler(),
+                          }}
+                        />
+                      ),
+                      cell: ({ row }: any) => (
+                        <div className="px-1">
+                          <IndeterminateCheckbox
+                            {...{
+                              checked: row.getIsSelected(),
+                              indeterminate: row.getIsSomeSelected(),
+                              onChange: row.getToggleSelectedHandler(),
+                            }}
+                          />
+                        </div>
+                      ),
                     },
                     {
-                      Header: 'First Name',
-                      Footer: 'First Name',
-                      accessor: 'first_name',
-                      Filter: (data: any) => {
-                        return <TableFilterRow propsInput={{ className: '' }} {...data} />;
-                      },
+                      header: 'Id',
+                      footer: 'Id',
+                      accessorKey: 'id',
+                      cell: (info) => info.getValue(),
+                    },
+                    {
+                      header: 'First Name',
+                      footer: 'First Name',
+                      accessorKey: 'first_name',
+                      filterFn: 'includesString',
+
                       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                      Cell: (data: any) => {
+                      cell: (data: any) => {
                         //return data.row.original.offeredVolume;
                         return (
                           <EditableCell
@@ -174,33 +196,58 @@ function HomePage() {
                           />
                         );
                       },
-                    },
-                    {
-                      Header: 'Last Name',
-                      Footer: 'Last Name',
-                      accessor: 'last_name',
-                      Filter: TableFilterRow,
-                    },
-                    {
-                      Header: 'Date of Birth',
-                      Footer: 'Date of Birth',
-                      accessor: 'date_of_birth',
-                      Cell: ({ value }) => {
-                        return format(new Date(value), 'dd/MM/yyyy');
+                      meta: {
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                        filterComponent: (data: any) => {
+                          return <TableFilterRow propsInput={{ className: '' }} {...data} />;
+                        },
                       },
-                      Filter: TableFilterRow,
                     },
                     {
-                      Header: 'Country',
-                      Footer: 'Country',
-                      accessor: 'country',
-                      Filter: TableFilterRow,
+                      header: 'Last Name',
+                      footer: 'Last Name',
+                      accessorKey: 'last_name',
+                      filterFn: 'includesString',
+                      meta: {
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                        filterComponent: (data: any) => {
+                          return <TableFilterRow propsInput={{ className: '' }} {...data} />;
+                        },
+                      },
                     },
                     {
-                      Header: 'Phone',
-                      Footer: 'Phone',
-                      accessor: 'phone',
-                      Filter: TableFilterRow,
+                      header: 'Date of Birth',
+                      footer: 'Date of Birth',
+                      accessorKey: 'date_of_birth',
+                      cell: ({ getValue }) => {
+                        return format(new Date(getValue()), 'dd/MM/yyyy');
+                      },
+
+                      filterFn: 'includesString',
+                      meta: {
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                        filterComponent: (data: any) => {
+                          return <TableFilterRow propsInput={{ className: '' }} {...data} />;
+                        },
+                      },
+                    },
+                    {
+                      header: 'Country',
+                      footer: 'Country',
+                      accessorKey: 'country',
+                      filterFn: 'includesString',
+                    },
+                    {
+                      header: 'Phone',
+                      footer: 'Phone',
+                      accessorKey: 'phone',
+                      filterFn: 'includesString',
+                      meta: {
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                        filterComponent: (data: any) => {
+                          return <TableFilterRow propsInput={{ className: '' }} {...data} />;
+                        },
+                      },
                     },
                   ]}
                   data={data ?? []}
@@ -209,7 +256,6 @@ function HomePage() {
                       emptyDataSourceMessage: 'No existe coincidencia',
                     },
                   }}
-                  setSelection={setDataSelection}
 
                   //updateMyData={updateMyData}
                 />
@@ -218,7 +264,8 @@ function HomePage() {
                   <code>
                     {JSON.stringify(
                       {
-                        selectedFlatRows: dataSelect.map((row: any) => row?.original),
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                        selectedFlatRows: dataSelect?.map((row: any) => row?.original),
                       },
                       null,
                       2
