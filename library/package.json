@@ -83,7 +83,10 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.3",
+    "@tanstack/match-sorter-utils": "^8.7.2",
+    "@tanstack/react-table": "^8.7.4",
     "clsx": "^1.2.1",
+    "date-fns": "^2.29.3",
     "react-aria": "^3.20.0"
   }
 }
