@@ -17,6 +17,7 @@ import { COLUMNS } from '../components/datatable/columns'; */
 import MOCK_DATA from './../data/MOCK_DATA.json';
 import { format } from 'date-fns';
 import { useCallback, useEffect, useState } from 'react';
+import ModalComponent from '../components/Modal';
 
 interface Iperson {
   id: number;
@@ -95,6 +96,8 @@ function HomePage() {
   return (
     <>
       <section className="bg-gray-50 py-8 dark:bg-gray-900">
+        < ModalComponent/>
+       
         <div className="flex flex-col items-center justify-center px-6 py-0 mx-auto h-full lg:py-0">
           {/*  <BasicTable/> */}
           {/* <SortingTable /> */}
