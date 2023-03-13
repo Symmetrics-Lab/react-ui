@@ -50,7 +50,7 @@ describe('Button', () => {
   });
   test('it should have the base class', () => {
     const baseClass =
-      'inline-flex items-center  border border-transparent shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2';
+      'inline-flex items-center border border-transparent shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-opacity-75';
     render(<Button>Hello there</Button>);
     expect(screen.getByRole('button').getAttribute('class')).includes(baseClass);
   });
@@ -82,7 +82,7 @@ describe('Icon', () => {
       </Button>
     );
     expect(screen.getByRole('button').innerHTML).includes('<svg');
-    expect(screen.getByRole('button').innerHTML).includes('sym-btn-icon-left');
+    expect(screen.getByRole('button').innerHTML).includes('btn-icon-left');
   });
   test('it should render an icon to the right', () => {
     render(
@@ -92,6 +92,6 @@ describe('Icon', () => {
     );
     expect(screen.getByRole('button').innerHTML).includes('<svg');
 
-    expect(screen.getByRole('button').innerHTML).includes('sym-btn-icon-right');
+    expect(screen.getByRole('button').innerHTML).includes('btn-icon-right');
   });
 });

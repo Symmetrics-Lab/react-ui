@@ -18,7 +18,7 @@ export interface AutocompleteProps extends UseControllerProps<any> {
   errorText?: string | ReactNode;
   helperText?: string | ReactNode;
   placeholder?: string;
-  onForm: boolean;
+  onForm?: boolean;
   onInputChange?: (event: string) => void;
   className?: string;
   variant?: 'default' | 'secondary' | 'primary';

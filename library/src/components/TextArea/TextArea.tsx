@@ -5,12 +5,12 @@ import HelperText from '../HelperText/HelperText';
 import { TextareaProps } from './textArea.types';
 import Label from '../Label';
 const baseInputClass =
-  'sym-textfield__input block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm placeholder-gray-400 dark:text-white dark:bg-gray-700';
-const disabledInputClass = 'cursor-not-allowed border-gray-200 bg-gray-50 text-gray-500';
+  'sym-textfield__input block w-full rounded-md border-sym-input-border  dark:border-sym-input-border-dark shadow-sm  dark:focus:border-sym-primary-dark focus:border-sym-primary focus:ring-sym-primary dark:focus:ring-sym-primary-dark sm:text-sm placeholder-sym-placeholder dark:placeholder-sym-placeholder-dark text-sym-txt-primary dark:text-sym-txt-primary-dark bg-sym-input-bg dark:bg-sym-input-bg-dark';
+const disabledInputClass = 'cursor-not-allowed bg-sym-wallpaper dark:bg-sym-wallpaper-dark text-sym-disabled dark:text-sym-disabled-dark';
 const errorInputClass =
-  'border-symlab-red-300 pr-10 text-symlab-red-700 placeholder-symlab-red-300 focus:border-symlab-red-500 focus:outline-none focus:ring-symlab-red-500';
+  'border-sym-error dark:border-sym-error-dark pr-10 dark:placeholder-sym-error-dark focus:border-sym-error dark:focus:border-sym-error-dark focus:outline-none focus:ring-error dark:focus:ring-error-dark';
 const validInputClass =
-  'border-green-300 pr-10 text-green-900 focus:border-green-500 focus:outline-none focus:ring-green-500';
+  'border-sym-sucess dark:border-sym-sucess-dark pr-10  dark:text-sym-success-dark text-sym-success focus:border-sym-success focus:outline-none focus:ring-sym-success dark:focus:ring-sym-success-dark';
 const wrapperIconInputClass = 'relative mt-1 rounded-md shadow-sm';
 
 const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function Textarea(props, ref) {
@@ -57,7 +57,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function Textare
     <div className={wrapperClasses}>
       {label && (
         <Label
-          className="dark:text-white text-gray-900"
+          className="dark:text-sym-txt-primary-dark text-sym-txt-primary"
           id={id}
           text={label}
           required={required}
@@ -76,18 +76,18 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function Textare
       ></textarea>
       {hasError && (
         <div className="sym-textfield__error-icon pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-          <ExclamationCircleIcon className="h-5 w-5 text-symlab-red-500" aria-hidden="true" />
+          <ExclamationCircleIcon className="h-5 w-5 dark:text-sym-error-dark text-sym-error" aria-hidden="true" />
         </div>
       )}
       {isValid && (
-        <div className="sym-textfield__error-icon pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-          <CheckCircleIcon className="h-5 w-5 text-green-500" aria-hidden="true" />
+        <div className="-textfield__error-icon pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+          <CheckCircleIcon className="h-5 w-5 text-sym-success dark:text-sym-success-dark" aria-hidden="true" />
         </div>
       )}
       <HelperText
         id={id}
         hasError={hasError}
-        className={`mt-0 ${hasError ? 'text-symlab-red-300' : ''}`}
+        className={`mt-0 ${hasError ? 'text-sym-error dark:text-sym-error-dark' : ''}`}
       >
         {hasError ? errorText : helperText}
       </HelperText>

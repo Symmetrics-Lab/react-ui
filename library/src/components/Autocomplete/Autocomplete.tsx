@@ -25,9 +25,9 @@ const Autocomplete = forwardRef<Ref<HTMLButtonElement>, AutocompleteProps>(funct
     helperText,
     placeholder,
     className,
-    onForm,
+    onForm = false,
     variant = 'default',
-    onInputChange
+    onInputChange,
   } = props;
   const [query, setQuery] = useState('');
 
@@ -64,17 +64,23 @@ const Autocomplete = forwardRef<Ref<HTMLButtonElement>, AutocompleteProps>(funct
           className={className}
         >
           {label !== '' && (
-            <Combobox.Label className="block text-sm font-medium text-gray-900 dark:text-white">
+            <Combobox.Label className="block text-sm font-medium text-sym-txt-primary dark:text-sym-txt-primary-dark">
               {label}
             </Combobox.Label>
           )}
           <div className={`relative mt-1`}>
             <Combobox.Input
               className={`w-full rounded-md border ${
-                hasError ? 'border-symlab-red-300' : 'border-gray-300 dark:border-gray-600'
-              } bg-white dark:bg-gray-700  py-2 pl-3 pr-10 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 sm:text-sm ${
-                disabled ? 'text-gray-400 dark:text-white cursor-not-allowed' : 'text-gray-700 cursor-default dark:text-white'
-              } placeholder-gray-400 ${hasError && 'text-symlab-red-300'}`}
+                hasError
+                  ? 'border-sym-error dark:border-sym-error-dark'
+                  : 'border-sym-input-border dark:border-sym-input-border-dark'
+              } bg-sym-input-bg dark:bg-sym-input-bg-dark  py-2 pl-3 pr-10 shadow-sm focus:border-sym-primary dark:focus:border-sym-primary-dark focus:outline-none focus:ring-1 focus:ring-sym-primary dark:focus:ring-sym-primary-dark  sm:text-sm ${
+                disabled
+                  ? 'text-sym-disabled dark:text-sym-disabled-dark cursor-not-allowed'
+                  : 'text-sym-txt-primary dark:text-sym-txt-primary-dark cursor-default'
+              } placeholder-sym-placeholder dark:placeholder-sym-placeholder-dark ${
+                hasError && 'text-sym-error dark:text-sym-error-dark'
+              }`}
               onChange={(event) => {
                 onInputChange && onInputChange(event.target.value);
                 setQuery(event.target.value);
@@ -87,8 +93,10 @@ const Autocomplete = forwardRef<Ref<HTMLButtonElement>, AutocompleteProps>(funct
             <Combobox.Button
               className={`absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none ${
                 disabled ? 'cursor-not-allowed' : 'cursor-default'
-              } ${variant === 'primary' ? 'bg-primary-500' : null} ${
-                variant === 'secondary' ? 'bg-secondary-500' : null
+              } ${variant === 'primary' ? 'bg-sym-primary dark:bg-sym-primary-dark' : null} ${
+                variant === 'secondary'
+                  ? 'bg-sym-secondary-green dark:bg-sym-secondary-green-dark'
+                  : null
               }`}
             >
               {icon ? (
@@ -99,26 +107,33 @@ const Autocomplete = forwardRef<Ref<HTMLButtonElement>, AutocompleteProps>(funct
                   })}
                 </>
               ) : (
-                <ChevronDownIcon className={`h-5 w-5 dark:text-white`} aria-hidden="true" />
+                <ChevronDownIcon
+                  className={`h-5 w-5 text-sym-txt-primary dark:text-sym-txt-primary-dark`}
+                  aria-hidden="true"
+                />
               )}
             </Combobox.Button>
 
             {filteredOptions.length > 0 && (
-              <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white dark:bg-gray-700 py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm dark:text-white">
+              <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-sym-input-bg dark:bg-sym-layout-dark py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm border-solid border-2 border-sym-border dark:border-sym-border-dark">
                 {filteredOptions.map((option, index) => (
                   <Combobox.Option
                     key={`Autocomplete-${index}-${option[labelField]}`}
                     className={({ active, selected }) =>
                       classNames(
-                        selected && !active ? 'bg-gray-200 dark:text-white' : null,
+                        selected && !active
+                          ? 'bg-sym-active dark:bg-sym-active-dark'
+                          : null,
                         option[value.labelField] &&
                           value.data &&
                           value.data[value.labelField] &&
                           option[value.labelField] === value.data[value.labelField] &&
                           !active
-                          ? 'bg-gray-200'
+                          ? 'bg-sym-active dark:bg-sym-active-dark'
                           : null,
-                        active ? 'bg-primary-500 text-white' : 'text-gray-900 dark:text-white',
+                          active
+                          ? 'dark:text-sym-txt-primary-dark text-sym-txt-primary' //text-white bg-primary-500
+                          : 'dark:text-sym-secondary-gray-dark text-sym-secondary-gray',
                         'relative cursor-default select-none py-2 pl-3 pr-9'
                       )
                     }
@@ -163,9 +178,13 @@ const Autocomplete = forwardRef<Ref<HTMLButtonElement>, AutocompleteProps>(funct
           )}
           <div className={`relative mt-1`}>
             <Combobox.Input
-              className={`w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 py-2 pl-3 pr-10 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 sm:text-sm ${
-                disabled ? 'text-gray-400 dark:text-white cursor-not-allowed' : 'text-gray-700 dark:text-white cursor-default'
-              } ${!value.data && 'text-gray-400 dark:text-white'} ${hasError && 'text-symlab-red-300'}`}
+              className={`w-full rounded-md border border-sym-input-border  dark:border-sym-input-border-dark bg-sym-input-bg dark:bg-sym-input-bg-dark py-2 pl-3 pr-10 shadow-sm focus:border-sym-primary dark:focus:border-sym-primary-dark focus:outline-none focus:ring-1 focus:ring-sym-primary dark:focus:ring-sym-primary sm:text-sm ${
+                disabled
+                  ? 'text-sym-disabled dark:sym-disabled-dark cursor-not-allowed'
+                  : 'text-sym-txt-primary dark:text-sym-txt-primary-dark cursor-default'
+              } ${!value.data && 'text-sym-txt-primary dark:text-sym-txt-primary-dark'} ${
+                hasError && 'text-sym-error dark:text-sym-error-dark'
+              }`}
               onChange={(event) => {
                 onInputChange && onInputChange(event.target.value);
                 setQuery(event.target.value);
@@ -178,8 +197,10 @@ const Autocomplete = forwardRef<Ref<HTMLButtonElement>, AutocompleteProps>(funct
             <Combobox.Button
               className={`absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none ${
                 disabled ? 'cursor-not-allowed' : 'cursor-default'
-              } ${variant === 'primary' ? 'bg-primary-500' : null} ${
-                variant === 'secondary' ? 'bg-secondary-500 text-white' : null
+              } ${variant === 'primary' ? 'bg-sym-primary dark:bg-sym-primary-dark' : null} ${
+                variant === 'secondary'
+                  ? 'bg-sym-secondary-green dark:bg-sym-secondary-green-dark text-sym-txt-secondary dark:text-sym-txt-secondary-dark'
+                  : null
               }`}
             >
               {icon ? (
@@ -195,15 +216,17 @@ const Autocomplete = forwardRef<Ref<HTMLButtonElement>, AutocompleteProps>(funct
             </Combobox.Button>
 
             {filteredOptions.length > 0 && (
-              <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base dark:text-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+              <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-sym-input-bg dark:bg-sym-layout-dark py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm border-solid border-2 border-sym-border dark:border-sym-border-dark">
                 {filteredOptions.map((option, index) => (
                   <Combobox.Option
                     key={`Autocomplete-${index}-${option[labelField]}`}
                     className={({ active, selected }) =>
                       classNames(
-                        selected && !active ? 'bg-gray-200' : null,
-                        active ? 'bg-primary-500 text-white' : 'text-gray-900 dark:text-white',
-                        'relative cursor-default select-none py-2 pl-3 pr-9'
+                        selected && !active ? 'bg-sym-active dark:bg-sym-active-dark' : null,
+                        active
+                        ? 'dark:text-sym-txt-primary-dark text-sym-txt-primary' //text-white bg-primary-500
+                        : 'dark:text-sym-secondary-gray-dark text-sym-secondary-gray',
+                      'relative cursor-default select-none py-2 pl-3 pr-9'
                       )
                     }
                     value={option}
@@ -225,7 +248,7 @@ const Autocomplete = forwardRef<Ref<HTMLButtonElement>, AutocompleteProps>(funct
       <HelperText
         id={id}
         hasError={hasError}
-        className={`mt-0 ${hasError ? 'text-symlab-red-300' : ''}`}
+        className={`mt-0 ${hasError ? 'text-sym-error dark:text-sym-error-dark' : ''}`}
       >
         {hasError ? errorText : helperText}
       </HelperText>

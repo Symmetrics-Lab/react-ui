@@ -6,7 +6,7 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid';
 
 export default function Dropdown(props: DropdownProps) {
   const { className, label, icon, srLabel, children } = props;
-  const classes = clsx('sym-dropdown relative ml-3', className);
+  const classes = clsx('dropdown relative ml-3', className);
 
   return (
     <Menu as="div" className={classes}>
@@ -15,14 +15,34 @@ export default function Dropdown(props: DropdownProps) {
           <div>
             {label && (
               <div>
-                <Menu.Button className="inline-flex w-full justify-center rounded-md border border-gray-300 dark:border-gray-600 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100">
+                <Menu.Button className="inline-flex w-full justify-center rounded-md border 
+                border-sym-boder 
+                dark:border-sym-boder-dark 
+                bg-sym-layout 
+                dark:bg-sym-layout-dark
+                px-4 py-2 text-sm font-medium 
+                text-sym-txt-primary 
+                dark:text-sym-txt-primary-dark 
+                shadow-sm  
+                dark:hover:bg-sym-hover-dark 
+                hover:bg-sym-hover 
+                focus:outline-none focus:ring-2 
+                focus:ring-sym-primary 
+                dark:focus:ring-sym-primary-dark focus:ring-offset-2 focus:ring-offset-sym-primary
+                dark:focus:ring-offset-sym-primary-dark">
                   {label}
                   <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
                 </Menu.Button>
               </div>
             )}
             {icon && (
-              <Menu.Button className="flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
+              <Menu.Button className="flex rounded-full 
+              bg-sym-layout 
+              dark:bg-sym-layout-dark 
+              text-sm focus:outline-none focus:ring-2 
+              focus:ring-sym-primary 
+              dark:focus:ring-sym-primary-dark 
+              ">
                 <span className="sr-only">{srLabel || 'Open'}</span>
                 <div className="h-8 w-8">{icon}</div>
               </Menu.Button>
@@ -40,7 +60,10 @@ export default function Dropdown(props: DropdownProps) {
           >
             <Menu.Items
               static
-              className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none divide-y divide-gray-100"
+              className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md 
+              bg-sym-header-bg 
+              dark:bg-sym-header-bg-dark 
+              py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none divide-y divide-gray-100"
             >
               {children}
             </Menu.Items>

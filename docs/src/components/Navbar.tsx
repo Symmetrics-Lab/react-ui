@@ -16,8 +16,12 @@ const items = [
       link: '/',
     },
     {
-      label: 'About',
-      link: '/about',
+      label: 'Forms',
+      link: '/forms',
+    },
+    {
+      label: 'Palette',
+      link: '/palette',
     },
     {
       label: 'Contact',
@@ -54,9 +58,9 @@ const items = [
   
   const LinkComp = (props: TopMenuItemProps) => {
     const classes = clsx(
-      'sym-top-menu-item inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700',
+      'sym-top-menu-item inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-sym-header-txt dark:text-sym-header-txt-dark hover:border-sym-border dark:hover:border-sym-border-dark',
       {
-        'sym-top-menu-item__current border-indigo-500 text-gray-900': props.current,
+        'sym-top-menu-item__current border-sym-primary dark:border-sym-primary-dark text-sym-primary dark:text-sym-primary-dark': props.current,
       }
     );
     return (
@@ -87,12 +91,12 @@ export default function Navbar(): JSX.Element {
           <>
             <button
               type="button"
-              className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              className="rounded-full p-1 text-sym-header-txt dark:text-sym-header-txt-dark focus:outline-none focus:ring-2 focus:ring-sym-primary dark:focus:ring-sym-primary-dark "
             >
               <span className="sr-only">View notifications</span>
               <BellIcon className="h-6 w-6" aria-hidden="true" />
             </button>
-            <Dropdown srLabel="Open Profile" icon={<UserIcon className="text-gray-700 h-8 w-8" />}>
+            <Dropdown srLabel="Open Profile" icon={<UserIcon className="text-sym-header-txt dark:text-sym-header-txt-dark h-8 w-8" />}>
               {dropItems.map((item) => (
                 <DropdownItem
                   key={item.link}
