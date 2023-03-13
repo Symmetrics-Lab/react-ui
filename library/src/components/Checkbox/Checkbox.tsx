@@ -26,16 +26,17 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Checkbox(p
   } = props;
 
   const classes = clsx(
+    'text-sym-primary dark:text-sym-primary-dark',
     size[sizes],
     rounded === 'rounded' ? 'rounded' : rounded === 'rounded-full' ? 'rounded-full' : null,
-    variant === 'primary' ? ' border-gray-300 text-primary-600 focus:ring-0' : null,
-    variant === 'secondary' ? 'border-gray-300 text-secondary-500 focus:ring-0' : null,
-    variant === 'default' ? 'border-gray-300 text-primary-500 focus:ring-0' : null,
+    variant === 'primary' ? ' border-sym-primary dark:border-sym-primary-dark  focus:ring-0' : null,
+    variant === 'secondary' ? 'border-sym-green-100  focus:ring-0' : null,
+    variant === 'default' ? 'border-gray-300 text-sym-txt-primary focus:ring-0' : null,
     disabled ? 'cursor-not-allowed' : null,
     className
   );
   const labelClass = clsx(
-    'block text-gray-700',
+    'block text-sym-secondary-gray dark:text-sym-secondary-gray-dark',
     value && textPosition === 'left' ? 'mr-3' : null,
     value && textPosition === 'right' ? 'ml-3' : null,
     size[sizes][1]

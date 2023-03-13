@@ -36,15 +36,17 @@ const TextField = forwardRef<Ref<HTMLInputElement>, TextFieldProps>(function Tex
   }
 
   return (
-    <div className="sym-input-group my-2">
-      <Label
-        id={id}
-        text={label}
-        required={required}
-        hidden={hideLabel}
-        hint={hint}
-        className="dark:text-white text-gray-900"
-      />
+    <div className="input-group my-2">
+      {label && (
+        <Label
+          id={id}
+          text={label}
+          required={required}
+          hidden={hideLabel}
+          hint={hint}
+          className="dark:text-sym-txt-primary-dark text-sym-txt-primary"
+        />
+      )}
       <Input
         id={id}
         // This is neccessary to pass the ref to the input typescript gives a wrong type
@@ -52,7 +54,7 @@ const TextField = forwardRef<Ref<HTMLInputElement>, TextFieldProps>(function Tex
         // @ts-ignore
         ref={ref as Ref<HTMLInputElement>}
         className={clsx(
-          'sm:text-sm rounded-lg block dark:bg-gray-700  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ',
+          'sm:text-sm rounded-lg block bg-sym-input-bg dark:bg-sym-input-bg-dark placeholder-sym-placeholder dark:placeholder-sym-placeholder-dark dark:text-sym-txt-primary-dark text-sym-txt-primary dark:focus:ring-sym-primary-dark focus:ring-sym-primary  dark:focus:border-sym-primary-dark focus:border-sym-primary',
           className
         )}
         required={required}

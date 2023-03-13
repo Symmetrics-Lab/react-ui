@@ -87,7 +87,7 @@ function RecoveryPage() {
       const resp = errsHttp[Math.floor(Math.random() * errsHttp.length)];
       isLoading(false);
       resp.code !== 200 ? setError(resp) : navigate('/login');
-      navigate('/login');    
+      navigate('/login');
     }, 3000);
   };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -111,11 +111,11 @@ function RecoveryPage() {
 
   return (
     <>
-       {loading && (
+      {loading && (
         <Loading>
           <svg
             aria-hidden="true"
-            className="mr-2 w-8 h-8 text-gray-200 animate-spin dark:text-white fill-blue-600 dark:fill-blue-400"
+            className="mr-2 w-8 h-8 text-gray-200 animate-spin dark:text-white fill-primary dark:fill-primary-dark"
             viewBox="0 0 100 101"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -132,9 +132,9 @@ function RecoveryPage() {
         </Loading>
       )}
 
-      <section className="bg-gray-50 py-8 dark:bg-gray-900">
+      <section className="bg-sym-wallpaper py-8 dark:bg-sym-wallpaper-dark">
         <div className="flex flex-col items-center justify-center px-6 py-0 mx-auto h-full lg:py-0">
-          <div className="w-full h-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+          <div className="w-full h-full bg-sym-layout rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-sym-layout-dark dark:border-gray-700">
             <div className="px-6 pt-6 space-y-4 md:space-y-6 sm:px-8 sm:pt-8 ">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 Forgot your password?
@@ -165,12 +165,7 @@ function RecoveryPage() {
                   <div className="flex items-start">
                     <Button
                       type="submit"
-                      className="text-white 
-                    bg-gradient-to-b from-symlab-purple-300 to-blue-400
-                    hover:from-symlab-purple-300 hover:to-symlab-purple-300
-                    border-none
-                    hover:bg-symlab-purple-200  
-                    dark:hover:bg-symlab-purple-300 
+                      className="text-white button-symlab
                     focus:outline-none 
                     font-medium rounded-lg text-sm px-5 py-2.5 text-center 
                     focus:ring-0 focus:ring-offset-0
@@ -181,7 +176,7 @@ function RecoveryPage() {
                   </div>
                   <Link
                     to="/login"
-                    className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+                    className="text-sm font-medium text-sym-primary hover:underline dark:text-sym-primary-dark"
                   >
                     Return to login
                   </Link>
@@ -255,12 +250,8 @@ function RecoveryPage() {
 
                 <Button
                   type="submit"
-                  className="text-white 
-                    bg-gradient-to-b from-symlab-purple-300 to-blue-400
-                    hover:from-symlab-purple-300 hover:to-symlab-purple-300
-                    border-none
-                    hover:bg-symlab-purple-200  
-                    dark:hover:bg-symlab-purple-300 
+                  className=" 
+                  button-symlab 
                     focus:outline-none 
                     font-medium rounded-lg text-sm px-5 py-2.5 text-center 
                     focus:ring-0 focus:ring-offset-0

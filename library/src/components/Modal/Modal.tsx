@@ -41,12 +41,12 @@ const Modal = forwardRef<HTMLSelectElement, ModalProps>(function Modal(props, re
             onClick={closeModal}
           >
             <div
-              className={`relative z-10 bg-white dark:bg-gray-700 opacity-100 w-96 h-80 flex items-center justify-center rounded-md ${className}`}
+              className={`relative z-10 bg-sym-layout dark:bg-sym-layout-dark opacity-100 w-96 h-80 flex items-center justify-center rounded-md ${className}`}
               style={{ animation: 'animate 0.3s' }}
             >
               <main className="w-full">{children}</main>
               <button
-                className="absolute top-4 right-4 text-black dark:text-white font-bold cursor-pointer"
+                className="absolute top-4 right-4 text-sym-txt-primary dark:text-sym-txt-primary-dark font-bold cursor-pointer"
                 type="button"
                 onClick={() => {
                   setShowModal(false);

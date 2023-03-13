@@ -42,12 +42,12 @@ describe('Switch', () => {
       toggle={true}
       data-testid="switch"
       onClick={() => false}
-        className={'bg-red-500 text-red-600 '}
+        className={'bg-error text-red-600 '}
       >
         Entre 8 y 15 caracteres
       </Switch>
     );
     const switchs = screen.getByTestId('switch');
-    expect(switchs.className).contain('bg-red-500');
+    expect(switchs.className).contain('bg-error');
   });
 });

@@ -12,13 +12,13 @@ export default function SubMenu(props: SubMenuProps) {
         <div className="p-4 flex">
           <img className="relative h-14 w-14 rounded-full" src={userData?.img} alt="" />
           <div className="ml-4">
-            <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-white">
+            <h2 className="text-lg font-medium leading-6 text-sym-txt-primary dark:text-sym-txt-primary-dark">
               {userData?.name}
             </h2>
             {userData?.label && (
-              <h2 className="mt-1 text-sm text-gray-500 dark:text-gray-400">{userData?.label}</h2>
+              <h2 className="mt-1 text-sm text-sym-secondary-gray dark:text-sym-secondary-gray-dark">{userData?.label}</h2>
             )}
-            <span className="text-[12px] text-gray-500 dark:text-gray-400">
+            <span className="text-[12px] text-sym-secondary-gray dark:text-sym-secondary-gray-dark">
               {userData?.lastSesion}
             </span>
           </div>
@@ -36,8 +36,8 @@ export default function SubMenu(props: SubMenuProps) {
             current={currentPath}
             className={clsx(
               currentPath === item.link
-                ? 'bg-gray-100 dark:bg-gray-700 border-blue-400 text-black dark:text-white'
-                : 'border-transparent text-gray-500 dark:text-gray-400  hover:bg-gray-100 dark:hover:bg-gray-700',
+                ? 'bg-sym-active dark:bg-sym-active-dark border-sym-primary dark:border-sym-primary-dark text-sym-txt-primary dark:text-sym-txt-primary-dark'
+                : 'border-transparent text-sym-secondary-gray hover:!bg-sym-hover dark:text-sym-secondary-gray-dark dark:hover:!bg-sym-hover-dark',
               'group border-l-4 px-3 py-2 flex items-center text-sm font-medium',
               classNameItem
             )}
@@ -48,11 +48,11 @@ export default function SubMenu(props: SubMenuProps) {
                 /* item.current
               ? 'text-teal-500 group-hover:text-teal-500'
               : 'text-gray-400 group-hover:text-gray-500',*/
-                'text-gray-400 flex-shrink-0 -ml-1 mr-3 h-6 w-6'
+                'text-sym-secondary-gray dark:text-sym-secondary-gray-dark flex-shrink-0 -ml-1 mr-3 h-6 w-6'
               )}
               aria-hidden="true"
             />
-            <span className="truncate">{item.name}</span>
+            <span className="sym-truncate">{item.name}</span>
           </Element>
         );
       })}
