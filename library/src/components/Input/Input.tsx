@@ -4,12 +4,12 @@ import { CheckCircleIcon, ExclamationCircleIcon } from '@heroicons/react/20/soli
 
 import { InputProps } from './Input.types';
 const baseInputClass =
-  'sym-textfield__input block w-full rounded-md shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm';
-const disabledInputClass = 'cursor-not-allowed border-gray-200 bg-gray-50 text-gray-500';
+  'textfield__input block w-full rounded-md shadow-sm focus:border-sym-primary dark:focus:border-sym-primary-dark focus:ring-sym-primary dark:focus:ring-sym-primary-dark sm:text-sm';
+const disabledInputClass = 'cursor-not-allowed bg-sym-wallpaper dark:bg-sym-wallpaper-dark text-sym-disabled dark:text-sym-disabled-dark';
 const errorInputClass =
-  'border-red-300 dark:border-red-500 pr-10 focus:border-red-500 focus:outline-none focus:ring-red-500';
+  'border-sym-error dark:border-sym-error-dark pr-10 focus:border-sym-error-dark focus:outline-none focus:ring-sym-error dark:focus:ring-sym-error-dark ';
 const validInputClass =
-  'border-green-300 dark:border-symlab-green-10 pr-10 focus:border-green-500 focus:outline-none focus:ring-green-500';
+  '!border-sym-success dark:!border-sym-success-dark pr-10 focus:border-sym-success dark:focus:border-sym-success-dark focus:outline-none focus:ring-sym-success dark:focus:ring-sym-success-dark';
 const wrapperIconInputClass = 'relative mt-1 rounded-md shadow-sm';
 
 const Input = forwardRef<HTMLInputElement, InputProps>(function Input(props, ref) {
@@ -31,14 +31,14 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(props, ref
     disabled || readOnly ? disabledInputClass : null,
     hasError ? errorInputClass : null,
     isValid ? validInputClass : null,
-    (!hasError && !isValid) && 'dark:border-gray-600 border border-gray-300 ',
+    (!hasError && !isValid) && 'border-sym-input-border dark:border-sym-input-border-dark',
     className
   );
 
   const wrapperClasses = clsx(
-    'sym-textfield__wrapper mt-1',
-    hasError ? `sym-textfield__wrapper--error ${wrapperIconInputClass}` : null,
-    isValid ? `sym-textfield__wrapper--valid ${wrapperIconInputClass}` : null
+    'textfield__wrapper mt-1',
+    hasError ? `textfield__wrapper--error ${wrapperIconInputClass}` : null,
+    isValid ? `textfield__wrapper--valid ${wrapperIconInputClass}` : null
   );
   return (
     <div className={wrapperClasses}>
@@ -53,14 +53,14 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(props, ref
         {...rest}
       />
       {hasError && showIconValid && (
-        <div className="sym-textfield__error-icon pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-          <ExclamationCircleIcon className="h-5 w-5 text-red-500" aria-hidden="true" />
+        <div className="textfield__error-icon pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+          <ExclamationCircleIcon className="h-5 w-5 text-sym-error dark:text-sym-error-dark" aria-hidden="true" />
         </div>
       )}
       {isValid && showIconValid && (
-        <div className="sym-textfield__error-icon pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+        <div className="textfield__error-icon pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
           <CheckCircleIcon
-            className="h-5 w-5 text-green-500 dark:text-symlab-green-10"
+            className="h-5 w-5 text-sym-success dark:text-sym-success-dark"
             aria-hidden="true"
           />
         </div>

@@ -11,20 +11,20 @@ export default function Alert(prop: propData) {
   const { code, message, setError } = prop;
   return (
     <>
-      <Chip className="w-full text-center py-4 lg:px-4 bg-red-100 dark:border dark:border-red-600">
+      <Chip  className="w-full text-center py-4 lg:px-4 bg-sym-secondary-error dark:border dark:border-sym-secondary-error-dark">
         <div
-          className="p-2 items-center text-gray-500 leading-none rounded-full inline-flex"
+          className="p-2 items-center leading-none rounded-full inline-flex"
           role="alert"
         >
-          <span className="flex rounded-full bg-red-500 dark:bg-red-800 uppercase px-2 py-1 text-xs font-bold mr-3 text-white">
+          <span className="flex rounded-full bg-sym-error dark:bg-sym-error-dark uppercase px-2 py-1 text-xs font-bold mr-3  text-white">
             {code}
           </span>
-          <span className="font-bold text-red-600 mr-2 text-left flex-auto dark:text-white">
+          <span className="font-bold text-sym-error mr-2 text-left flex-auto dark:text-white">
             {message}
           </span>
           <span className="absolute right-0 px-4 py-3" onClick={() => setError(null)}>
             <svg
-              className="fill-current h-6 w-6 text-red-500 dark:text-white"
+              className="fill-current h-6 w-6 text-sym-error dark:text-white"
               role="button"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"

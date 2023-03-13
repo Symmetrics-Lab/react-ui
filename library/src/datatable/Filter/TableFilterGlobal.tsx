@@ -53,7 +53,21 @@ export const TableFilterGlobal = ({ filter, setFilter }: any) => {
         }}
         type="text"
         id="table-search"
-        className="block p-2 pl-10 w-80 text-gray-900 bg-gray-50 rounded-lg border-0 border-b-2 border-gray-300 focus:ring-0 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-Raleway text-base"
+        className="block p-2 pl-10 w-80 
+        text-sym-secondary-gray 
+        dark:text-sym-secondary-gray-dark 
+        bg-sym-layout 
+        dark:bg-sym-layout-dark
+        rounded-lg border-0 border-b-2 
+        border-sym-border 
+        dark:border-sym-border-dark 
+        focus:ring-0 
+        focus:ring-sym-primary 
+        dark:focus:ring-sym-primary-dark 
+        focus:border-sym-primary
+        dark:focus:border-sym-primary-dark 
+        placeholder-sym-placeholder 
+        dark:placeholder-sym-placeholder-dark font-Raleway text-base"
         placeholder="Search"
       ></input>
     </>

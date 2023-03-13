@@ -6,7 +6,7 @@ const TableFilterRow = (props: TableFilterRowProps) => {
   const { getFilterValue: filterValue, setFilterValue: setFilter } = column;
 
   const classes = clsx(
-    'block p-2 pl-10 text-base text-gray-700 font-light bg-gray-50 border-0	border-b-2 border-gray-300 focus:border-blue-500 focus:ring-0 rounded-lg dark:bg-gray-800 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500',
+    'block p-2 pl-10 text-base text-sym-secondary-gray dark:text-sym-secondary-gray-dark font-light bg-sym-layout dark:bg-sym-layout-dark border-0 border-b-2 border-sym-border dark:border-sym-border-dark focus:border-sym-primary dark:focus:border-sym-primary-dark focus:ring-0 rounded-lg dark:placeholder-sym-placeholder placeholder-sym-placeholder-dark  focus:ring-sym-primary dark:focus:ring-sym-primary-dark',
     props?.propsInput?.className
   );
 

@@ -3,6 +3,7 @@ import path from 'node:path';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import dts from 'vite-plugin-dts';
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -11,7 +12,14 @@ export default defineConfig({
       insertTypesEntry: true,
     }),
     react(),
- 
+    viteStaticCopy({
+      targets: [
+        {
+          src: path.resolve(__dirname, './tailwind.config.cjs'),
+          dest: './',
+       },
+      ],
+    }),
   ],
   test: {
     globals: true,
@@ -29,15 +37,14 @@ export default defineConfig({
       fileName: (format) => `symlab-react-ui.${format}.js`,
     },
     rollupOptions: {
-      external: ['react', 'react-dom', 'tailwindcss'],
-
+      external: ['react', 'react-dom' , '@heroicons/react', '@tailwindcss/forms'],
       output: {
-        globals: {
+       globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
           tailwindcss: 'tailwindcss',
         },
       },
-    },
+    } ,
   },
 });

@@ -12,7 +12,7 @@ describe('Label', () => {
     expect(screen.getAllByLabelText('test')).toBeDefined();
   });
   test('it should have the base class', () => {
-    const baseClass = 'sym-textfield__label block text-sm font-medium text-gray-700';
+    const baseClass = 'textfield__label block text-sm font-medium text-sym-secondary-gray dark:text-sym-secondary-gray-dark';
     render(<Label text="etiqueta" data-testid="test" id="test" />);
 
     expect(screen.getByTestId('test').getAttribute('class')).includes(baseClass);

@@ -4,14 +4,14 @@ import { DropdownItemProps } from './DropdownItem.types';
 
 export default function DropdownItem(props: DropdownItemProps) {
   const { className, link, disabled, as, children, ...rest } = props;
-  const classes = clsx('sym-dropdown-item', as === 'button' && 'w-full');
+  const classes = clsx('dropdown-item', as === 'button' && 'w-full');
   return (
     <Menu.Item as={as ?? 'a'} disabled={disabled} href={link} className={classes} {...rest}>
       {({ active }) => (
         <span
           className={clsx(
-            'block px-4 py-2 text-sm text-gray-700',
-            active && 'bg-gray-100',
+            'block px-4 py-2 text-sm text-sym-header-txt dark:text-sym-header-txt-dark',
+            active && 'bg-sym-hover dark:bg-sym-hover-dark',
             className
           )}
         >

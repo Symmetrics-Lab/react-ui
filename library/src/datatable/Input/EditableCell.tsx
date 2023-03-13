@@ -37,7 +37,7 @@ const EditableCell = ({
   }, [initialValue()]);
 
   const classes = clsx(
-    'block p-2 pl-10 ml-[20px] text-gray-500 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 font-Raleway text-base',
+    'block p-2 pl-10 ml-[20px] text-sym-secondary-gray dark:text-sym-secondary-gray-dark border border-sym-border dark:border-sym-border-dark focus:ring-sym-primary dark:focus:ring-sym-primary-dark focus:border-sym-primary dark:focus:border-sym-primary-dark bg-sym-layout dark:bg-sym-layout-dark  placeholder-sym-placeholder dark:placeholder-sym-placeholder-dark  font-Raleway text-base',
     ''
   );
   return (

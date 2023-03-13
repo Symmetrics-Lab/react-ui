@@ -40,6 +40,7 @@ function HomePage() {
   const [data, setData] = useState(MOCK_DATA);
   const [skipPageReset, setSkipPageReset] = useState(false);
   const [dataSelect, setDataSelection] = useState([]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const selectionCallback = useCallback((row: any) => setDataSelection(row), [setDataSelection]);
 
   const {
@@ -47,8 +48,6 @@ function HomePage() {
     handleSubmit,
     watch,
     setValue,
-    getValues,
-    formState: { errors },
   } = useForm<FormData>({
     defaultValues: {
       person: data,
@@ -95,9 +94,9 @@ function HomePage() {
   };
   return (
     <>
-      <section className="bg-gray-50 py-8 dark:bg-gray-900">
-        < ModalComponent/>
-       
+      <section className="bg-sym-wallpaper py-8 dark:bg-sym-wallpaper-dark">
+        <ModalComponent />
+
         <div className="flex flex-col items-center justify-center px-6 py-0 mx-auto h-full lg:py-0">
           {/*  <BasicTable/> */}
           {/* <SortingTable /> */}
@@ -105,7 +104,7 @@ function HomePage() {
           {/*   <PaginationTable /> */}
           {/* <RowSelection/> */}
           {/* <ColumnHiding /> */}
-          <div className="w-full h-full bg-gray-700 border rounded-lg shadow dark:border  xl:p-0 dark:bg-gray-600 dark:border-gray-700">
+          <div className="w-full h-full bg-sym-layout dark:bg-sym-layout-dark border rounded-lg shadow dark:border xl:p-0 border-sym-border dark:border-sym-border-dark">
             <form className="" onSubmit={handleSubmit(onSubmit)}>
               <div className="p-10">
                 <div className="flex text-3xl	text-white justify-between my-10">
@@ -114,22 +113,14 @@ function HomePage() {
                   <div className="flex flex-1 justify-between sm:justify-end items-center">
                     <Button
                       onClick={resetData}
-                      className="px-4 py-2 bg-gray-100  hover:bg-gray-200 text-gray-800 text-sm font-medium rounded-md focus:ring-0 focus:ring-offset-0 "
+                      className="px-4 py-2 !bg-gray-100  hover:!bg-gray-200 text-gray-800 text-sm font-medium rounded-md focus:ring-0 focus:ring-offset-0 "
                     >
                       Reset Filter
                     </Button>
                     <Button
                       type="submit"
                       className="ml-4 text-white 
-              bg-gradient-to-b from-symlab-purple-300 to-blue-400
-              hover:from-symlab-purple-300 hover:to-symlab-purple-300
-              border-none
-              hover:bg-symlab-purple-200  
-              dark:hover:bg-symlab-purple-300 
-              focus:outline-none 
-              font-medium rounded-lg text-sm py-2.5 text-center 
-              focus:ring-0 focus:ring-offset-0
-              "
+                      button-symlab focus:outline-none font-medium rounded-lg text-sm py-2.5 text-center focus:ring-0 focus:ring-offset-0"
                     >
                       Submit
                     </Button>
@@ -154,6 +145,7 @@ function HomePage() {
                   columns={[
                     {
                       id: 'select',
+                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
                       header: ({ table }: any) => (
                         <IndeterminateCheckbox
                           {...{
@@ -163,6 +155,7 @@ function HomePage() {
                           }}
                         />
                       ),
+                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
                       cell: ({ row }: any) => (
                         <div className="px-1">
                           <IndeterminateCheckbox
@@ -222,7 +215,8 @@ function HomePage() {
                       header: 'Date of Birth',
                       footer: 'Date of Birth',
                       accessorKey: 'date_of_birth',
-                      cell: ({ getValue }) => {
+                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                      cell: ({ getValue }:any) => {
                         return format(new Date(getValue()), 'dd/MM/yyyy');
                       },
 

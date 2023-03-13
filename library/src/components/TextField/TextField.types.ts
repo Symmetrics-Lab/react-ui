@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 
 export interface TextFieldProps extends React.HTMLProps<HTMLInputElement> {
-  label: string;
+  label?: string;
   id: string;
   type?: 'text' | 'password' | 'email' | 'number' | 'tel' | 'url';
   className?: string;

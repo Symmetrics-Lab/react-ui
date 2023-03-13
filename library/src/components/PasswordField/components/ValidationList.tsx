@@ -17,7 +17,7 @@ export default function ValidationList(props: ValidationListProps) {
     props;
   return (
     <div className="w-full mt-2">
-      <p className="ml-2 text-symlab-green-100 dark:text-symlab-green-10 text-sm">{allValid && (message || 'Great password!')}</p>
+      <p className="ml-2 text-sym-success dark:text-sym-success-dark text-sm">{allValid && (message || 'Great password!')}</p>
       <div className="w-full pl-2 flex-none md:flex md:flex-wrap">
         {validation?.minLength ? (
           <ValidationListItem

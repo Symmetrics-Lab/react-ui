@@ -22,7 +22,7 @@ describe('Chip', () => {
         key="secondary"
         variant="default"
         data-testid="size"
-        className="bg-symlab-purple-500 text-white"
+        className="sym-bg-symlab-purple-500 sym-text-white"
       >
         Entre 8 y 15 caracteres
       </Chip>

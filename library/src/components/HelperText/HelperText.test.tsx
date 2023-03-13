@@ -14,7 +14,7 @@ describe('HelperText', () => {
     expect(screen.getByTestId('test')).toBeDefined;
   });
   test('it should have the base class', () => {
-    const baseClass = 'sym-textfield__helper-text mt-2 text-sm text-gray-500';
+    const baseClass = 'ml-2 textfield__helper-text mt-2 text-sm text-sym-secondary-gray dark:text-sym-secondary-gray-dark';
     render(
       <HelperText id="test" data-testid="test">
         Test

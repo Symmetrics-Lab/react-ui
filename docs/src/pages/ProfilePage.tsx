@@ -18,10 +18,10 @@ function ProfilePage() {
   const { pathname } = useLocation();
   return (
     <>
-      <section className="bg-gray-50 py-8 dark:bg-gray-900">
+      <section className="bg-sym-wallpaper py-8 dark:bg-sym-wallpaper-dark">
         <main className="relative ">
           <div className="mx-auto max-w-screen-xl px-4 pb-6 sm:px-6 lg:px-8 lg:pb-16">
-            <div className="overflow-hidden rounded-lg bg-white dark:bg-gray-800 dark:border-gray-700 shadow">
+            <div className="overflow-hidden rounded-lg bg-sym-layout dark:bg-sym-layout-dark dark:border-gray-700 shadow">
               <div className="divide-y divide-transparent lg:grid lg:grid-cols-12 lg:divide-y-0 lg:divide-x">
                 <aside className="py-6 lg:col-span-3">
                   <SubMenu
