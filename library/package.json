@@ -1,7 +1,7 @@
 {
   "name": "@symlab/react-ui",
   "private": false,
-  "version": "0.0.5",
+  "version": "0.0.6",
   "type": "commonjs",
   "repository": {
     "type": "git",
@@ -22,49 +22,6 @@
     "test": "vitest",
     "coverage": "vitest run --coverage"
   },
-  "devDependencies": {
-    "@babel/core": "^7.19.3",
-    "@storybook/addon-actions": "^6.5.12",
-    "@storybook/addon-essentials": "^6.5.12",
-    "@storybook/addon-interactions": "^6.5.12",
-    "@storybook/addon-links": "^6.5.12",
-    "@storybook/builder-vite": "^0.2.4",
-    "@storybook/react": "^6.5.12",
-    "@storybook/testing-library": "^0.0.13",
-    "@tailwindcss/forms": "^0.5.3",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^13.4.0",
-    "@types/node": "^18.11.0",
-    "@types/react": "^18.0.21",
-    "@types/react-dom": "^18.0.6",
-    "@typescript-eslint/eslint-plugin": "^5.40.1",
-    "@typescript-eslint/parser": "^5.40.1",
-    "@vitejs/plugin-react": "^2.1.0",
-    "@vitest/coverage-c8": "^0.24.3",
-    "autoprefixer": "^10.4.13",
-    "babel-loader": "^8.2.5",
-    "components": "^0.1.0",
-    "docs": "^0.3.2-canary.0",
-    "eslint": "^8.25.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-react": "^7.31.10",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-storybook": "^0.6.6",
-    "gulp-postcss": "^9.0.1",
-    "gulp-sourcemaps": "^3.0.0",
-    "jsdom": "^20.0.1",
-    "postcss": "^8.4.18",
-    "postcss-cli": "^10.1.0",
-    "prettier": "^2.7.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "tailwindcss": "^3.1.8",
-    "typescript": "^4.8.4",
-    "vite": "^3.1.8",
-    "vite-plugin-dts": "^1.6.6",
-    "vitest": "^0.24.3"
-  },
   "peerDependencies": {
     "@heroicons/react": "^2.0.10",
     "@tailwindcss/forms": "^0.5.3",
@@ -82,14 +39,5 @@
       "import": "./dist/symlab-react-ui.es.js",
       "require": "./dist/symlab-react-ui.umd.js"
     }
-  },
-  "dependencies": {
-    "@headlessui/react": "^1.7.3",
-    "@tanstack/match-sorter-utils": "^8.7.2",
-    "@tanstack/react-table": "^8.7.4",
-    "clsx": "^1.2.1",
-    "date-fns": "^2.29.3",
-    "react-aria": "^3.20.0",
-    "vite-plugin-static-copy": "^0.13.1"
   }
 }
