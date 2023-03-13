@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Layout from '../../components/Layout';
 import AboutPage from '../../pages/AboutPage';
+import ColorPalettePage from '../../pages/ColorPalettePage';
 import HomePage from '../../pages/HomePage';
 import LoginPage from '../../pages/LoginPage';
 import AccountForm from '../../pages/Profile/AccountForm';
@@ -9,7 +10,6 @@ import ProfileForm from '../../pages/Profile/ProfileForm';
 import ProfilePage from '../../pages/ProfilePage';
 import RecoveryPage from '../../pages/RecoveryPage';
 import RegisterPage from '../../pages/RegisterPage';
-
 export default function Application(): JSX.Element {
   return (
     <Routes>
@@ -21,6 +21,7 @@ export default function Application(): JSX.Element {
           <Route path="/profile/account" element={<AccountForm />} />
           <Route path="/profile/password" element={<PasswordForm />} />
         </Route>
+        <Route path="/palette" element={<ColorPalettePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/recovery-page" element={<RecoveryPage />} />

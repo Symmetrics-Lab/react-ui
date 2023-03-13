@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.button-symlab {
+  @apply text-white bg-gradient-to-b from-sym-purple-300 to-blue-400 hover:from-sym-purple-300 hover:to-sym-purple-300 border-none hover:bg-sym-purple-200;
+}

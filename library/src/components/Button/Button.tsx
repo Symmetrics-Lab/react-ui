@@ -6,7 +6,7 @@ import { useObjectRef } from '@react-aria/utils';
 import { ButtonProps } from './Button.types';
 
 const baseClass =
-  'inline-flex items-center  border border-transparent shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2';
+  'inline-flex items-center border border-transparent shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-opacity-75';
 
 const sizes = {
   xs: 'px-2.5 py-1.5 text-xs font-medium rounded',
@@ -17,25 +17,25 @@ const sizes = {
 };
 
 const variants = {
-  primary: 'text-primaryText bg-primary-600 hover:bg-primary-700  focus:ring-primary-500',
-  secondary: 'text-primary-700 bg-primary-100 hover:bg-primary-200 focus:ring-primary-500',
-  outline: 'text-gray-700 bg-white hover:bg-gray-50 focus:ring-primary-500',
+  primary: 'text-sym-btn-txt bg-sym-primary focus:ring-sym-primary',
+  secondary: 'text-sym-btn-txt bg-sym-green-100 focus:ring-sym-green-100',
+  outline: 'text-sym-txt-primary dark:text-sym-txt-primary-dark bg-sym-layout dark:bg-sym-layout-dark hover:bg-sym-wallpaper dark:hover:bg-sym-wallpaper-dark',
 };
 
 const leftIcon = {
-  xs: 'sym-btn-icon-left -ml-0.5 mr-2 h-4 w-4',
-  sm: 'sym-btn-icon-left -ml-0.5 mr-2 h-4 w-4',
-  md: 'sym-btn-icon-left -ml-1 mr-2 h-5 w-5',
-  lg: 'sym-btn-icon-left -ml-1 mr-3 h-5 w-5',
-  xl: 'sym-btn-icon-left -ml-1 mr-3 h-5 w-5',
+  xs: 'btn-icon-left -ml-0.5 mr-2 h-4 w-4',
+  sm: 'btn-icon-left -ml-0.5 mr-2 h-4 w-4',
+  md: 'btn-icon-left -ml-1 mr-2 h-5 w-5',
+  lg: 'btn-icon-left -ml-1 mr-3 h-5 w-5',
+  xl: 'btn-icon-left -ml-1 mr-3 h-5 w-5',
 };
 
 const rightIcon = {
-  xs: 'sym-btn-icon-right ml-2 -mr-0.5 h-4 w-4',
-  sm: 'sym-btn-icon-right ml-2 -mr-0.5 h-4 w-4',
-  md: 'sym-btn-icon-right ml-2 -mr-1 h-5 w-5',
-  lg: 'sym-btn-icon-right ml-3 -mr-1 h-5 w-5',
-  xl: 'sym-btn-icon-right ml-3 -mr-1 h-5 w-5',
+  xs: 'btn-icon-right ml-2 -mr-0.5 h-4 w-4',
+  sm: 'btn-icon-right ml-2 -mr-0.5 h-4 w-4',
+  md: 'btn-icon-right ml-2 -mr-1 h-5 w-5',
+  lg: 'btn-icon-right ml-3 -mr-1 h-5 w-5',
+  xl: 'btn-icon-right ml-3 -mr-1 h-5 w-5',
 };
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(props, ref) {
   const {
@@ -60,7 +60,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(props,
   const { buttonProps } = useButton(rest, objRef);
 
   const classes = clsx(
-    'sym-btn',
+    'btn',
     'inline-flex',
     'items-center',
     'justify-center',

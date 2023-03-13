@@ -21,12 +21,12 @@ describe('Loading', () => {
       <Loading
         key="secondary"
         data-testid="loading"
-        className="bg-symlab-purple-500"
+        className="bg-sym-purple-500"
       >
         Loading
       </Loading>
     );
     const loading = screen.getByTestId('loading');
-    expect(loading.className).contain('bg-symlab-purple-500');
+    expect(loading.className).contain('bg-sym-purple-500');
   });
 });

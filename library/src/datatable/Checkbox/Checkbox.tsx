@@ -17,7 +17,17 @@ export const Checkbox = forwardRef<HTMLInputElement, InputProps>(function Checkb
     <span>
       <input
         type={'checkbox'}
-        className={`w-4 h-4 text-blue-600 bg-white rounded border-gray-400 dark:border-gray-600 focus:ring-blue-500 dark:ring-offset-gray-800 focus:ring-2  dark:focus:ring-blue-600`}
+        className={`w-4 h-4 
+        text-sym-primary 
+        dark:text-sym-primary-dark 
+        rounded 
+        border-sym-border 
+        dark:border-sym-border-dark 
+        dark:ring-offset-sym-primary 
+        ring-offset-sym-primary-dark 
+        focus:ring-2 
+        focus:ring-sym-primary 
+        dark:focus:focus:ring-sym-primary-dark`}
         ref={resolvedRef}
         {...rest}
       />

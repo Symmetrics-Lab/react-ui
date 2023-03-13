@@ -71,7 +71,7 @@ export default function ProfileForm() {
       resp.code !== 200 && setError(resp);
     }, 3000);
   };
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const convertbase64 = (file: any) => {
     const reader = new FileReader();
 
@@ -82,7 +82,9 @@ export default function ProfileForm() {
   };
 
   useEffect(() => {
-    (typeof imageUrl === 'object' && typeof getValues('imageUrl')=== 'object' )&& convertbase64(imageUrl[0]);
+    typeof imageUrl === 'object' &&
+      typeof getValues('imageUrl') === 'object' &&
+      convertbase64(imageUrl[0]);
   }, [imageUrl]);
 
   return (
@@ -91,7 +93,7 @@ export default function ProfileForm() {
         <Loading>
           <svg
             aria-hidden="true"
-            className="mr-2 w-8 h-8 text-gray-200 animate-spin dark:text-white fill-blue-600 dark:fill-blue-400"
+            className="mr-2 w-8 h-8 text-gray-200 animate-spin dark:text-white fill-primary dark:fill-primary-dark"
             viewBox="0 0 100 101"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -107,7 +109,10 @@ export default function ProfileForm() {
           </svg>
         </Loading>
       )}
-      <form onSubmit={handleSubmit(onSubmit)} className="divide-y divide-gray-200 dark:divide-gray-700 lg:col-span-9">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="divide-y divide-gray-200 dark:divide-gray-700 lg:col-span-9"
+      >
         {/* Profile section */}
         <div className="py-6 px-4 sm:p-6 lg:pb-8">
           {error && (
@@ -125,7 +130,7 @@ export default function ProfileForm() {
           </div>
 
           <div className="mt-6 flex flex-col lg:flex-row">
-            <div className="mt-1 mt-6 flex-grow">
+            <div className="mt-6 flex-grow">
               <p className="text-sm font-medium dark:text-white text-gray-700" aria-hidden="true">
                 Profile picture
               </p>
@@ -228,6 +233,7 @@ export default function ProfileForm() {
                 hasError={!!errors.organization?.message}
                 errorText={errors.organization?.message}
                 placeholder="Seleccione una opción"
+                variant='secondary'
                 onForm={true}
                 {...register('organization', { required: true })}
               />
@@ -262,7 +268,7 @@ export default function ProfileForm() {
           <div className="mt-4 flex justify-end py-4 px-4 sm:px-6">
             {/*             <button
               type="button"
-              className="inline-flex justify-center rounded-md border border-gray-300 dark:border-gray-600 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
+              className="inline-flex justify-center rounded-md border border-gray-300 dark:border-gray-600 bg-sym-layout py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-sym-wallpaper focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
             >
               Cancel
             </button> */}
@@ -270,11 +276,7 @@ export default function ProfileForm() {
             <Button
               type="submit"
               className="ml-5  text-white 
-              bg-gradient-to-b from-symlab-purple-300 to-blue-400
-              hover:from-symlab-purple-300 hover:to-symlab-purple-300
-              border-none
-              hover:bg-symlab-purple-200  
-              dark:hover:bg-symlab-purple-300 
+              button-symlab
               focus:outline-none 
               font-medium rounded-lg text-sm px-5 py-2.5 text-center 
               focus:ring-0 focus:ring-offset-0

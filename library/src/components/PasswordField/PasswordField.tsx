@@ -57,10 +57,10 @@ const PasswordField = forwardRef<Ref<HTMLInputElement>, PasswordFieldProps>(func
   }
 
   return (
-    <div className="sym-input-group my-2">
+    <div className="input-group my-2">
       {label && (
         <Label
-          className="dark:text-white text-gray-900"
+          className="dark:text-sym-txt-primary-dark text-sym-txt-primary"
           id={id}
           text={label}
           required={required}
@@ -76,7 +76,7 @@ const PasswordField = forwardRef<Ref<HTMLInputElement>, PasswordFieldProps>(func
           type={showPassword ? 'text' : 'password'}
           ref={ref as Ref<HTMLInputElement>}
           className={clsx(
-            'sm:text-sm rounded-lg block dark:bg-gray-700  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ',
+            'sm:text-sm rounded-lg block bg-sym-input-bg dark:bg-sym-input-bg-dark dark:placeholder-sym-placeholder-dark placeholder-sym-placeholder focus:ring-sym-primary  dark:focus:ring-sym-primary-dark dark:focus:border-sym-primary-dark dark:text-sym-txt-primary-dark text-sym-txt-primary',
             className
           )}
           required={required}
@@ -104,9 +104,9 @@ const PasswordField = forwardRef<Ref<HTMLInputElement>, PasswordFieldProps>(func
             <span className="sr-only">{showPassword ? 'Hide password' : 'Show password'}</span>
             <span className="icon">
               {showPassword ? (
-                <EyeIcon className="h-5 w-5 text-gray-500" aria-hidden="true" />
+                <EyeIcon className="h-5 w-5 text-sym-input-icon dark:text-sym-input-icon-dark" aria-hidden="true" />
               ) : (
-                <EyeSlashIcon className="h-5 w-5 text-gray-300" aria-hidden="true" />
+                <EyeSlashIcon className="h-5 w-5 text-sym-input-icon-inactive dark:text-sym-input-icon-inactive-dark" aria-hidden="true" />
               )}
             </span>
           </button>

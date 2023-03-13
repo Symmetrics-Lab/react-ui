@@ -210,7 +210,7 @@ const Table = forwardRef(function Table(props: TableProps, ref) {
   /* eslint-disable */
   return (
     <>
-      <div className="overflow-x-auto relative shadow-md sm:rounded-lg bg-white dark:bg-gray-800 p-10">
+      <div className="overflow-x-auto relative shadow-md sm:rounded-lg bg-sym-layout dark:bg-sym-layout-dark p-10 ">
         {/*       <div>
         <div>
           <Checkbox {...getToggleHideAllColumnsProps()} />
@@ -231,7 +231,7 @@ const Table = forwardRef(function Table(props: TableProps, ref) {
           <div className="flex justify-between items-center pb-20">
             <div>
               {title && (
-                <div className="dark:text-white font-Raleway text-xl font-medium">{title}</div>
+                <div className="text-sym-txt-primary dark:text-sym-txt-primary-dark font-Raleway text-xl font-medium">{title}</div>
               )}
             </div>
             <label className="sr-only">Search</label>
@@ -250,13 +250,13 @@ const Table = forwardRef(function Table(props: TableProps, ref) {
         <div className="overflow-x-auto">
           <table
             className={clsx(
-              'w-full text-sm text-left text-gray-500 dark:text-gray-400 min-w-full',
+              'w-full text-sm text-left text-sym-txt-primary dark:text-sym-txt-primary-dark min-w-full ',
               className
             )}
           >
             <thead>
               {getHeaderGroups().map((headerGroup) => (
-                <tr key={headerGroup.id} className="dark:bg-gray-700">
+                <tr key={headerGroup.id} className="">
                   {headerGroup.headers.map((header) => {
                     //SORTING
 
@@ -269,14 +269,14 @@ const Table = forwardRef(function Table(props: TableProps, ref) {
                                 {...{
                                   className: clsx(
                                     header.column.getCanSort() ? 'cursor-pointer select-none' : '',
-                                    'h-[40px] text-center ml-[-20px]'
+                                    ' text-center'
                                   ),
                                   onClick: header.column.getToggleSortingHandler(),
                                 }}
                               >
                                 {flexRender(header.column.columnDef.header, header.getContext())}
                                 <span
-                                  className={`text-gray-800 dark:text-gray-300 text-base font-Raleway font-medium	 ${
+                                  className={`text-sym-txt-primary dark:text-sym-txt-primary-dark text-base font-Raleway font-medium	 ${
                                     header.column.getIsSorted()
                                       ? ''
                                       : 'group-hover:text-opacity-50 dark:group-hover:text-white'
@@ -288,7 +288,7 @@ const Table = forwardRef(function Table(props: TableProps, ref) {
                                         className={
                                           /*{header.isSorted
                                       ? 'text-opacity-100 dark:text-white'
-                                      : 'text-opacity-0  }*/ `group-hover:text-opacity-50 h-6 w-6 text-gray-500  inline `
+                                      : 'text-opacity-0  }*/ `group-hover:text-opacity-50 h-6 w-6 text-sym-secondary-gray dark:text-sym-secondary-gray-dark inline `
                                         }
                                       />
                                     ),
@@ -297,7 +297,7 @@ const Table = forwardRef(function Table(props: TableProps, ref) {
                                         className={
                                           /*{header.isSorted
                                           ? 'text-opacity-100 dark:text-white'
-                                          : 'text-opacity-0  }*/ `group-hover:text-opacity-50 h-6 w-6 text-gray-500  inline `
+                                          : 'text-opacity-0  }*/ `group-hover:text-opacity-50 h-6 w-6 text-sym-secondary-gray dark:text-sym-secondary-gray-dark  inline `
                                         }
                                       />
                                     ),
@@ -307,7 +307,7 @@ const Table = forwardRef(function Table(props: TableProps, ref) {
                             ) : (
                               <div className="h-[40px] text-center">
                                 <span
-                                  className={`text-gray-800 dark:text-gray-200 text-base font-Raleway align-top`}
+                                  className={`text-sym-secondary-gray dark:text-sym-secondary-gray-dark text-base font-Raleway align-top`}
                                 >
                                   {flexRender(header.column.columnDef.header, header.getContext())}
                                 </span>
@@ -339,11 +339,12 @@ const Table = forwardRef(function Table(props: TableProps, ref) {
               ))}
             </thead>
             {ldata.length > 0 ? (
-              <tbody className="text-center dark:text-gray-400">
+              <tbody className="text-center text-sym-secondary-gray dark:text-sym-secondary-gray-dark">
                 {getRowModel().rows.map((row) => {
                   return (
                     <tr
-                      className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                      className="bg-sym-layout border-b dark:bg-sym-layout-dark 
+                      border-sym-border dark:border-sym-border-dark hover:bg-sym-hover dark:hover:bg-sym-hover-dark"
                       key={row.id}
                     >
                       {row.getVisibleCells().map((cell) => {
@@ -378,11 +379,11 @@ const Table = forwardRef(function Table(props: TableProps, ref) {
         </div>
 
         <nav
-          className="lg:flex flex-row items-center justify-between border-t border-gray-200 px-4 py-3 sm:px-6"
+          className="lg:flex flex-row items-center justify-between border-t border-sym-border dark:border-sym-border-dark px-4 py-3 sm:px-6"
           aria-label="Pagination"
         >
           <div className="flex flex-1 justify-between sm:justify-start items-center">
-            <div className="w-48 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
+            <div className="w-48 bg-sym-layout dark:bg-sym-layout-dark rounded shadow">
               <Select
                 id="select-show-row"
                 value={pageSize}
@@ -400,8 +401,8 @@ const Table = forwardRef(function Table(props: TableProps, ref) {
             <button
               className={`text-4xl px-5 ${
                 !getCanPreviousPage()
-                  ? 'text-gray-300 dark:text-gray-500'
-                  : 'text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700'
+                  ? 'text-sym-secondary-gray-10 dark:text-sym-secondary-gray-10-dark'
+                  : 'text-sym-txt-primary dark:text-sym-txt-primary-dark hover:bg-sym-hover dark:hover:bg-sym-hover-dark'
               }`}
               onClick={(e) => {
                 e.preventDefault();
@@ -420,15 +421,15 @@ const Table = forwardRef(function Table(props: TableProps, ref) {
               disabled={!getCanPreviousPage()}
               className={`inline-flex items-center text-xs font-medium rounded-full ${
                 !getCanPreviousPage()
-                  ? 'text-gray-300 dark:text-gray-500'
-                  : 'text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700'
+                  ? 'text-sym-secondary-gray-10 dark:text-sym-secondary-gray-10-dark'
+                  : 'text-sym-txt-primary dark:text-sym-txt-primary-dark hover:bg-sym-hover dark:hover:bg-sym-hover-dark'
               }`}
             >
               <ChevronLeftIcon className="h-9 w-9" aria-hidden="true" />
             </button>
 
             <div className="px-5">
-              <p className="text-sm text-gray-400 dark:text-gray-500">
+              <p className="text-sm text-gray-400 dark:text-sym-secondary-gray-10-dark">
                 <span className="font-medium">{pageIndex + 1}</span> to{' '}
                 <span className="font-medium">{getPageCount()}</span> of{' '}
                 <span className="font-medium">{getPreFilteredRowModel().rows.length}</span>
@@ -443,8 +444,8 @@ const Table = forwardRef(function Table(props: TableProps, ref) {
               disabled={!getCanNextPage()}
               className={`inline-flex items-center text-xs font-medium  rounded-full ${
                 !getCanNextPage()
-                  ? 'text-gray-300 dark:text-gray-500'
-                  : 'text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700'
+                  ? 'text-sym-secondary-gray-10 dark:text-sym-secondary-gray-10-dark'
+                  : 'text-sym-txt-primary dark:text-sym-txt-primary-dark hover:bg-sym-hover dark:hover:bg-sym-hover-dark'
               }`}
             >
               <ChevronRightIcon className="h-9 w-9" aria-hidden="true" />
@@ -458,8 +459,8 @@ const Table = forwardRef(function Table(props: TableProps, ref) {
               disabled={!getCanNextPage()}
               className={`text-4xl px-5 ${
                 !getCanNextPage()
-                  ? 'text-gray-300 dark:text-gray-500'
-                  : 'text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700'
+                  ? 'text-sym-secondary-gray-10 dark:text-sym-secondary-gray-10-dark'
+                  : 'text-sym-txt-primary dark:text-sym-txt-primary-dark hover:bg-sym-hover dark:hover:bg-sym-hover-dark'
               }`}
             >
               &raquo;

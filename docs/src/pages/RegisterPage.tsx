@@ -50,7 +50,7 @@ function RegisterPage() {
         <Loading>
           <svg
             aria-hidden="true"
-            className="mr-2 w-8 h-8 text-gray-200 animate-spin dark:text-white fill-blue-600 dark:fill-blue-400"
+            className="mr-2 w-8 h-8 text-gray-200 animate-spin dark:text-white fill-blue-600 dark:fill-symlab-blue-100"
             viewBox="0 0 100 101"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -66,9 +66,9 @@ function RegisterPage() {
           </svg>
         </Loading>
       )}
-      <section className="bg-gray-50 py-8 dark:bg-gray-900">
+      <section className="bg-sym-wallpaper py-8 dark:bg-sym-wallpaper-dark">
         <div className="flex flex-col items-center justify-center px-6 py-0 mx-auto h-full lg:py-0">
-          <div className="w-full h-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+          <div className="w-full h-full bg-sym-layout rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-sym-layout-dark dark:border-gray-700">
             <div className="px-6 pt-6 space-y-4 md:space-y-6 sm:px-8 sm:pt-8 text-center">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 Sign up
@@ -148,10 +148,7 @@ function RegisterPage() {
               <Button
                 type="submit"
                 className="w-full text-white 
-                bg-gradient-to-b from-symlab-purple-300 to-blue-400
-                hover:from-symlab-purple-300 hover:to-symlab-purple-300
-                border-none
-                hover:bg-symlab-purple-200  
+                button-symlab
                 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center focus:ring-0 focus:ring-offset-0"
               >
                 Register
@@ -161,7 +158,7 @@ function RegisterPage() {
                 Already have an account?
                 <Link
                   to="/login"
-                  className="font-medium text-primary-600 hover:underline dark:text-primary-500 ml-2"
+                  className="font-medium text-sym-primary hover:underline dark:text-sym-primary-dark ml-2"
                 >
                   Login here
                 </Link>
