@@ -308,12 +308,3 @@ Project Link: [https://github.com/Symmetrics-Lab/react-ui](https://github.com/Sy
 [tailwindcss-url]: https://tailwindcss.com/
 [playwright.js]: https://img.shields.io/badge/Playwright-20232A?style=for-the-badge&logo=playwright&logoColor=61DAFB
 [playwright-url]: https://playwright.dev/
-
-
-
-
-
-
-
-
-
