@@ -58,7 +58,7 @@ Esta librería está desarrollada con tailwind, para su correcto funcionamiento 
    ```
 
 
-### Instalacion
+### Instalación
 
 Usando NPM:
    ```sh
