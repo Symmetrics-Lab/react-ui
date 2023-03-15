@@ -278,14 +278,7 @@ Y listo!
 
 ## Release Actual
 
-- v1.0.0
-
-<!-- CONTACT -->
-
-## Contacto
-
-- Olivers De Abreu - [https://symlab.io](https://symlab.io) - [olivers@symlab.com](mailto:olivers@symlab.com)
-- Fabián Paredes - [https://symlab.io](https://symlab.io) - [fabian@symlab.com](mailto:fabian@symlab.com)
+- v0.0.6
 
 Project Link: [https://github.com/Symmetrics-Lab/react-ui](https://github.com/Symmetrics-Lab/react-ui)
 
