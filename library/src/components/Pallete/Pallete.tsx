@@ -167,14 +167,6 @@ function Palette() {
         title: 'Brand sym-secondary-green-dark',
         color: 'bg-sym-secondary-green-dark',
       },
-      {
-        title: 'Brand sym-txt-secondary',
-        color: 'bg-sym-txt-secondary',
-      },
-      {
-        title: 'Brand sym-txt-secondary-dark',
-        color: 'bg-sym-txt-secondary-dark',
-      },
     ],
     Input: [
       {
@@ -270,8 +262,8 @@ function Palette() {
         color: 'bg-sym-timeline-date-dark',
       },
       {
-        title: 'Brand sym-timeline-date',
-        color: 'bg-sym-timeline-date',
+        title: 'Brand sym-timeline-desc',
+        color: 'bg-sym-timeline-desc',
       },
       {
         title: 'Brand sym-timeline-desc-dark',
