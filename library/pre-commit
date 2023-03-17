@@ -6,7 +6,7 @@ if [ $(git rev-parse --abbrev-ref HEAD) == "main" ]; then
     read -p "What kind of version do you want to make?? [major/minor/patch] " RESPONSE < /dev/tty
     if [ $RESPONSE = "major" ] || [ $RESPONSE = "minor" ] || [ $RESPONSE = "patch" ]; then
         npm version $RESPONSE --no-git-tag-version
-        git add package.json package-lock.json
+        git add package.json ./../package-lock.json
         git commit --no-verify -m  "build: Bump version $(npm run --silent version)" 
 	    git push origin main
     else
