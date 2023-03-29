@@ -5,7 +5,7 @@ import { DropdownProps } from './Dropdown.types';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 
 export default function Dropdown(props: DropdownProps) {
-  const { className, label, icon, srLabel, children } = props;
+  const { className, subClassName, label, icon, srLabel, children } = props;
   const classes = clsx('dropdown relative ml-3', className);
 
   return (
@@ -60,10 +60,10 @@ export default function Dropdown(props: DropdownProps) {
           >
             <Menu.Items
               static
-              className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md 
-              bg-sym-header-bg 
-              dark:bg-sym-header-bg-dark 
-              py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none divide-y divide-gray-100"
+              className={clsx(
+                'absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md  bg-sym-header-bg dark:bg-sym-header-bg-dark py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none divide-y divide-gray-100',
+                subClassName
+              )}
             >
               {children}
             </Menu.Items>

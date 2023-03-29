@@ -1,5 +1,5 @@
 import React from 'react';
-export interface CheckboxProps  extends React.HTMLProps<HTMLInputElement> {
+export interface CheckboxProps extends React.HTMLProps<HTMLInputElement> {
   id: string;
   key?: string;
   className?: string;
@@ -11,4 +11,5 @@ export interface CheckboxProps  extends React.HTMLProps<HTMLInputElement> {
   rounded?: 'rounded-full' | 'rounded' | null;
   checked?: boolean;
   value?: string;
+  showValue: boolean;
 }

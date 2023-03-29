@@ -18,3 +18,4 @@ export { default as Modal } from './Modal';
 export { default as Listbox } from './ListBox';
 export { default as Pallete } from './Pallete';
 export { default as Notification } from './Notification';
+export { default as RadioButton } from './RadioButton';
