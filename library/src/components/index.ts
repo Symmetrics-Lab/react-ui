@@ -17,3 +17,4 @@ export { default as Timeline } from './Timeline';
 export { default as Modal } from './Modal';
 export { default as Listbox } from './ListBox';
 export { default as Pallete } from './Pallete';
+export { default as RadioButton } from './RadioButton';
