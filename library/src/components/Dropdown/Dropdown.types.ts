@@ -1,5 +1,6 @@
 interface DropDownTypes {
   className?: string;
+  subClassName?: string;
   srLabel?: string;
   children: React.ReactNode;
 }
