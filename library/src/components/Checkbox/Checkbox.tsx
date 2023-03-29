@@ -22,6 +22,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Checkbox(p
     checked,
     rounded = 'rounded',
     textPosition = 'right',
+    showValue = true,
     ...rest
   } = props;
 
@@ -45,19 +46,18 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Checkbox(p
   return (
     <div className="flex items-center">
       {value && textPosition === 'left' && <div className={labelClass}>{value}</div>}
-      
-        <input
-          id={id}
-          ref={ref}
-          disabled={disabled}
-          required={required}
-          checked={checked}
-          type={'checkbox'}
-          className={classes}
-          {...rest}
-        />
-    
-      {value && textPosition === 'right' && <div className={labelClass}>{value}</div>}
+
+      <input
+        id={id}
+        ref={ref}
+        disabled={disabled}
+        required={required}
+        checked={checked}
+        type={'checkbox'}
+        className={classes}
+        {...rest}
+      />
+      {showValue && value && textPosition === 'right' && <div className={labelClass}>{value}</div>}
     </div>
   );
 });
