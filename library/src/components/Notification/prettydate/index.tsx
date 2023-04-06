@@ -10,8 +10,8 @@ export const prettydate = () => {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const prettyDate = (time: string) => {
-    const date = new Date((time || '').replace(/-/g, '/').replace(/[TZ]/g, ' ')),
-      diff = (new Date().getTime() - date.getTime()) / 1000,
+    const /*date = new Date((time || '').replace(/-/g, '/').replace(/[TZ]/g, ' '))*/
+      diff = (new Date().getTime() - new Date(time).getTime()) / 1000,
       day_diff = Math.floor(diff / 86400);
 
     if (isNaN(day_diff) || day_diff < 0 ) return; //|| day_diff >= 31
