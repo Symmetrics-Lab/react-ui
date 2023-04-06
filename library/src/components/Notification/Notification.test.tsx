@@ -26,7 +26,7 @@ describe('Notification', () => {
     const notification = screen.getByTestId('notification');
     expect(notification.className).contain('bg-red-500');
   });
-  test('The notification card component, allows you to see the time that the notification has passed to the current day', () => {
+  test('The notification card component allows you to display the basic information', () => {
     const { container } = render(
       <Notification
         data-testid="notification"
@@ -39,7 +39,7 @@ describe('Notification', () => {
     );
     expect(container.innerHTML).toMatch('Test');
   });
-  test('The notification card component allows you to display the basic information', () => {
+  test('The notification card component, allows you to see the time that the notification has passed to the current day', () => {
     render(
       <Notification
         data-testid="notification"
