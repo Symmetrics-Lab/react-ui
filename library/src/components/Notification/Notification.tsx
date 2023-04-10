@@ -46,7 +46,7 @@ const Notification = forwardRef<HTMLAnchorElement, NotificationProps>(function N
             {data?.description}
           </p>
           <p className="text-xs text-sym-secondary-gray dark:text-sym-secondary-gray-dark leading-none mt-1 flex justify-end">
-            {prettydate().format(data?.time || new Date().toString())}
+            {prettydate().format(data?.time || new Date().toISOString())}
           </p>
         </div>
       </div>
