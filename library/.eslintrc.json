@@ -1,7 +1,7 @@
 {
   "env": {
     "browser": true,
-    "es2021": true,
+    "ES2019": true,
     "jest": true,
     "node": true
   },
@@ -14,7 +14,7 @@
   "overrides": [],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": "latest",
+    "ecmaVersion": 2019,
     "sourceType": "module"
   },
   "plugins": ["react", "react-hooks", "@typescript-eslint", "prettier"],
