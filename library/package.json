@@ -12,7 +12,6 @@
     "dev": "vite",
     "build": "tsc && vite build && npm run pre-commit",
     "preview": "vite preview",
-    "prepack": "json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\"",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "build:tailwind": "tailwindcss build -i src/index.css -o style/output.css -c ./tailwind.config.cjs",
@@ -93,5 +92,8 @@
     "date-fns": "^2.29.3",
     "react-aria": "^3.20.0",
     "vite-plugin-static-copy": "^0.13.1"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
