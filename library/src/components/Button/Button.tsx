@@ -1,4 +1,4 @@
-import { forwardRef, createElement } from 'react';
+import { createElement, forwardRef } from 'react';
 import clsx from 'clsx';
 import { useButton } from 'react-aria';
 import { useObjectRef } from '@react-aria/utils';
@@ -19,7 +19,8 @@ const sizes = {
 const variants = {
   primary: 'text-sym-btn-txt bg-sym-primary focus:ring-sym-primary',
   secondary: 'text-sym-btn-txt bg-sym-green-100 focus:ring-sym-green-100',
-  outline: 'text-sym-txt-primary dark:text-sym-txt-primary-dark bg-sym-layout dark:bg-sym-layout-dark hover:bg-sym-wallpaper dark:hover:bg-sym-wallpaper-dark',
+  outline:
+    'text-sym-txt-primary dark:text-sym-txt-primary-dark bg-sym-layout dark:bg-sym-layout-dark hover:bg-sym-wallpaper dark:hover:bg-sym-wallpaper-dark',
 };
 
 const leftIcon = {
@@ -80,20 +81,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(props,
       className={classes}
       onClick={onClick}
     >
-      {(iconPosition === 'left' || !iconPosition) &&
-        icon &&
-        createElement(icon, {
-          className: leftIcon[size],
-          'aria-hidden': true,
-        })}
+      <>{(iconPosition === 'left' || !iconPosition) && icon && { icon }}</>
       <>
         {isLoading ? loadingContent : children}
-        {iconPosition === 'right' &&
-          icon &&
-          createElement(icon, {
-            className: rightIcon[size],
-            'aria-hidden': true,
-          })}
+        {iconPosition === 'right' && icon && { icon }}
       </>
     </button>
   );

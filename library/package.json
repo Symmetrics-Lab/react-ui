@@ -27,11 +27,11 @@
   "devDependencies": {
     "@babel/core": "^7.19.3",
     "@storybook/addon-actions": "^6.5.12",
-    "@storybook/addon-essentials": "^6.5.12",
+    "@storybook/addon-essentials": "^7.0.20",
     "@storybook/addon-interactions": "^6.5.12",
     "@storybook/addon-links": "^6.5.12",
     "@storybook/builder-vite": "^0.2.4",
-    "@storybook/react": "^6.5.12",
+    "@storybook/react": "^7.0.20",
     "@storybook/testing-library": "^0.0.13",
     "@tailwindcss/forms": "^0.5.3",
     "@testing-library/jest-dom": "^4.2.4",
@@ -87,11 +87,13 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.3",
+    "@heroicons/react": "^2.0.18",
     "@tanstack/match-sorter-utils": "^8.7.2",
     "@tanstack/react-table": "^8.7.4",
     "clsx": "^1.2.1",
     "date-fns": "^2.29.3",
     "react-aria": "^3.20.0",
+    "react-hook-form": "^7.44.3",
     "vite-plugin-static-copy": "^0.13.1"
   }
 }

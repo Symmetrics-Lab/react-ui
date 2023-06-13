@@ -2,8 +2,12 @@ import { AriaButtonProps } from 'react-aria';
 import { ElementType } from 'react';
 type IconType =
   | string
-  | React.FunctionComponent<{ className: string; 'aria-hidden': boolean }>
-  | React.ComponentClass<{ className: string; 'aria-hidden': boolean }>;
+  | React.ForwardRefExoticComponent<
+      React.PropsWithoutRef<React.SVGProps<SVGSVGElement>> & {
+        title?: string;
+        titleId?: string;
+      } & React.RefAttributes<SVGSVGElement>
+    >;
 export interface SwitchProps extends AriaButtonProps<ElementType> {
   id: string;
   key?: string;
@@ -12,7 +16,7 @@ export interface SwitchProps extends AriaButtonProps<ElementType> {
   variant?: 'default' | 'primary' | 'secondary';
   disabled?: boolean;
   toggle?: boolean;
-  onClick: React.MouseEventHandler<HTMLButtonElement>
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
   iconLeft?: IconType;
   iconRight?: IconType;
 }

@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test-ct": "playwright test -c playwright-ct.config.ts"
@@ -18,7 +18,7 @@
     "react": "^18.2.0",
     "react-aria": "^3.20.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.37.0",
+    "react-hook-form": "^7.44.3",
     "react-router-dom": "^6.4.2"
   },
   "devDependencies": {
