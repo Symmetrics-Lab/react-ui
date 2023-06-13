@@ -70,19 +70,17 @@ export default function Chip(props: ChipProps) {
         <>
           {icon && iconPosition === 'left' && (
             <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 mr-0">
-              {createElement(icon, {
-                className: leftIcon[iconSize],
-                'aria-hidden': true,
-              })}
+              <>{icon}</>
             </div>
           )}
           {children}
           {icon && iconPosition === 'right' && (
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-              {createElement(icon, {
+              <>{icon}</>
+              {/*  {createElement(icon, {
                 className: rightIcon[iconSize],
                 'aria-hidden': true,
-              })}
+              })} */}
             </div>
           )}
         </>

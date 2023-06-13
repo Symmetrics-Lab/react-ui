@@ -6,7 +6,7 @@ export default function DropdownItem(props: DropdownItemProps) {
   const { className, link, disabled, as, children, ...rest } = props;
   const classes = clsx('dropdown-item', as === 'button' && 'w-full');
   return (
-    <Menu.Item as={as ?? 'a'} disabled={disabled} href={link} className={classes} {...rest}>
+    <Menu.Item as={as ?? 'button'} disabled={disabled} className={classes} {...rest}>
       {({ active }) => (
         <span
           className={clsx(

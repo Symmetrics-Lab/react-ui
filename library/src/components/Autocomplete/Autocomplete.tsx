@@ -101,10 +101,7 @@ const Autocomplete = forwardRef<Ref<HTMLButtonElement>, AutocompleteProps>(funct
             >
               {icon ? (
                 <>
-                  {createElement(icon, {
-                    className: 'h-5 w-5',
-                    'aria-hidden': true,
-                  })}
+                  {icon}
                 </>
               ) : (
                 <ChevronDownIcon
@@ -121,9 +118,7 @@ const Autocomplete = forwardRef<Ref<HTMLButtonElement>, AutocompleteProps>(funct
                     key={`Autocomplete-${index}-${option[labelField]}`}
                     className={({ active, selected }) =>
                       classNames(
-                        selected && !active
-                          ? 'bg-sym-active dark:bg-sym-active-dark'
-                          : null,
+                        selected && !active ? 'bg-sym-active dark:bg-sym-active-dark' : null,
                         option[value.labelField] &&
                           value.data &&
                           value.data[value.labelField] &&
@@ -131,7 +126,7 @@ const Autocomplete = forwardRef<Ref<HTMLButtonElement>, AutocompleteProps>(funct
                           !active
                           ? 'bg-sym-active dark:bg-sym-active-dark'
                           : null,
-                          active
+                        active
                           ? 'dark:text-sym-txt-primary-dark text-sym-txt-primary' //text-white bg-primary-500
                           : 'dark:text-sym-secondary-gray-dark text-sym-secondary-gray',
                         'relative cursor-default select-none py-2 pl-3 pr-9'
@@ -203,16 +198,7 @@ const Autocomplete = forwardRef<Ref<HTMLButtonElement>, AutocompleteProps>(funct
                   : null
               }`}
             >
-              {icon ? (
-                <>
-                  {createElement(icon, {
-                    className: 'h-5 w-5',
-                    'aria-hidden': true,
-                  })}
-                </>
-              ) : (
-                <ChevronDownIcon className={`h-5 w-5`} aria-hidden="true" />
-              )}
+              {icon ? <>{icon}</> : <ChevronDownIcon className={`h-5 w-5`} aria-hidden="true" />}
             </Combobox.Button>
 
             {filteredOptions.length > 0 && (
@@ -224,9 +210,9 @@ const Autocomplete = forwardRef<Ref<HTMLButtonElement>, AutocompleteProps>(funct
                       classNames(
                         selected && !active ? 'bg-sym-active dark:bg-sym-active-dark' : null,
                         active
-                        ? 'dark:text-sym-txt-primary-dark text-sym-txt-primary' //text-white bg-primary-500
-                        : 'dark:text-sym-secondary-gray-dark text-sym-secondary-gray',
-                      'relative cursor-default select-none py-2 pl-3 pr-9'
+                          ? 'dark:text-sym-txt-primary-dark text-sym-txt-primary' //text-white bg-primary-500
+                          : 'dark:text-sym-secondary-gray-dark text-sym-secondary-gray',
+                        'relative cursor-default select-none py-2 pl-3 pr-9'
                       )
                     }
                     value={option}
