@@ -123,6 +123,10 @@ const Table = forwardRef(function Table(props: TableProps, ref) {
     {
       columns,
       data: ldata,
+      initialState: {
+        pagination: { pageSize: options?.pageSize || 10 },
+      },
+
       /*globalFilterFn: (row, columnId, filterValue) => {
         const safeValue = (() => {
           const value = row.getValue(columnId);
@@ -230,7 +234,7 @@ const Table = forwardRef(function Table(props: TableProps, ref) {
         {options?.filtering && (
           <div className="flex justify-between items-center pb-20">
             <div>
-              {title && (
+            {title && (
                 <div className="text-sym-txt-primary dark:text-sym-txt-primary-dark font-Raleway text-xl font-medium">{title}</div>
               )}
             </div>
