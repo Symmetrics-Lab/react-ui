@@ -1,13 +1,17 @@
 import { AriaButtonProps } from 'react-aria';
 import { ElementType } from 'react';
+import * as React from 'react';
+// data types for support with heroicons
+type IconSVGProps = React.PropsWithoutRef<React.SVGProps<SVGSVGElement>> &
+  React.RefAttributes<SVGSVGElement>;
+type IconProps = IconSVGProps & {
+  title?: string;
+  titleId?: string;
+};
 type IconType =
   | string
-  | React.ForwardRefExoticComponent<
-      React.PropsWithoutRef<React.SVGProps<SVGSVGElement>> & {
-        title?: string;
-        titleId?: string;
-      } & React.RefAttributes<SVGSVGElement>
-    >;
+  | React.FC<IconProps>; //data types for support with heroicons
+
 export interface SwitchProps extends AriaButtonProps<ElementType> {
   id: string;
   key?: string;
