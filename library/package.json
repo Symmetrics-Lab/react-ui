@@ -41,23 +41,5 @@
       "import": "./dist/symlab-react-ui.es.js",
       "require": "./dist/symlab-react-ui.umd.js"
     }
-  },
-  "dependencies": {
-    "@headlessui/react": "^1.7.3",
-    "@heroicons/react": "^2.0.10",
-    "@storybook/react": "^7.0.27",
-    "@tanstack/match-sorter-utils": "^8.7.2",
-    "@tanstack/react-table": "^8.7.4",
-    "@testing-library/user-event": "^14.4.3",
-    "clsx": "^1.2.1",
-    "date-fns": "^2.29.3",
-    "react-aria": "^3.20.0",
-    "react-hook-form": "^7.44.3",
-    "vite-plugin-static-copy": "^0.13.1"
-  },
-  "devDependencies": {
-    "@testing-library/jest-dom": "^5.16.5",
-    "@types/testing-library__jest-dom": "^5.14.8",
-    "vite-plugin-dts": "^3.2.0"
   }
 }
