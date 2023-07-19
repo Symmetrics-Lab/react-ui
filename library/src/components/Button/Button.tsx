@@ -81,10 +81,20 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(props,
       className={classes}
       onClick={onClick}
     >
-      <>{(iconPosition === 'left' || !iconPosition) && icon && { icon }}</>
+      {(iconPosition === 'left' || !iconPosition) &&
+        icon &&
+        createElement(icon, {
+          className: leftIcon[size],
+          'aria-hidden': true,
+        })}
       <>
         {isLoading ? loadingContent : children}
-        {iconPosition === 'right' && icon && { icon }}
+        {iconPosition === 'right' &&
+          icon &&
+          createElement(icon, {
+            className: rightIcon[size],
+            'aria-hidden': true,
+          })}
       </>
     </button>
   );

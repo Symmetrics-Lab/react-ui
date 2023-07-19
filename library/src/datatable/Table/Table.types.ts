@@ -1,5 +1,6 @@
 import { ColumnDef } from '@tanstack/react-table';
 import React, { Dispatch, SetStateAction } from 'react';
+import { boolean } from 'yup/lib/locale';
 export interface Options {
   sorting?: boolean;
   filtering?: boolean;
@@ -45,6 +46,10 @@ export interface Options {
   overflowY?: 'visible' | 'hidden' | 'scroll' | 'auto' | 'initial' | 'inherit';
   pageSize?: number;
   pageSizeOptions?: number[];
+  usePaginationDefault?: boolean;
+  useFilterGlobalDefault?: boolean;
+  filterGlobalComponente?: React.ReactNode;
+  paginationComponente?: React.ReactNode;
   paginationType?: 'normal' | 'stepped';
   rowStyle?:
     | React.CSSProperties

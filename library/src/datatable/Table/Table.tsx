@@ -234,13 +234,19 @@ const Table = forwardRef(function Table(props: TableProps, ref) {
         {options?.filtering && (
           <div className="flex justify-between items-center pb-20">
             <div>
-            {title && (
-                <div className="text-sym-txt-primary dark:text-sym-txt-primary-dark font-Raleway text-xl font-medium">{title}</div>
+              {title && (
+                <div className="text-sym-txt-primary dark:text-sym-txt-primary-dark font-Raleway text-xl font-medium">
+                  {title}
+                </div>
               )}
             </div>
             <label className="sr-only">Search</label>
             <div className="relative">
-              <TableFilterGlobal filter={globalFilter} setFilter={setGlobalFilter} />
+              {options?.useFilterGlobalDefault ? (
+                <TableFilterGlobal filter={globalFilter} setFilter={setGlobalFilter} />
+              ) : (
+                options?.filterGlobalComponente
+              )}
             </div>
           </div>
 
@@ -382,95 +388,96 @@ const Table = forwardRef(function Table(props: TableProps, ref) {
           </table>
         </div>
 
-        <nav
-          className="lg:flex flex-row items-center justify-between border-t border-sym-border dark:border-sym-border-dark px-4 py-3 sm:px-6"
-          aria-label="Pagination"
-        >
-          <div className="flex flex-1 justify-between sm:justify-start items-center">
-            <div className="w-48 bg-sym-layout dark:bg-sym-layout-dark rounded shadow">
-              <Select
-                id="select-show-row"
-                value={pageSize}
-                defaultValue={options?.pageSize}
-                options={options?.pageSizeOptions || [10, 25, 50, 100]}
-                auxOption="rows"
-                className="border-none !shadow-none"
-                onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-                  setPageSize(Number(e.target.value));
+        {options?.usePaginationDefault ? (
+          <nav
+            className="lg:flex flex-row items-center justify-between border-t border-sym-border dark:border-sym-border-dark px-4 py-3 sm:px-6"
+            aria-label="Pagination"
+          >
+            <div className="flex flex-1 justify-between sm:justify-start items-center">
+              <div className="w-48 bg-sym-layout dark:bg-sym-layout-dark rounded shadow">
+                <Select
+                  id="select-show-row"
+                  value={pageSize}
+                  defaultValue={options?.pageSize}
+                  options={options?.pageSizeOptions || [10, 25, 50, 100]}
+                  auxOption="rows"
+                  className="border-none !shadow-none"
+                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                    setPageSize(Number(e.target.value));
+                  }}
+                />
+              </div>
+            </div>
+            <div className="flex flex-1 justify-between sm:justify-end  items-center">
+              <button
+                className={`text-4xl px-5 ${
+                  !getCanPreviousPage()
+                    ? 'text-sym-secondary-gray-10 dark:text-sym-secondary-gray-10-dark'
+                    : 'text-sym-txt-primary dark:text-sym-txt-primary-dark hover:bg-sym-hover dark:hover:bg-sym-hover-dark'
+                }`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setPageIndex(0);
                 }}
-              />
+                disabled={!getCanPreviousPage()}
+              >
+                &laquo;
+              </button>
+
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  previousPage();
+                }}
+                disabled={!getCanPreviousPage()}
+                className={`inline-flex items-center text-xs font-medium rounded-full ${
+                  !getCanPreviousPage()
+                    ? 'text-sym-secondary-gray-10 dark:text-sym-secondary-gray-10-dark'
+                    : 'text-sym-txt-primary dark:text-sym-txt-primary-dark hover:bg-sym-hover dark:hover:bg-sym-hover-dark'
+                }`}
+              >
+                <ChevronLeftIcon className="h-9 w-9" aria-hidden="true" />
+              </button>
+
+              <div className="px-5">
+                <p className="text-sm text-gray-400 dark:text-sym-secondary-gray-10-dark">
+                  <span className="font-medium">{pageIndex + 1}</span> to{' '}
+                  <span className="font-medium">{getPageCount()}</span> of{' '}
+                  <span className="font-medium">{getPreFilteredRowModel().rows.length}</span>
+                </p>
+              </div>
+
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  nextPage();
+                }}
+                disabled={!getCanNextPage()}
+                className={`inline-flex items-center text-xs font-medium  rounded-full ${
+                  !getCanNextPage()
+                    ? 'text-sym-secondary-gray-10 dark:text-sym-secondary-gray-10-dark'
+                    : 'text-sym-txt-primary dark:text-sym-txt-primary-dark hover:bg-sym-hover dark:hover:bg-sym-hover-dark'
+                }`}
+              >
+                <ChevronRightIcon className="h-9 w-9" aria-hidden="true" />
+              </button>
+
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  setPageIndex(getPageCount() - 1);
+                }}
+                disabled={!getCanNextPage()}
+                className={`text-4xl px-5 ${
+                  !getCanNextPage()
+                    ? 'text-sym-secondary-gray-10 dark:text-sym-secondary-gray-10-dark'
+                    : 'text-sym-txt-primary dark:text-sym-txt-primary-dark hover:bg-sym-hover dark:hover:bg-sym-hover-dark'
+                }`}
+              >
+                &raquo;
+              </button>
             </div>
-          </div>
-          <div className="flex flex-1 justify-between sm:justify-end  items-center">
-            <button
-              className={`text-4xl px-5 ${
-                !getCanPreviousPage()
-                  ? 'text-sym-secondary-gray-10 dark:text-sym-secondary-gray-10-dark'
-                  : 'text-sym-txt-primary dark:text-sym-txt-primary-dark hover:bg-sym-hover dark:hover:bg-sym-hover-dark'
-              }`}
-              onClick={(e) => {
-                e.preventDefault();
-                setPageIndex(0);
-              }}
-              disabled={!getCanPreviousPage()}
-            >
-              &laquo;
-            </button>
-
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                previousPage();
-              }}
-              disabled={!getCanPreviousPage()}
-              className={`inline-flex items-center text-xs font-medium rounded-full ${
-                !getCanPreviousPage()
-                  ? 'text-sym-secondary-gray-10 dark:text-sym-secondary-gray-10-dark'
-                  : 'text-sym-txt-primary dark:text-sym-txt-primary-dark hover:bg-sym-hover dark:hover:bg-sym-hover-dark'
-              }`}
-            >
-              <ChevronLeftIcon className="h-9 w-9" aria-hidden="true" />
-            </button>
-
-            <div className="px-5">
-              <p className="text-sm text-gray-400 dark:text-sym-secondary-gray-10-dark">
-                <span className="font-medium">{pageIndex + 1}</span> to{' '}
-                <span className="font-medium">{getPageCount()}</span> of{' '}
-                <span className="font-medium">{getPreFilteredRowModel().rows.length}</span>
-              </p>
-            </div>
-
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                nextPage();
-              }}
-              disabled={!getCanNextPage()}
-              className={`inline-flex items-center text-xs font-medium  rounded-full ${
-                !getCanNextPage()
-                  ? 'text-sym-secondary-gray-10 dark:text-sym-secondary-gray-10-dark'
-                  : 'text-sym-txt-primary dark:text-sym-txt-primary-dark hover:bg-sym-hover dark:hover:bg-sym-hover-dark'
-              }`}
-            >
-              <ChevronRightIcon className="h-9 w-9" aria-hidden="true" />
-            </button>
-
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                setPageIndex(getPageCount() - 1);
-              }}
-              disabled={!getCanNextPage()}
-              className={`text-4xl px-5 ${
-                !getCanNextPage()
-                  ? 'text-sym-secondary-gray-10 dark:text-sym-secondary-gray-10-dark'
-                  : 'text-sym-txt-primary dark:text-sym-txt-primary-dark hover:bg-sym-hover dark:hover:bg-sym-hover-dark'
-              }`}
-            >
-              &raquo;
-            </button>
-          </div>
-          {/* <span>
+            {/* <span>
             Go to page:{' '}
             <input
               type={'number'}
@@ -481,7 +488,10 @@ const Table = forwardRef(function Table(props: TableProps, ref) {
               }}
             />
           </span> */}
-        </nav>
+          </nav>
+        ) : (
+          options?.paginationComponente
+        )}
       </div>
       {/* <pre className="my-10">
           <code>
