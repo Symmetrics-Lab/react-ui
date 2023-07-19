@@ -10,9 +10,10 @@ type IconProps = IconSVGProps & {
 };
 type IconType =
   | string
-  | React.FunctionComponent<{ className: string; 'aria-hidden': boolean }>
-  | React.ComponentClass<{ className: string; 'aria-hidden': boolean }>
-  | React.FC<IconProps>; //data types for support with heroicons
+  //| React.FunctionComponent<{ className: string; 'aria-hidden': boolean }>
+  //| React.ComponentClass<{ className: string; 'aria-hidden': boolean }>
+  | React.FC<IconProps> //data types for support with heroicons
+  //| React.ReactNode
 
 interface ButtonPropsBase extends AriaButtonProps<ElementType> {
   className?: string;
