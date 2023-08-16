@@ -41,7 +41,7 @@ const Modal = forwardRef<HTMLSelectElement, ModalProps>(function Modal(props, re
             onClick={closeModal}
           >
             <div
-              className={`relative z-10 bg-sym-layout dark:bg-sym-layout-dark opacity-100 w-96 h-80 flex items-center justify-center rounded-md ${className}`}
+              className={`relative z-10 bg-sym-layout dark:bg-sym-layout-dark opacity-100 w-96 h-auto flex items-center justify-center rounded-md ${className}`}
               style={{ animation: 'animate 0.3s' }}
             >
               <main className="w-full">{children}</main>
