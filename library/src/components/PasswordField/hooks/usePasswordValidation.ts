@@ -24,7 +24,7 @@ function usePasswordValidation(
       const upper = upperCase ? /[A-Z]/.test(pass) : true;
       const num = number ? /\d/.test(pass) : true;
       const special = specialCharacter
-        ? /[!@#$%^&."*()_\-+=<>?/\\|[\]{}~`,;:'!¡¿?°ºª«»–—]/.test(pass)
+        ? /[ !"#$%&'\(\)\*\+,\-\.\/:;<=>\?@\[\]\\\^_`\{\|\}~]/.test(pass)
         : true;
       const allValid = length && lower && upper && num && special;
       const validation = {
