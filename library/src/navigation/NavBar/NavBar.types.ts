@@ -9,4 +9,5 @@ export interface NavBarProps {
     link: string;
     current?: boolean;
   }[];
+  currentPath?: string;
 }

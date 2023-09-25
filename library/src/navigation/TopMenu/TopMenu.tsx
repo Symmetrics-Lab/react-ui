@@ -12,7 +12,12 @@ export default function TopMenu(props: TopMenuProps) {
         // Check if element is a React.ReactNode else use default MenuItem
         const Element = as || TopMenuItem;
         return (
-          <Element key={item.label} role="menuitem" {...item} current={currentPath === item.link} />
+          <Element
+            key={item.label}
+            role="menuitem"
+            {...item}
+            current={currentPath === (item.currentLink ? item.currentLink : item.link)}
+          />
         );
       })}
     </div>

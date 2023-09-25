@@ -5,7 +5,7 @@ import TopMenuMobile from '../TopMenuMobile';
 import { NavBarProps } from './NavBar.types';
 
 export default function NavBar(props: NavBarProps) {
-  const { logo, leftItems, rightItems, itemsMobile } = props;
+  const { logo, leftItems, rightItems, itemsMobile, currentPath } = props;
   return (
     <Disclosure as="nav" className="bg-sym-header-bg dark:bg-sym-header-bg-dark shadow">
       {({ open }) => (
@@ -14,7 +14,8 @@ export default function NavBar(props: NavBarProps) {
             <div className="relative flex h-16 justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button */}
-                <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 
+                <Disclosure.Button
+                  className="inline-flex items-center justify-center rounded-md p-2 
                 text-sym-header-txt 
                 dark:text-sym-header-txt 
                 hover:bg-sym-hover 
@@ -22,7 +23,8 @@ export default function NavBar(props: NavBarProps) {
                 dark:hover:bg-sym-hover-dark
                 hover:text-sym-hover 
                 hover:text-sym-hover-dark
-                focus:outline-none focus:ring-2 focus:ring-inset focus:ring-sym-primary dark:focus:ring-sym-primary-dark">
+                focus:outline-none focus:ring-2 focus:ring-inset focus:ring-sym-primary dark:focus:ring-sym-primary-dark"
+                >
                   <span className="sr-only">Open main menu</span>
                   {open ? (
                     <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
@@ -40,7 +42,9 @@ export default function NavBar(props: NavBarProps) {
               </div>
             </div>
           </div>
-          {itemsMobile && itemsMobile?.length > 0 ? <TopMenuMobile items={itemsMobile} /> : null}
+          {itemsMobile && itemsMobile?.length > 0 ? (
+            <TopMenuMobile items={itemsMobile} currentPath={currentPath} />
+          ) : null}
         </>
       )}
     </Disclosure>
