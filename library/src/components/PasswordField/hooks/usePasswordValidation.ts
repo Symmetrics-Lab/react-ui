@@ -35,9 +35,6 @@ function usePasswordValidation(
         specialCharacter: special,
         allValid,
       };
-      console.log(pass);
-      console.log({ lowerCase: /[a-z]/.test(pass) });
-      console.log({ validation });
       setIsValid(validation);
     }
 
