@@ -45,13 +45,12 @@ export interface Options {
   grouping?: boolean;
   overflowY?: 'visible' | 'hidden' | 'scroll' | 'auto' | 'initial' | 'inherit';
   pageSize?: number;
-  pagesTotal?: number;
-  countTotal?: number;
+  pageIndex?: number;
   pageSizeOptions?: number[];
   usePaginationDefault?: boolean;
   useFilterGlobalDefault?: boolean;
   filterGlobalComponente?: React.ReactNode;
-  paginationComponente?: React.ReactNode;
+  paginationComponente?: React.ReactElement<PaginationCustomizedProps>;
   paginationType?: 'normal' | 'stepped';
   rowStyle?:
     | React.CSSProperties
@@ -141,6 +140,14 @@ export interface Action {
   hidden?: boolean;
 }
 
+export interface PaginationCustomizedProps<T = {}> {
+  pagesTotal?: number;
+  countTotal?: number;
+  page?: number;
+  limit?: number;
+  [key: string]: any;
+}
+
 //export interface TableProps<D extends React.ElementType = 'table'> {
 export interface TableProps {
   className?: string;
@@ -154,6 +161,7 @@ export interface TableProps {
   data: object[];
   localization?: Localization;
   options?: Options;
+  paginationProps?: PaginationCustomizedProps;
   actions?: Action[];
   //action
 
