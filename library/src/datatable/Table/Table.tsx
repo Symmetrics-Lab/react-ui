@@ -71,13 +71,12 @@ const Table = forwardRef(function Table(props: TableProps, ref) {
     columns: lcolumns,
     data: ldata /*, TableBody, TableCell, TableRow*/,
     options,
+    paginationProps,
     localization,
   } = props;
 
   const columns = useMemo(() => lcolumns, []);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const data = useMemo(() => ldata, []);
-
   const {
     //TABLE
     //getTableProps,
@@ -124,7 +123,9 @@ const Table = forwardRef(function Table(props: TableProps, ref) {
       columns,
       data: ldata,
       initialState: {
-        pagination: { pageSize: options?.pageSize || 10 },
+        pagination: {
+          pageSize: options?.pageSize ?? paginationProps?.limit ?? 10,
+        },
       },
 
       /*globalFilterFn: (row, columnId, filterValue) => {
@@ -489,11 +490,12 @@ const Table = forwardRef(function Table(props: TableProps, ref) {
           </nav>
         ) : (
           options?.paginationComponente &&
-          React.cloneElement(options.paginationComponente as any, {
-            pagesTotal: options?.pagesTotal,
-            countTotal: options?.countTotal,
-            page: pageIndex,
-            limit: pageSize,
+          React.cloneElement(options.paginationComponente, {
+            ...paginationProps, // Pasa todas las propiedades definidas
+            pagesTotal: paginationProps?.pagesTotal,
+            countTotal: paginationProps?.countTotal,
+            page: paginationProps?.page,
+            limit: paginationProps?.limit,
             onPageChange: handlePageChange,
             onPageSizeChange: handlePageSizeChange,
           })
