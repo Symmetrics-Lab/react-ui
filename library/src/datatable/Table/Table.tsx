@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useMemo, useState } from 'react';
+import React, { forwardRef, useEffect, useMemo, useState } from 'react';
 import {
   /* useGlobalFilter,
   useFilters,
@@ -212,6 +212,15 @@ const Table = forwardRef(function Table(props: TableProps, ref) {
   }, [getSelectedRowModel().rows]);
 
   /* eslint-disable */
+
+  const handlePageChange = (newPage: number) => {
+    setPageIndex(newPage); // Actualizar el estado de pageIndex
+  };
+
+  const handlePageSizeChange = (newPageSize: number) => {
+    setPageSize(newPageSize); // Actualizar el estado de pageSize
+  };
+
   return (
     <>
       <div className="overflow-x-auto relative shadow-md sm:rounded-lg bg-sym-layout dark:bg-sym-layout-dark p-10 ">
@@ -398,8 +407,8 @@ const Table = forwardRef(function Table(props: TableProps, ref) {
                 <Select
                   id="select-show-row"
                   value={pageSize}
-                  defaultValue={options?.pageSize}
-                  options={options?.pageSizeOptions || [10, 25, 50, 100]}
+                  //defaultValue={options?.pageSize}
+                  options={options?.pageSizeOptions ?? [10, 25, 50, 100]}
                   auxOption="rows"
                   className="border-none !shadow-none"
                   onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -477,20 +486,17 @@ const Table = forwardRef(function Table(props: TableProps, ref) {
                 &raquo;
               </button>
             </div>
-            {/* <span>
-            Go to page:{' '}
-            <input
-              type={'number'}
-              defaultValue={pageIndex + 1}
-              onChange={(e) => {
-                const pageNumber = e.target.value ? Number(e.target.value) - 1 : 0;
-                setPageIndex(pageNumber);
-              }}
-            />
-          </span> */}
           </nav>
         ) : (
-          options?.paginationComponente
+          options?.paginationComponente &&
+          React.cloneElement(options.paginationComponente as any, {
+            pagesTotal: options?.pagesTotal,
+            countTotal: options?.countTotal,
+            page: pageIndex,
+            limit: pageSize,
+            onPageChange: handlePageChange,
+            onPageSizeChange: handlePageSizeChange,
+          })
         )}
       </div>
       {/* <pre className="my-10">

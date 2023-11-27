@@ -45,6 +45,8 @@ export interface Options {
   grouping?: boolean;
   overflowY?: 'visible' | 'hidden' | 'scroll' | 'auto' | 'initial' | 'inherit';
   pageSize?: number;
+  pagesTotal?: number;
+  countTotal?: number;
   pageSizeOptions?: number[];
   usePaginationDefault?: boolean;
   useFilterGlobalDefault?: boolean;
