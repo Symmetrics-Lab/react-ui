@@ -96,6 +96,7 @@ const PasswordField = forwardRef<Ref<HTMLInputElement>, PasswordFieldProps>(func
         />
         <div className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
           <button
+            type="button"
             onClick={(e) => {
               e.preventDefault();
               setShowPassword(!showPassword);
@@ -104,9 +105,15 @@ const PasswordField = forwardRef<Ref<HTMLInputElement>, PasswordFieldProps>(func
             <span className="sr-only">{showPassword ? 'Hide password' : 'Show password'}</span>
             <span className="icon">
               {showPassword ? (
-                <EyeIcon className="h-5 w-5 text-sym-input-icon dark:text-sym-input-icon-dark" aria-hidden="true" />
+                <EyeIcon
+                  className="h-5 w-5 text-sym-input-icon dark:text-sym-input-icon-dark"
+                  aria-hidden="true"
+                />
               ) : (
-                <EyeSlashIcon className="h-5 w-5 text-sym-input-icon-inactive dark:text-sym-input-icon-inactive-dark" aria-hidden="true" />
+                <EyeSlashIcon
+                  className="h-5 w-5 text-sym-input-icon-inactive dark:text-sym-input-icon-inactive-dark"
+                  aria-hidden="true"
+                />
               )}
             </span>
           </button>
